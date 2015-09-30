@@ -43,7 +43,7 @@ public class VideoController {
     @RequestMapping("/save")
     public @ResponseBody Object save(){
 	Video video = new Video();
-	video.setId("123456");
+	video.setId("1234567");
 	video.setUrl("http://localhost:8080/1");
 	video.setComment("is good");
 	video.setName("solr in action");
