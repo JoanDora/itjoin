@@ -17,7 +17,7 @@ import com.itjoin.user.repositories.UserRepos;
  * <p>
  * 
  *
- *
+ *用户
  * </p>
  *  
  * @author	hz14121005 
@@ -35,7 +35,7 @@ public class UserController {
      * <p>
      * 
      *
-     *
+     *用户注册
      * </p>
      * @param user
      * @return
@@ -61,6 +61,18 @@ public class UserController {
 	return userRepos.save(user);
     }
     
+    /**
+     * <p>
+     * 
+     *用户登录
+     *
+     * </p>
+     * @param user
+     *  
+     * @author	hz14121005 
+     * @date	2015-10-4 上午10:48:11
+     * @version      
+     */ 
     @RequestMapping("/login")
     public @ResponseBody void login(User user){
 	if(StringUtils.isBlank(user.getName())){

@@ -38,16 +38,54 @@ public class CourseController {
     private CourseRepos courseRepos;
    
     
+    /**
+     * <p>
+     * 
+     *上传保存课程基本信息
+     *
+     * </p>
+     * @param course
+     *  
+     * @author	hz14121005 
+     * @date	2015-10-4 上午10:44:14
+     * @version      
+     */ 
     @RequestMapping("/save")
     public @ResponseBody void save(Course course){
 	courseRepos.save(course);
     }
     
+    /**
+     * <p>
+     * 
+     *查看单个课程的详细信息
+     *
+     * </p>
+     * @param id
+     * @return
+     *  
+     * @author	hz14121005 
+     * @date	2015-10-4 上午10:44:40
+     * @version      
+     */ 
     @RequestMapping("/viewById")
     public @ResponseBody Object viewById(@PathVariable("id")String id){
 	return courseRepos.findById(id);
     }
     
+    /**
+     * <p>
+     * 
+     *根据课程种类获取所有的课程
+     *
+     * </p>
+     * @param categoryId
+     * @return
+     *  
+     * @author	hz14121005 
+     * @date	2015-10-4 上午10:45:05
+     * @version      
+     */ 
     @RequestMapping("/getAllCourseByCategoryId")
     public @ResponseBody Object getAllCourseByCategoryId(@PathVariable("categoryId")String categoryId){
 	Course course=new Course();

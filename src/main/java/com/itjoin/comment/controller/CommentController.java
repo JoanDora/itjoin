@@ -39,14 +39,40 @@ public class CommentController {
     @Resource
    private  CommentRepos commentRepos;
    
-   @RequestMapping("/view")
+   /**
+ * <p>
+ * 
+ *查看某个课程的留言评论列表
+ *
+ * </p>
+ * @param courseId
+ * @return
+ *  
+ * @author	hz14121005 
+ * @date	2015-10-4 上午10:46:11
+ * @version      
+ */ 
+@RequestMapping("/view")
    public @ResponseBody Object view(@PathVariable("courseId")String courseId){
        Comment comment=new Comment();
        comment.setCourseId(courseId);
        return commentRepos.findByCondition(comment);
    };
    
-   @RequestMapping("/saveComment")
+   /**
+ * <p>
+ * 
+ *提交评论
+ *
+ * </p>
+ * @param comment
+ * @return
+ *  
+ * @author	hz14121005 
+ * @date	2015-10-4 上午10:47:07
+ * @version      
+ */ 
+@RequestMapping("/saveComment")
    public @ResponseBody Object saveComment(Comment comment){
        if(StringUtils.isBlank(comment.getContent())){
 	    return null;
@@ -55,7 +81,19 @@ public class CommentController {
        return commentRepos.save(comment);
    }
    
-   @RequestMapping("/deleteById")
+   /**
+ * <p>
+ * 
+ *
+ *删除某条评论
+ * </p>
+ * @param id
+ *  
+ * @author	hz14121005 
+ * @date	2015-10-4 上午10:47:18
+ * @version      
+ */ 
+@RequestMapping("/deleteById")
    public @ResponseBody void deleteById(@PathVariable("id")String id){
        Comment comment=new Comment();
        comment.setId(id);
