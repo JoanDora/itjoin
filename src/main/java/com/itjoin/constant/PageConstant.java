@@ -23,7 +23,7 @@ import org.apache.commons.io.filefilter.FalseFileFilter;
  */
 public class PageConstant {
     
-    public static final int PAGE_SIZE=20;
+    public static final int PAGE_SIZE=12;
 
     
 }

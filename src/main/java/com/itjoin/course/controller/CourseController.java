@@ -110,6 +110,7 @@ public class CourseController {
 	}
     }
 
+
     /**
      * <p>
      * 
@@ -206,20 +207,87 @@ public class CourseController {
      * @date 2015-10-4 上午10:45:05
      * @version
      */
-    @RequestMapping("/getAllCourseByCategoryId")
-    public @ResponseBody Object getAllCourseByCategoryId(@PathVariable("categoryId") String categoryId, @PathVariable("pageNum") int pageNum) {
-	if (pageNum < 0) {
-	    pageNum = 0; 
+    @RequestMapping("/searchByCategoryId")
+    public @ResponseBody Object searchByCategoryId(@PathVariable("categoryId") String categoryId, @PathVariable("pageNo") int pageNo) {
+	if (pageNo < 0) {
+	    pageNo = 0; 
 	}
 	Query query = new Query();
 	Criteria criteria = Criteria.where("categoryId").is(categoryId);
 	query.addCriteria(criteria);
 	query.limit(PageConstant.PAGE_SIZE);
-	query.skip(pageNum * PageConstant.PAGE_SIZE);
+	query.skip(pageNo * PageConstant.PAGE_SIZE);
 	Direction direction = Direction.DESC;
 	Sort sort = new Sort(direction, "CreateTime");
 	query.with(sort);
 	return courseRepos.find(query);
     }
+    
+    
+    /**
+     * <p>
+     * 
+     *根据名字搜索课程
+     *
+     * </p>
+     * @param name
+     * @param pageNum
+     * @return
+     * @throws Exception
+     *  
+     * @author	hz14121005 
+     * @date	2015-10-5 下午4:23:03
+     * @version      
+     */ 
+    @RequestMapping("/searchByName")
+    public @ResponseBody Object searchByName(@PathVariable("name") String name, @PathVariable("pageNo") int pageNo) throws Exception{
+	if (pageNo < 0) {
+	    pageNo = 0; 
+	}
+	Query query = new Query();
+	Criteria criteria = Criteria.where("name").is(name);
+	query.addCriteria(criteria);
+	query.limit(PageConstant.PAGE_SIZE);
+	query.skip(pageNo * PageConstant.PAGE_SIZE);
+	Direction direction = Direction.DESC;
+	Sort sort = new Sort(direction, "CreateTime");
+	query.with(sort);
+	List<Course> course = courseRepos.find(query);
+	return course;
+    }
+    
+    /**
+     * <p>
+     * 
+     *获取最新课程列表
+     *
+     * </p>
+     * @param pageNo
+     * @return
+     * @throws Exception
+     *  
+     * @author	hz14121005 
+     * @date	2015-10-5 下午4:27:14
+     * @version      
+     */ 
+    @RequestMapping("/NewCourseList")
+    public @ResponseBody Object getNewCourseList( @PathVariable("pageNo") int pageNo) throws Exception{
+	if (pageNo < 0) {
+	    pageNo = 0; 
+	}
+	Query query = new Query();
+	Criteria criteria =new Criteria();
+	query.addCriteria(criteria);
+	query.limit(PageConstant.PAGE_SIZE);
+	query.skip(pageNo * PageConstant.PAGE_SIZE);
+	Direction direction = Direction.DESC;
+	Sort sort = new Sort(direction, "CreateTime");
+	query.with(sort);
+	List<Course> course = courseRepos.find(query);
+	return course;
+    }
+    
+    
+    
 
 }
