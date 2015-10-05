@@ -39,7 +39,19 @@ public class Comment {
     private Date CreateTime;
 
     
-    public String getId() {
+    
+    
+    public int getLevel() {
+		return level;
+	}
+
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+
+	public String getId() {
         return id;
     }
 
