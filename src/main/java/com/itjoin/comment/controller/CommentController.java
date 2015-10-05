@@ -10,10 +10,13 @@
 package com.itjoin.comment.controller; 
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,9 +57,11 @@ public class CommentController {
  */ 
 @RequestMapping("/view")
    public @ResponseBody Object view(@PathVariable("courseId")String courseId){
-       Comment comment=new Comment();
-       comment.setCourseId(courseId);
-       return commentRepos.findByCondition(comment);
+       Query query=new Query();
+       Criteria criteria=Criteria.where("courseId").is(courseId);
+       query.addCriteria(criteria);
+       List<Comment> list= commentRepos.find(query);
+       return list;
    };
    
    /**

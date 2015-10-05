@@ -6,23 +6,22 @@
  * and shall use it only in accordance with the terms of the agreements   
  * you entered into with Hzins,http://www.hzins.com.
  *  
- */
-package com.itjoin.course.model;
+ */   
+package com.itjoin.course.model; 
 
 import java.util.Date;
 
 /**
  * <p>
  * 
- * 
- * 
+ *
+ *
  * </p>
- * 
- * @author hz14121005
- * @date 2015-10-2 下午11:21:28
- * @version
+ * @author	hz14121005 
+ * @date	2015-10-5 下午2:53:45
+ * @version      
  */
-public class Course {
+public class CourseParam {
 
     private String id;
 
@@ -43,8 +42,8 @@ public class Course {
     private Date createTime;
 
     private Date updateTime;
-
- 
+    
+    private int browseTimes;
 
     
     public String getId() {
@@ -56,87 +55,107 @@ public class Course {
         this.id = id;
     }
 
+    
     public String getName() {
-	return name;
+        return name;
     }
-
-    public void setName(String name) {
-	this.name = name;
-    }
-
-    public String getDescription() {
-	return description;
-    }
-
-    public void setDescription(String description) {
-	this.description = description;
-    }
-
-
-
 
     
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    
+    public String getDescription() {
+        return description;
+    }
+
+    
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     
     public String getTeacherId() {
         return teacherId;
     }
-
 
     
     public void setTeacherId(String teacherId) {
         this.teacherId = teacherId;
     }
 
-
+    
     public String getCategoryId() {
         return categoryId;
     }
-
 
     
     public void setCategoryId(String categoryId) {
         this.categoryId = categoryId;
     }
 
-
+    
     public int getStatus() {
-	return status;
+        return status;
     }
 
+    
     public void setStatus(int status) {
-	this.status = status;
+        this.status = status;
     }
 
+    
     public String getImageUrl() {
-	return imageUrl;
+        return imageUrl;
     }
 
+    
     public void setImageUrl(String imageUrl) {
-	this.imageUrl = imageUrl;
+        this.imageUrl = imageUrl;
     }
 
+    
     public int getPrice() {
-	return price;
+        return price;
     }
 
+    
     public void setPrice(int price) {
-	this.price = price;
+        this.price = price;
     }
 
+    
     public Date getCreateTime() {
-	return createTime;
+        return createTime;
     }
 
+    
     public void setCreateTime(Date createTime) {
-	this.createTime = createTime;
+        this.createTime = createTime;
     }
 
+    
     public Date getUpdateTime() {
-	return updateTime;
+        return updateTime;
     }
 
+    
     public void setUpdateTime(Date updateTime) {
-	this.updateTime = updateTime;
+        this.updateTime = updateTime;
     }
 
+    
+    public int getBrowseTimes() {
+        return browseTimes;
+    }
+
+    
+    public void setBrowseTimes(int browseTimes) {
+        this.browseTimes = browseTimes;
+    }
+    
+    
+    
 }
+ 

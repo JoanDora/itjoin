@@ -12,8 +12,7 @@ package com.itjoin.course.repositories;
 import org.springframework.stereotype.Service;
 
 import com.itjoin.base.MongodbBaseDao;
-import com.itjoin.course.model.CourseExt;
-import com.itjoin.course.model.CourseSub;
+import com.itjoin.course.model.CourseSubExt;
 
 /**
  * <p>
@@ -26,7 +25,7 @@ import com.itjoin.course.model.CourseSub;
  * @version      
  */
 @Service
-public class CourseSubExt   extends MongodbBaseDao<CourseSub>{
+public class CourseSubExtRepos   extends MongodbBaseDao<CourseSubExt>{
 
 }
  
