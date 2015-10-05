@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+      http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+      http://www.springframework.org/schema/context 
+      http://www.springframework.org/schema/context/spring-context.xsd 
+      http://www.springframework.org/schema/mvc 
+      http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-
-    
-         <context:component-scan
-            base-package="com.itjoin"/>  
-    <!-- 将静态文件制定到某个特殊的文件夹中统一处理 -->
-  <mvc:resources location="/resources/"  mapping="/resources/**"/>
-	<mvc:resources mapping="/pages/**" location="/pages/" /> 
-	<mvc:resources location="/file/"  mapping="/file/**"/>
+	<context:component-scan base-package="com.itjoin" />
+	
 	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager" />
 
 	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
@@ -57,39 +55,28 @@
         </set>  
    </property>  
 </bean>  
-
- <!-- 转换器配置:只有配置好了转换器才能进行类与JSON和XML的转换 -->
-<!--     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-        <property name="messageConverters">
-            <list>
-                String 转换器
-                <ref bean="stringHttpMessageConverter"/>
-                JSON 转换器
-                <ref bean="jsonHttpMessageConverter"/>
-                XML 转换器
-               <ref bean="marshallingHttpMessageConverter"/> 
-            </list>
-        </property>
-    </bean> -->
-    
-    <bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter"/>
-
-	<!-- 上传拦截，如最大上传值及最小上传值 -->
+	
+	
+	
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="41943040" />
-		<property name="defaultEncoding" value="UTF-8"></property>
-		<!--property name="uploadTempDir" value="/home/zhouliang"></property -->
-		<!-- uploadTempDir：设置上传文件时的临时目录，默认是Servlet容器的临时目录。 maxUploadSize：设置允许上传的最大文件大小，以字节为单位计算。当设为-1时表示无限制，默认是-1。 
-			maxInMemorySize：设置在文件上传时允许写到内存中的最大值，以字节为单位计算，默认是10240。 -->
+		<property name="maxInMemorySize" value="4096" />
 	</bean>
-	
-	<!-- 拦截器 -->  
-    <mvc:interceptors>  
-        <!-- 多个拦截器,顺序执行 -->  
-        <mvc:interceptor>  
-           <mvc:mapping path="/admin/*" /><!-- 如果不配置或/*,将拦截所有的Controller -->  
-           <bean class="com.itjoin.interceptor.AdminInterceptor"></bean>  
-        </mvc:interceptor>  
-    </mvc:interceptors>  
-</beans>
+
+
+
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/upload/**" location="/upload/" />
+	  <mvc:resources mapping="/pages/**" location="/pages/"/>
+
+  <bean id="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+  	
+  <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+       <property name="prefix" value="/pages/" />
+		<property name="suffix" value=".jsp" />
+    </bean>
+
+
+</beans> 

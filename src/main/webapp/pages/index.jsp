@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="sf"  uri="http://www.springframework.org/tags/form"  %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%
 	String path = request.getContextPath();
 %>
@@ -8,7 +8,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>无标题文档</title>
+<title>it分享联盟主页</title>
 <link rel="stylesheet" href="<%=path%>/resources/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="<%=path%>/resources/css/style.css" type="text/css" >
 </head>
