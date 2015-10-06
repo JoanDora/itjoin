@@ -18,7 +18,7 @@
     	<div class="C_layout">
         	<a href="#"><img src="<%=path%>/resources/images/C_logo.jpg" /></a>
             <ul class="C_nav">
-            	<li><a href="#">首页</a></li>
+            	<li><a href="index.jsp">首页</a></li>
                 <li><a href="#">课程<i class="glyphicon glyphicon-triangle-bottom"></i></a>
                 	<div class="C_nav2">
                     	<a href="#">DIV+CSS</a>
@@ -32,6 +32,8 @@
                         <a href="#">安卓</a>
                     </div>
                 </li>
+                    <li><a href="uploadvideo.jsp">上传视频</a></li>
+                <li><a href="about.jsp">关于我们</a></li>
             </ul>
             <div class="C_top_right">
             	<div class="C_search">

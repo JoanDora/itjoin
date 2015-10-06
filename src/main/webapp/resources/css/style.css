@@ -15,9 +15,9 @@ body{ font-family:"微软雅黑"; font-size:16px;}
 .C_header .C_nav li{ float:left;}
 .C_header .C_nav>li>a{ color:#c4c4c4; padding:0 25px; display:inline-block; line-height:66px; }
 .C_header .C_nav li a:hover{ color:#fff; background:#505050; }
-.C_header .C_nav li:last-child{ position:relative;}
-.C_header .C_nav li:last-child:hover .C_nav2{ display:block;}
-.C_header .C_nav li:last-child:hover a{ color:#fff; background:#505050;}
+.C_header .C_nav li:nth-child(2){ position:relative;}
+.C_header .C_nav li:nth-child(2):hover .C_nav2{ display:block;}
+.C_header .C_nav li:nth-child(2):hover a{ color:#fff; background:#505050;}
 .C_nav2{ background:#505050; width:200px; position:absolute; top:66px; left:0px; display:none;}
 .C_header>.C_layout>.C_nav>li>.C_nav2>a{ padding:0 10px; display:inline-block;  font-size:14px; line-height:28px; height:28px; overflow:hidden; color:#c4c4c4;}
 .C_header>.C_layout>.C_nav>li>.C_nav2>a:hover{ color:#fff;}
@@ -123,3 +123,18 @@ footer{ background:#323436; line-height:107px; margin-top:40px; color:#666; text
 .C_bq dd i{ font-size:26px; line-height:48px; color:#525252; }
 .C_bq dd:first-child{ border-right:1px solid #292828;}
 .C_bq dd:last-child{ border-right:1px solid #1c1c1c;}
+
+/* 上传视频 */
+.C_scsp{ margin-top:45px; width:800px;}
+.C_scsp ul>li>span{ width:80px; float:left; text-align:right; line-height:35px; padding-right:5px;}
+.C_scsp ul li:nth-child(2) input{ width:80%;}
+.C_scsp ul input{  width:80%; border:1px solid #ddd; line-height:35px; padding-left:5px;}
+.C_scsp ul li{ margin-bottom:20px; overflow:hidden;}
+.C_scsp ul li textarea{ width:80%; border:1px solid #ddd; height:100px; padding-left:5px;}
+.C_scsp ul li button{ margin-left:80px; background:#58a210; padding:0 20px; line-height:40px; border:none; color:#fff; border-radius:4px; }
+.C_scsp li:first-child{ position:relative;}
+.C_scsp li:first-child dl{ position:absolute; top:40px; left:80px; background:#ededed; width:80%; display:none; }
+.C_scsp li:first-child dl dd{ line-height:24px; cursor:pointer; padding-left:5px;}
+.C_scsp li:first-child dl dd:hover{ background:#58a210; color:#fff;}
+.C_about_us{ margin-top:30px;}
+.C_about_us p{ line-height:30px; text-indent:2em;}
