@@ -13,8 +13,8 @@
 <link rel="shortcut icon"  href="<%=path%>/resources/image/favicon.ico" type="image/x-icon">
 <link rel="icon" href="<%=path%>/resources/image/favicon.ico" type="image/x-icon">
 <!--<fk:base-styles>-->
-<link rel="stylesheet"  href="<%=path%>/resources/css/ack/logincox.css">
-<link rel="stylesheet" href="<%=path%>/resources/css/ack/loginbase.css">
+<link rel="stylesheet"  href="<%=path%>/resources/css/itjoin/logincox.css">
+<link rel="stylesheet" href="<%=path%>/resources/css/itjoin/loginbase.css">
 <!--</fk:base-styles>-->
 <style>
 .sidebar-nav {
@@ -26,7 +26,7 @@
 
 <title>后台会员登录 -it分享联盟</title>
 <!--<fk:styles>-->
-<link rel="stylesheet" href="<%=path%>/resources/css/ack/adminlogin.css">
+<link rel="stylesheet" href="<%=path%>/resources/css/itjoin/adminlogin.css">
 <!--</fk:styles>-->
 
 <script type="application/json" data-id="user-data">
