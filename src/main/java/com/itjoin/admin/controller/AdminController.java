@@ -43,7 +43,7 @@ import com.itjoin.util.Pagination;
 @RequestMapping("/admin")
 public class AdminController {
 
-	private static final String PAGE =  "html/admin/";
+	private static final String PAGE =  "pages/admin/";
 
 	@Resource
 	private AdminRepository adminRepository;
@@ -81,7 +81,6 @@ public class AdminController {
 			result = true;
 			user = users.get(0);
 		}
-		// contextPath = request.getContextPath();
 		// 失败次数记录
 		int failLoginNums = 0;
 
@@ -101,8 +100,6 @@ public class AdminController {
 		HttpSession session = request.getSession();
 		session.setAttribute("adminUser", user);
 		session.setMaxInactiveInterval(-1);
-
-		// return "service/selfService";
 		return user;
 	}
 
@@ -188,22 +185,13 @@ public class AdminController {
 	        	page--;
 	        }
 			Pagination pagination = new Pagination();
-//			List<Admin> admins = adminRepository.findAll();
 			Pageable pageable = new PageRequest(page, intPageSize) {
 			};
 			Page<Admin> adminPages = adminRepository.findAll(pageable);
 			
 			List<Admin> admins  = adminPages.getContent();
-//			admins = new ArrayList<Admin>();
-//			for(int i=0;i<10;i++){
-//				Admin admin = new Admin();
-//				admin.setEmail("624881289@sina.com");
-//				admin.setPhone("1562651906"+i);
-//				admin.setUserName("hhhhhh"+i);
-//				admins.add(admin);
-//			}
-//			pagination.setRows(admins);
-//			pagination.setTotal(adminRepository.count());
+			pagination.setRows(admins);
+			pagination.setTotal(adminRepository.count());
 			 return pagination;
 			
 		}
@@ -235,7 +223,6 @@ public class AdminController {
 		@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 		protected @ResponseBody Object delete(HttpServletRequest request,@PathVariable String id,HttpSession session) throws Exception {
 			try {
-//				Admin admin = adminRepository.findOne(id);
 				Admin user =  (Admin) session.getAttribute("adminUser");
 				if(user.getId()==null){
 					return "0";
@@ -245,8 +232,6 @@ public class AdminController {
 				}else{
 					adminRepository.delete(id);
 				}
-//				admin.setDeleted("1");
-//				adminRepository.save(admin);
 			} catch (Exception e) {
 				e.printStackTrace();
 				return 0;
