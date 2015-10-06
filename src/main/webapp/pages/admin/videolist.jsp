@@ -9,8 +9,8 @@
 <head>
 <meta http-equiv="it分享联盟" content="it分享联盟">
 <title>it分享联盟视频列表管理</title>
-<link rel="stylesheet" href="..<%=path%>/resources/css/ack/Cox.css?v=0.6.6" />
-<link rel="stylesheet" href="..<%=path%>/resources/css/ack/base.css?v=0.6.6" />
+<link rel="stylesheet" href="..<%=path%>/resources/css/itjoin/Cox.css?v=0.6.6" />
+<link rel="stylesheet" href="..<%=path%>/resources/css/itjoin/base.css?v=0.6.6" />
 <link rel="stylesheet" href="<%=path%>/resources/css/bootstrap/bootstrap.min.css" />
 <style type="text/css">
 ul.ztree {

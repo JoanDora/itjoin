@@ -83,7 +83,7 @@
 </div>
 
   <div id="imgBox" style="display:none">
-       <img src="<%=path%>/resources/image/loading.gif" alt="" />
+       <img src="<%=path%>/resources/images/loading.gif" alt="" />
      </div>
     <script type="text/javascript"src="<%=path%>/resources/js/jquery/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="<%=path%>/resources/js/md5.js"></script>

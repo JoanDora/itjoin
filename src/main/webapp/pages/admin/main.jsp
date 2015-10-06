@@ -29,7 +29,7 @@
 					"menuid" : "111",
 					"menuname" : "视频列表",
 					"icon" : "icon-nav",
-					"url" : "/admin/attribute?new=" + Math.random()
+					"url" : "/admin/videolist?new=" + Math.random()
 				} ]
 			}
 			, {
@@ -40,7 +40,7 @@
 					"menuid" : "411",
 					"menuname" : "编辑网站简介",
 					"icon" : "icon-nav",
-					"url" : "strategylist.html"
+					"url" : "/admin/webinfolist?new=" + Math.random()
 				} ]
 			}
 			, {
@@ -57,7 +57,7 @@
 			, {
 				"menuid" : "20",
 				"icon" : "icon-sys",
-				"menuname" : "用户管理",
+				"menuname" : "后台用户管理",
 				"menus" : [ {
 					"menuid" : "211",
 					"menuname" : "用户资料",
