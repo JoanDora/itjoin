@@ -38,6 +38,8 @@ public class CourseParam {
     private String imageUrl;
 
     private int price;
+    
+    private String introduce;
 
     private Date createTime;
 
@@ -46,6 +48,19 @@ public class CourseParam {
     private int browseTimes;
 
     
+    
+    
+    public String getIntroduce() {
+        return introduce;
+    }
+
+
+    
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
+
     public String getId() {
         return id;
     }

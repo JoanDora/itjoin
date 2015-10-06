@@ -39,14 +39,23 @@ public class Course {
     private String imageUrl;
 
     private int price;
+    private String introduce;
 
     private Date createTime;
 
     private Date updateTime;
 
- 
+    public String getIntroduce() {
+        return introduce;
+    }
+
 
     
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
+
     public String getId() {
         return id;
     }
