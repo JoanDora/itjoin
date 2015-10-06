@@ -25,78 +25,73 @@ import java.util.Date;
 public class Comment {
 
     private String id;
-    
-    private int level;//级别:0好1中2差
+
+    private int level;// 级别:0好1中2差
 
     private String content;
 
     private String userId;
-    
+
     private String courseId;
-    
+
     private String userName;
 
-    private Date CreateTime;
+    private Date createTime;
 
-    
     public String getId() {
-        return id;
+	return id;
     }
 
-    
     public void setId(String id) {
-        this.id = id;
+	this.id = id;
     }
 
-    
     public String getContent() {
-        return content;
+	return content;
     }
 
-    
     public void setContent(String content) {
-        this.content = content;
+	this.content = content;
     }
 
-    
     public String getUserId() {
-        return userId;
+	return userId;
     }
 
-    
     public void setUserId(String userId) {
-        this.userId = userId;
+	this.userId = userId;
     }
 
-    
     public String getCourseId() {
-        return courseId;
+	return courseId;
     }
 
-    
     public void setCourseId(String courseId) {
-        this.courseId = courseId;
+	this.courseId = courseId;
     }
 
-    
     public String getUserName() {
-        return userName;
+	return userName;
     }
 
-    
     public void setUserName(String userName) {
-        this.userName = userName;
+	this.userName = userName;
     }
 
-    
+    public int getLevel() {
+	return level;
+    }
+
+    public void setLevel(int level) {
+	this.level = level;
+    }
+
     public Date getCreateTime() {
-        return CreateTime;
+	return createTime;
     }
 
-    
     public void setCreateTime(Date createTime) {
-        CreateTime = createTime;
+	this.createTime = createTime;
     }
 
-  
 }
