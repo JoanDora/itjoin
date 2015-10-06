@@ -8,10 +8,10 @@
 <html>
 <head>
 <meta http-equiv="it分享联盟" content="it分享联盟">
-<title>视频列表</title>
-<link rel="stylesheet" href="../resources/css/ack/Cox.css?v=0.6.6" />
-<link rel="stylesheet" href="../resources/css/ack/base.css?v=0.6.6" />
-<link rel="stylesheet" href="/resources/css/bootstrap/bootstrap.min.css" />
+<title>it分享联盟视频列表管理</title>
+<link rel="stylesheet" href="..<%=path%>/resources/css/ack/Cox.css?v=0.6.6" />
+<link rel="stylesheet" href="..<%=path%>/resources/css/ack/base.css?v=0.6.6" />
+<link rel="stylesheet" href="<%=path%>/resources/css/bootstrap/bootstrap.min.css" />
 <style type="text/css">
 ul.ztree {
 	margin-top: 10px;
@@ -24,9 +24,9 @@ ul.ztree {
 }
 </style>
 <script type="text/javascript"
-	src="/resources/js/jquery/jquery-1.10.2.js"></script>
+	src="<%=path%>/resources/js/jquery/jquery-1.10.2.js"></script>
 <script type="text/javascript"
-	src="/resources/js/bootstrap/bootstrap.min.js"></script>
+	src="<%=path%>/resources/js/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript">
 	
 </script>
@@ -61,15 +61,15 @@ ul.ztree {
 		</div>
 	</div>
 	<div id="imgBox" style="display: none">
-		<img src="/resources/image/loading.gif" alt="" />
+		<img src="<%=path%>/resources/image/loading.gif" alt="" />
 	</div>
 	<script type="text/javascript"
-		src="/resources/js/jquery/jquery-form.js"></script>
+		src="<%=path%>/resources/js/jquery/jquery-form.js"></script>
 	<script type='text/javascript'
-		src=' /resources/js/easydialog/easydialog.min.js'></script>
-	<script type="text/javascript" src="/resources/js/escar/util.js"></script>
-	<script type="text/javascript" src="/resources/js/escar/car.js"></script>
-	<script type="text/javascript" src="/resources/js/escar/page.js"></script>
+		src=' <%=path%>/resources/js/easydialog/easydialog.min.js'></script>
+	<script type="text/javascript" src="<%=path%>/resources/js/escar/util.js"></script>
+	<script type="text/javascript" src="<%=path%>/resources/js/escar/car.js"></script>
+	<script type="text/javascript" src="<%=path%>/resources/js/escar/page.js"></script>
 	<script type="text/javascript">
 		function skip(url) {
 			location.href = "/" + url;

@@ -8,11 +8,11 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>购车攻略</title>
-<script src="/resources/ckeditor/ckeditor.js"></script>
+<title>it分享联盟简介</title>
+<script src="<%=path%>/resources/ckeditor/ckeditor.js"></script>
 <script type="text/javascript"
-	src="/resources/js/jquery/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="/resources/js/jquery/jquery-form.js"></script>
+	src="<%=path%>/resources/js/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="<%=path%>/resources/js/jquery/jquery-form.js"></script>
 </head>
 <body>
 	<form id="strategyForm" onsubmit="return false;">

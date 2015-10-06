@@ -1,0 +1,687 @@
+/***
+ *  ▄████▄      ▒█████     ▒██   ██▒ Cox CSS Framework   
+ * ▒██▀ ▀█     ▒██▒  ██▒   ▒▒ █ █ ▒░   
+ * ▒▓█    ▄    ▒██░  ██▒   ░░  █   ░   
+ * ▒▓▓▄ ▄██▒   ▒██   ██░    ░ █ █ ▒    
+ * ▒ ▓███▀ ░   ░ ████▓▒░   ▒██▒ ▒██▒   
+ * ░ ░▒ ▒  ░   ░ ▒░▒░▒░    ▒▒ ░ ░▓ ░   
+ *   ░  ▒        ░ ▒ ▒░    ░░   ░▒ ░   
+ * ░           ░ ░ ░ ▒      ░    ░   
+ * ░ ░             ░ ░      ░    ░     
+ * ░                  
+ * ----------------------------------------------------------------------------
+ * <utils.less> - 2014/3/10
+ * @version 0.1
+ * @author  Joye, maolion.j@gmail.com
+ * @website http://maolion.com
+ */
+/**工具集**/
+/**
+ * clearWhiteBorder 清除盒模型的空白边框
+ * @example
+ * #box{
+ *     .clearWhiteBorder;
+ * }
+ */
+/**
+ * ellipsisText 字符串溢出断绝隐藏
+ * @example
+ * #box{
+ *     .ellipsisText;
+ * }
+ */
+.ellipsisText {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+/**
+ * borderRadius border-radius 兼容适配器
+ * @param {...} [top-left, top-right, bottom-right, bottom-left]
+ *              [top-left, top-right&bottom-right, bottom-right]
+ *              [top-left&bottom-right, top-right&bottom-right]
+ *              [top-left&top-right&bottom-right&bottom-left]
+ * @example
+ * #box{
+ *     .borderRadius(10px, 10px, 10px, 10px);
+ *     .borderRadius(10px, 10px, 10px);
+ *     .borderRadius(10px, 10px);
+ *     .borderRadius(10px);
+ * }
+ */
+/**
+ * boxSizing border-sizing 兼容适配器
+ * @param {Value} value
+ * @example
+ * #box{
+ *     .boxSizing(border-box)
+ * }
+ */
+/**
+ * userSelect 控制网页内容的选择范围
+ * @param {Vlaue} value
+ * @example
+ * #box{
+ *     .userSelect(none);
+ * }
+ */
+/**
+ * transition 定义CSS属性值在一定的时间区间内平滑地过渡
+ * @param {Vlaue} value
+ * @example
+ * #box{
+ *     .transition(all ease .15s);
+ * }
+ */
+/**
+ * boxShadow 定义盒元素的阴影
+ * @param {Vlaue} value
+ * @example
+ * #box{
+ *     .boxShadow(1px 1px 1px 1px rgba(255, 255, 255, .3));
+ * }
+ */
+#akd_content .grid-c1 {
+  background-color: transparent !important;
+}
+#akd_content .grid-c2 {
+  background-color: #fff !important;
+}
+.cover .head {height: 110px;background-repeat: repeat-x}
+.cover .head b,
+.cover .head div {
+  height: 110px;
+}
+.cover .left-border {width: 2px;background-repeat: no-repeat;}
+.cover .right-border {width: 2px;background-repeat: no-repeat;}
+.cover .split-1 {
+  width: 10px;
+}
+.cover .car-logo {
+  width: 110px;
+  height: 110px;
+}
+.cover .car-logo a {
+  display: block;
+  width: 104px;
+  margin: 0;
+}
+.cover .car-base-info {
+  width: 610px;
+  padding: 0 0 0 10px;
+  cursor: default;
+}
+.cover .car-base-info h1 {
+  font-size: 36px;
+  display: block;
+  margin: 20px 0 20px 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.cover .car-base-info p {
+  margin: 0;
+  font-size: 16px;
+}
+.cover .car-base-info span {
+  color: #999;
+  display: inline-block;
+  vertical-align: baseline;
+  line-height: 24px;
+  margin: 0 10px;
+}
+.cover .split-2 {width: 84px;background-repeat: no-repeat;}
+.cover .car-price {
+  margin-left: -55px;
+  padding-left: 15px;
+  width: 397px;
+  cursor: default;
+  color: #ea5614;
+}
+.cover .car-price strong {
+  display: block;
+  font-size: 36px;
+  margin: 20px 0 20px 0;
+  text-align: right;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.cover .car-price .label {
+  font-weight: normal;
+}
+.cover .car-price p {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 24px;
+  text-align: right;
+  margin: 0;
+}
+.cover .car-price a {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 16px;
+  margin-left: 10px;
+}
+.cover .car-price a i {display: inline-block;
+  margin-right: 5px;
+  width: 16px;
+  height: 16px;
+  
+  vertical-align: middle;background-repeat: no-repeat;}
+.cover .subscribe-btn-wrap {
+  margin: 0 !important;
+  line-height: 110px !important;
+  text-align: center !important;
+}
+.cover .subscribe-btn {
+  font-size: 36px !important;
+  color: #ea5614;
+}
+.cover .subscribe-btn:hover {
+  color: #D44F12 !important;
+}
+.car {
+  position: relative;
+  margin-top: 15px;
+}
+.car .cover-pic,
+.car .cover-pic img {
+  width: 870px;
+  height: 470px;
+}
+.car .cover-pic {
+  position: relative;
+  overflow: hidden;
+}
+.car .compare-btn {
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  color: #ea5614;
+  line-height: 22px;
+}
+.car .compare-btn.off {
+  color: #2FBF2F !important;
+  cursor: default;
+}
+.car .compare-btn.off i,
+.car .compare-btn.off .t1 {
+  display: none;
+}
+.car .compare-btn.off .t2 {
+  display: inline;
+}
+.car .compare-btn .t2 {
+  display: none;
+}
+.car .compare-btn i {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  *display: inline;
+  *zoom: 1;
+  width: 22px;
+  height: 22px;
+  background: url(/Template/styles/images/icons/check-o-1.png?v=0.6.6) no-repeat;
+}
+.car .base-info {
+  width: 318px;
+  margin-left: 10px;
+  height: 468px;
+  border: 1px solid #e4e4e4;
+}
+.car table {
+  width: 320px;
+  table-layout: fixed;
+}
+.car table td {
+  width: 160px;
+  cursor: default;
+  border-bottom: 1px solid #e4e4e4;
+}
+.car .tool td a {
+  display: block;
+  width: 160px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  color: #ea5614;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.car .tool td a:hover i {
+  margin-left: 10px;
+}
+.car .tool td i {
+  position: absolute;
+  width: 100px;
+  height: 28px;
+  left: 30px;
+  top: 16px;
+  -webkit-transition: margin-left ease .2s;
+  -moz-transition: margin-left ease .2s;
+  transition: margin-left ease .2s;
+}
+.car .loan-calc i {background-repeat: no-repeat;}
+.car .insurance-calc i {background-repeat: no-repeat;}
+.car .label,
+.car .value {
+  height: 32px;
+  line-height: 32px;
+  font-size: 16px;
+}
+.car .label {
+  width: 130px;
+  padding-right: 30px;
+  text-align: right;
+  background: #f6f6f6;
+  color: #999;
+}
+.car .value {
+  text-align: left;
+  text-indent: 20px;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.car .guwen {
+  width: 320px;
+  height: 70px;
+  overflow: hidden;
+  font-size: 13px;
+  padding: 0;
+  text-align: right;
+  -webkit-transition: all ease .2s;
+  -moz-transition: all ease .2s;
+  transition: all ease .2s;
+  /*.btn {
+            width: 320px;
+            text-align: center;
+            line-height: 70px;
+            font-size: 24px;
+            display:none;
+            &:hover i {
+                margin: 0 0 0 20px;
+            }
+
+            span {
+                display: inline-block;
+                vertical-align: middle;
+            }
+
+            i {
+                width: 24px;
+                height: 23px;
+                margin: 0 10px 0 10px;
+                background: url(images/icons/double-arrow-right-24.png?__sprite) no-repeat;
+                .transition('all ease .2s');
+            }
+        }*/
+}
+.car .guwen:hover {
+  background: #f1831b;
+  /*.btn i {
+                background: url(images/icons/double-arrow-right-white-24.png?__sprite) no-repeat;
+            }*/
+}
+.car .guwen:hover span,
+.car .guwen:hover strong {
+  color: #fff !important;
+}
+.car .guwen:hover .tel i {background-repeat: no-repeat;}
+.car .guwen .wrap {
+  width: 640px;
+  height: 70px;
+}
+.car .guwen .btn,
+.car .guwen .tel {
+  float: left;
+  width: 320px;
+  height: 70px;
+}
+.car .guwen .btn i,
+.car .guwen .tel i {
+  display: inline-block;
+  vertical-align: middle;
+}
+.car .guwen .tel {
+  padding: 0 20px 0 90px;
+  width: 200px;
+}
+.car .guwen .tel i {width: 52px;
+  height: 60px;
+  float: left;
+  margin: 7px 0 0 -67px;background-repeat: no-repeat;}
+.car .guwen .tel span,
+.car .guwen .tel strong {
+  text-align: right;
+  display: block;
+}
+.car .guwen .tel span {
+  line-height: 30px;
+  font-size: 13px;
+  padding-top: 5px;
+}
+.car .guwen .tel strong {
+  font-weight: normal;
+  font-size: 30px;
+  color: #f1831b;
+}
+.car .button {
+  width: 320px;
+  font-size: 12px;
+  padding: 5px 0 0 10px;
+  color: #333;
+  border: none;
+  overflow: hidden;
+}
+.car .button .reserve-btn,
+.car .button .reserve-list-entry {
+  display: inline-block;
+  margin-right: 10px;
+  line-height: 30px;
+  text-align: center;
+  width: 110px;
+  background: #eb5615;
+  color: #fff;
+  vertical-align: middle;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+.car .button .reserve-btn:hover,
+.car .button .reserve-list-entry:hover {
+  color: #fff !important;
+  background: #BE4410;
+}
+.car .button .reserve-btn .tip-2 {
+  display: none;
+}
+.car .button .reserve-btn.off {
+  font-size: 13px;
+  font-weight: normal;
+  background-color: transparent !important;
+  color: #2FBF2F !important;
+}
+.car .button .reserve-btn.off .tip-2 {
+  display: inline;
+}
+.car .button .reserve-btn.off .tip-1 {
+  display: none;
+}
+.car .button .reserve-list-entry {
+  display: none;
+}
+.car.reserved .reserve-tip {
+  display: none;
+}
+.car.reserved .reserve-list-entry {
+  display: inline-block;
+}
+.car .auth-flag,
+.car .state-flag {
+  display: none;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.car .state-flag {
+  left: auto;
+  right: 10px;
+}
+#akd_content.sold .car .state-flag {
+  display: block;
+  width: 135px;
+  height: 65px;
+  background: url(/Template/styles/images/icons/sell-falg.png?v=0.6.6) no-repeat transparent;
+}
+#akd_content.sold .car .reserve-btn {
+  visibility: hidden;
+}
+#akd_content.sold .car .reserve-tip {
+  visibility: hidden;
+}
+#akd_content.approve .car .auth-flag {
+  display: block;
+  width: 83px;
+  height: 81px;
+  background: url(/Template/styles/images/icons/auth-flag.png?v=0.6.6) no-repeat transparent;
+}
+#akd_content .speciality {
+  background: #fafafa;
+}
+.sidebar {
+  margin-left: 0;
+}
+.register-entry {
+  border: none;
+  box-shadow: none !important;
+  -webkit-box-shadown: none !important;
+  -moz-box-shadown: none !important;
+  -ms-box-shadown: none !important;
+  background: #efefef;
+}
+.car-param {
+  width: 965px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.car-param table {
+  table-layout: fixed;
+  width: 965px;
+  border: 0 solid #e4e4e4;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+.car-param td {
+  font-size: 14px;
+  padding-left: 50px;
+  height: 35px;
+  vertical-align: middle;
+  border: 0 solid #e4e4e4;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+}
+.car-param .label {
+  width: 105px;
+  background: #efefef;
+  color: #666;
+}
+.car-param .remark {
+  height: 165px;
+  vertical-align: middle;
+  padding-right: 30px;
+}
+.car-param p {
+  line-height: 24px;
+  margin: 0;
+}
+.car-param-wrap {
+  margin-bottom: 0 !important;
+}
+.building-nav {
+  height: 147px;
+}
+.building-nav .nav {
+  top: -25px;
+}
+.building-nav .nav .first {
+  margin-top: 40px;
+}
+.building-nav .nav li,
+.building-nav .nav a {
+  width: 105px;
+}
+.building-nav .desc {
+  top: 0;
+}
+.content {
+  width: 965px;
+  margin-right: 10px;
+}
+.pic-category-wrap {
+  border: 1px solid #e4e4e4;
+  padding-top: 10px;
+}
+.pic-category {
+  margin-bottom: 45px;
+}
+.pic-category .label .title {
+  width: 175px;
+}
+.pic-category .label .split {width: 16px;
+  height: 31px;
+  
+  border-bottom: 1px dotted #bbb;background-repeat: no-repeat;}
+.pic-category .nav-bar {
+  background: #fff;
+  border-bottom: 1px dotted #bbb;
+  overflow: hidden;
+}
+.pic-category .nav-bar em,
+.pic-category .nav-bar span {
+  line-height: 30px;
+  cursor: default;
+}
+.pic-category .nav-bar em {
+  float: left;
+  font-style: normal;
+}
+.pic-category .nav-bar span {
+  font-size: 12px;
+  float: right;
+  padding-right: 10px;
+  color: #666;
+}
+.pic-category .nav-bar i {display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 17px;
+  
+  margin-right: 5px;background-repeat: no-repeat;}
+.pic-category .wrap {
+  padding: 20px 0 20px 0;
+}
+.pic-category .ad-pic,
+.pic-category .ad-pic img {
+  width: 310px;
+  height: 240px;
+}
+.pic-category .pic-list {
+  padding-left: 22px;
+  width: 618px;
+  height: 240px;
+}
+.pic-category .pic-list a {
+  float: left;
+  margin: 3px;
+}
+.pic-category .pic-list a,
+.pic-category .pic-list img {
+  width: 200px;
+  height: 110px;
+}
+.car-inside .pic-list {
+  padding-left: 0;
+  padding-top: 3px;
+  padding-right: 10px;
+  width: 630px;
+}
+.car-engine {
+  margin-bottom: 23px;
+}
+.car-engine .pic-list a {
+  display: block;
+  float: none;
+  margin-top: 0;
+  margin-bottom: 6px;
+}
+.car-engine .pic-list a,
+.car-engine .pic-list img {
+  height: 105px;
+}
+.car-engine .global-pic,
+.car-engine .global-pic img {
+  width: 385px;
+  height: 215px;
+}
+.buycar-guide-entry {
+  height: 153px;
+  margin: 0;
+}
+.recommend-car {
+  padding: 10px 0 0 1px;
+}
+.recommend-car h2 {
+  cursor: pointer !important;
+}
+.recommend-car .mod {
+  width: 239px;
+  height: 255px;
+}
+.recommend-car .mod a {
+  margin: 0;
+}
+.recommend-car .nav-bar {
+  position: relative;
+}
+.recommend-car .brand-list-entry {
+  display: block;
+  position: absolute;
+  line-height: 30px;
+  right: 10px;
+  top: 0;
+  font-size: 12px;
+  color: red;
+}
+.recommend-car .car-list {
+  display: none;
+}
+.recommend-car .car-list .info span {
+  padding: 5px 0;
+  white-space: normal;
+}
+.recommend-car .car-list.active {
+  display: block;
+}
+.news {
+  overflow: hidden;
+}
+#speciality {
+  height: 121px;
+}
+#car_outside {
+  height: 321px;
+}
+#car_inside {
+  height: 324px;
+}
+#car_engine {
+  height: 321px;
+}
+#recommend_car {
+  height: 570px;
+}
+#sidebar {
+  height: 1626px;
+}
+#news {
+  height: 178px;
+}
+.comparisons {
+  float: right;
+  margin: 0;
+  background: #ea5514;
+  border-radius: 2px;
+  width: 30px;
+  text-align: center;
+  color: #fff !important;
+  display: inline;
+}
+.comparisons:hover {
+  color: #fff !important;
+}
+.cover .head{background-position:0px 0px}.cover .head{background-image: url(/Template/styles/images/detail_x.png?v=0.6.6)}.cover .left-border{background-position:0px 0px}.cover .right-border{background-position:-8px 0px}.cover .split-2{background-position:-15px 0px}.car .guwen:hover .tel i{background-position:-104px 0px}.car .guwen .tel i{background-position:-161px 0px}.pic-category .label .split{background-position:-161px -65px}.car .loan-calc i{background-position:0px -115px}.car .insurance-calc i{background-position:-105px -115px}.pic-category .nav-bar i{background-position:-182px -65px}.cover .car-price a i{background-position:-104px -65px}.cover .left-border,.cover .right-border,.cover .split-2,.car .guwen:hover .tel i,.car .guwen .tel i,.pic-category .label .split,.car .loan-calc i,.car .insurance-calc i,.pic-category .nav-bar i,.cover .car-price a i{background-image: url(/Template/styles/images/detail_z.png?v=0.6.6)}

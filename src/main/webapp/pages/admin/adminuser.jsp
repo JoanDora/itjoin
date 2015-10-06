@@ -9,15 +9,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css"
-	href="/resources/css/easyui/icon.css" />
+	href="<%=path%>/resources/css/easyui/icon.css" />
 <link rel="stylesheet" type="text/css"
-	href="/resources/css/easyui/easyui.css">
+	href="<%=path%>/resources/css/easyui/easyui.css">
 <script type="text/javascript"
-	src="/resources/js/jquery/jquery-1.10.2.js"></script>
-	<script type="text/javascript" src="/resources/js/jquery/jquery-form.js"></script>
-<script type="text/javascript" src="/resources/js/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="/resources/js/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="/resources/js/md5.js"></script>
+	src="<%=path%>/resources/js/jquery/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="<%=path%>/resources/js/jquery/jquery-form.js"></script>
+<script type="text/javascript" src="<%=path%>/resources/js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="<%=path%>/resources/js/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="<%=path%>/resources/js/md5.js"></script>
 
 <script>
 var adminRole='0';

@@ -8,18 +8,18 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>购车攻略</title>
+<title>it分享联盟视频列表管理</title>
 <link rel="stylesheet" type="text/css"
-	href="/resources/css/easyui/icon.css" />
+	href="<%=path%>/resources/css/easyui/icon.css" />
 <link rel="stylesheet" type="text/css"
-	href="/resources/css/easyui/easyui.css">
-<script src="/resources/ckeditor/ckeditor.js"></script>
+	href="<%=path%>/resources/css/easyui/easyui.css">
+<script src="<%=path%>/resources/ckeditor/ckeditor.js"></script>
 <script type="text/javascript"
-	src="/resources/js/jquery/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="/resources/js/jquery/jquery-form.js"></script>
-<script type="text/javascript" src="/resources/js/escar/util.js"></script>
-<script type="text/javascript" src="/resources/js/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="/resources/js/easyui-lang-zh_CN.js"></script>
+	src="<%=path%>/resources/js/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="<%=path%>/resources/js/jquery/jquery-form.js"></script>
+<script type="text/javascript" src="<%=path%>/resources/js/escar/util.js"></script>
+<script type="text/javascript" src="<%=path%>/resources/js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="<%=path%>/resources/js/easyui-lang-zh_CN.js"></script>
 </head>
 <body>
 	<form id="strategyForm" onsubmit="return false;">

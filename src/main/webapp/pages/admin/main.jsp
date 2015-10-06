@@ -8,17 +8,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>二手车后台管理系统</title>
-<link href="/resources/css/easyui/default.css" rel="stylesheet"
+<title>it分享联盟后台管理系统</title>
+<link href="<%=path%>/resources/css/easyui/default.css" rel="stylesheet"
 	type="text/css" />
 <link rel="stylesheet" type="text/css"
-	href="/resources/css/easyui/icon.css" />
+	href="<%=path%>/resources/css/easyui/icon.css" />
 <link rel="stylesheet" type="text/css"
-	href="/resources/css/easyui/easyui.css">
+	href="<%=path%>/resources/css/easyui/easyui.css">
 	<script type="text/javascript"
-		src="/resources/js/jquery/jquery-1.4.2.min.js"></script>
-	<script type="text/javascript" src="/resources/js/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="/resources/js/md5.js"></script>
+		src="<%=path%>/resources/js/jquery/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="<%=path%>/resources/js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="<%=path%>/resources/js/md5.js"></script>
 	<script type="text/javascript">
 		var _menus = {
 			basic : [ {
@@ -152,12 +152,12 @@
 <body class="easyui-layout" style="overflow-y: hidden" scroll="no">
 	
 	<div region="north" split="true" border="false"
-		style="overflow: hidden; height: 30px; background: url(/resources/css/images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%; line-height: 20px; color: #fff; font-family: Verdana, 微软雅黑, 黑体">
+		style="overflow: hidden; height: 30px; background: url(<%=path%>/resources/css/images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%; line-height: 20px; color: #fff; font-family: Verdana, 微软雅黑, 黑体">
 		<span style="float: right; padding-right: 20px;" class="head"><span>欢迎您</span><span class="userName" id="adminPhone"></span>
 			<a href="javascript:void(0)" id="editpass">修改密码</a> <a href="javascript:void(0)"
 			id="loginOut">安全退出</a>
 		</span> <span style="padding-left: 10px; font-size: 16px; float: left;"><img
-			src="/resources/css/images/blocks.gif" width="20" height="20"
+			src="<%=path%>/resources/css/images/blocks.gif" width="20" height="20"
 			align="absmiddle" /> </span>
 		<ul id="css3menu"
 			style="padding: 0px; margin: 0px; list-type: none; float: left; display: none; margin-left: 40px;">
@@ -225,7 +225,7 @@
 		<div id="mm-exit">退出</div>
 	</div>
 
-	<script type="text/javascript" src="/resources/js/outlook.js"></script>
+	<script type="text/javascript" src="<%=path%>/resources/js/outlook.js"></script>
 <script type="text/javascript">
 
 var adminRole='0';
