@@ -71,12 +71,13 @@
 	  <mvc:resources mapping="/pages/**" location="/pages/"/>
 
   <bean id="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
-  	
-  <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-       <property name="prefix" value="/pages/" />
-		<property name="suffix" value=".jsp" />
-    </bean>
 
-
+<!-- 拦截器 -->  
+    <mvc:interceptors>  
+        <!-- 多个拦截器,顺序执行 -->  
+        <mvc:interceptor>  
+           <mvc:mapping path="/admin/*" /><!-- 如果不配置或/*,将拦截所有的Controller -->  
+           <bean class="com.itjoin.interceptor.AdminInterceptor"></bean>  
+        </mvc:interceptor>  
+    </mvc:interceptors>  
 </beans> 
