@@ -110,6 +110,26 @@ public class CourseController {
 	}
     }
 
+    
+    /**
+     * <p>
+     * 
+     *更新视频审核状态
+     *
+     * </p>
+     * @param id
+     * @param verifyStatus
+     *  
+     * @author	hz14121005 
+     * @date	2015-10-6 下午2:40:53
+     * @version      
+     */ 
+    @RequestMapping("/updateVerifyStatus")
+    public @ResponseBody void updateVerifyStatus(@PathVariable("id") String id,int verifyStatus) {
+	Course course = courseRepos.findById(id);
+	course.setVerifyStatus(verifyStatus);
+	courseRepos.updateById(course.getId(), course);
+    }
 
     /**
      * <p>

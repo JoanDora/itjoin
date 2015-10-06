@@ -35,15 +35,31 @@ public class Course {
     private String categoryId;//课程种类:1 Java 2 linux
 
     private int status;//0更新中1更新完毕
+    
+    private int verifyStatus;//0待审核1审核成功2审核失败
 
     private String imageUrl;
 
     private int price;
+    
     private String introduce;
 
     private Date createTime;
 
     private Date updateTime;
+
+    public int getVerifyStatus() {
+        return verifyStatus;
+    }
+
+
+
+    
+    public void setVerifyStatus(int verifyStatus) {
+        this.verifyStatus = verifyStatus;
+    }
+
+
 
     public String getIntroduce() {
         return introduce;
