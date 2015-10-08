@@ -289,8 +289,10 @@ var adminRole='0';
 	}
 
 	function submitForm(){
-		var pwd = $("#loginPwd").val();
-		$("#loginPwd").val(hex_md5(pwd));
+		var pwd = $("#loginPwd").val().trim();
+		if(pwd!=''){
+			$("#loginPwd").val(hex_md5(pwd));
+		}
 		$('#ff').ajaxSubmit({
 		    url:'/admin/update',  
 			type : "POST",
