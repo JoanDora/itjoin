@@ -18,15 +18,11 @@
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="<%=path%>/resources/js/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="<%=path%>/resources/js/md5.js"></script>
-
+<basePath value ="<%=path%>"  id ="basePath"></basePath>
 <script>
 var adminRole='0';
-var path = '${path}';
-alert(path)
-
+var spath =$('#basePath').attr("value");
 	$(function() {
-		
-		
 		jQuery.ajax({  
 		    type : 'POST',  
 		    contentType : 'application/json',  
@@ -41,8 +37,6 @@ alert(path)
 		      datagrid();
 		    }
 		} );
-		
-		
 
 	});
 	
@@ -56,7 +50,7 @@ alert(path)
 					rownumbers : true,
 					//width : 700,
 					height : 'auto',
-					url : "/admin/getAll?page=0&rows=0",
+					url : spath+"/admin/getAll?page=0&rows=0",
 					columns : [ [
 							{
 								field : 'userName',
@@ -124,23 +118,6 @@ alert(path)
 									//}
 								}
 							} ] ],
-						
-				/*	toolbar : [ {
-						text : '增加',
-						iconCls : 'icon-add',
-						handler : addrow
-					}
-					
-					, {
-						text : '保存',
-						iconCls : 'icon-save',
-						handler : saveall
-					}, {
-						text : '取消',
-						iconCls : 'icon-cancel',
-						handler : cancelall
-					} 
-					], */
 					onBeforeEdit : function(index, row) {
 						row.editing = true;
 						$('#tt').datagrid('refreshRow', index);
@@ -194,7 +171,7 @@ alert(path)
 		$.ajax({
 			type : "POST",
 			dataType : "json",
-			url : "/admin/getAll",
+			url : spath+"/admin/getAll",
 			data : {
 				'page' : pageNumber,
 				'rows' : pageSize
