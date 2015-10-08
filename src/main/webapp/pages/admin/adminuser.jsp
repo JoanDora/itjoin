@@ -21,6 +21,9 @@
 
 <script>
 var adminRole='0';
+var path = '${path}';
+alert(path)
+
 	$(function() {
 		
 		
