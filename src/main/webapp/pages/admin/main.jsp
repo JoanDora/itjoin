@@ -72,7 +72,6 @@
 		function serverLogin() {
 			var $newpass = $('#txtNewPass');
 			var $rePass = $('#txtRePass');
-
 			if ($newpass.val() == '') {
 				msgShow('系统提示', '请输入密码！', 'warning');
 				return false;
