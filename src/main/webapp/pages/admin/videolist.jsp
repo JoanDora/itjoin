@@ -7,35 +7,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="it分享联盟" content="it分享联盟">
-<title>it分享联盟视频列表管理</title>
-<link rel="stylesheet" href="..<%=path%>/resources/css/itjoin/Cox.css?v=0.6.6" />
-<link rel="stylesheet" href="..<%=path%>/resources/css/itjoin/base.css?v=0.6.6" />
-<link rel="stylesheet" href="<%=path%>/resources/css/bootstrap/bootstrap.min.css" />
-<style type="text/css">
-ul.ztree {
-	margin-top: 10px;
-	border: 1px solid #617775;
-	background: #f0f6e4;
-	width: 220px;
-	height: 360px;
-	overflow-y: scroll;
-	overflow-x: auto;
-}
-</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css"
+href="<%=path%>/resources/css/easyui/icon.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>/resources/css/easyui/easyui.css">
 <script type="text/javascript"
 	src="<%=path%>/resources/js/jquery/jquery-1.10.2.js"></script>
-<script type="text/javascript"
-	src="<%=path%>/resources/js/bootstrap/bootstrap.min.js"></script>
-<script type="text/javascript">
+	<script type="text/javascript" src="<%=path%>/resources/js/jquery/jquery-form.js"></script>
+<script type="text/javascript" src="<%=path%>/resources/js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="<%=path%>/resources/js/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="<%=path%>/resources/js/md5.js"></script>
+<script type="text/javascript" src="<%=path%>/resources/js/escar/datefmt.js"></script>
+<basePath value ="<%=path%>"  id ="basePath"></basePath>
+<script>
+function formatDatebox(value) {
+    if (value == null || value == '') {
+        return '';
+    }
+    var dt;
+    if (value instanceof Date) {
+        dt = value;
+    } else {
 
+        dt = new Date(value);
+
+    }
+
+    return dt.format("yyyy-MM-dd hh:mm:ss"); //扩展的Date的format方法(上述插件实现)
+}
+var spath =$('#basePath').attr("value");
 var adminRole='0';
-var path = '${path}';
-alert(path)
-
 	$(function() {
-		
-		
 		jQuery.ajax({  
 		    type : 'POST',  
 		    contentType : 'application/json',  
@@ -44,7 +47,6 @@ alert(path)
 		    success : function(data) 
 		    { 
 		      if(data!=null && data.id!=null){
-		    	  $("#adminPhone").html(data.phone);
 		    	  adminRole = data.role;
 		      }
 		      datagrid();
@@ -62,7 +64,7 @@ function datagrid(pageNo){
 				rownumbers : true,
 				//width : 700,
 				height : 'auto',
-				url : "/course/NewCourseList?page=0&rows=0",
+				url : spath+"/course/getCourseList?page=0&rows=0",
 				columns : [ [
 							{
 								field : 'name',
@@ -88,6 +90,32 @@ function datagrid(pageNo){
 								width : 80,
 								editor : 'text'
 							},
+							{
+								field : 'verifyStatus',
+								title : '审核状态',
+								width : 80,
+								editor : 'text'
+							},
+							{
+								field : 'description',
+								title : '描述',
+								width : 80,
+								editor : 'text'
+							},
+							{
+								field : 'createTime',
+								title : '创建时间',
+								width : 200,
+								editor : 'datebox',
+								 formatter: formatDatebox
+							},
+							{
+								field : 'updateTime',
+								title : '更新时间',
+								width : 200,
+								editor : 'datebox',
+								 formatter: formatDatebox
+							},
 						{
 							field : 'action',
 							title : '操作',
@@ -107,16 +135,8 @@ function datagrid(pageNo){
 								var data = row;
 								var e = '<a href="#" onclick=editrow('
 										+ index + ',"' + data.id + '","'
-										+ data.userName + '","'
-										+ data.phone + '","' + data.email
-										+ '","' + data.sex + '")>编辑</a> ';
-								/* var d = '<a href="#" onclick="deleterow('
-										+ index + ')">删除</a>'; */
-								/* return e + d; */
+										+ data.verifyStatus + '")>编辑</a> ';
 								if(adminRole=='1'){
-									/*  var d = '<a href="#" style="margin-left:10px;margin-right:10px"onclick=editrow('
-											+ index + ',"","","","","")>添加</a>';  */
-											
 									var c = '<a href="#" onclick=deleterow('
 												+ index + ',"'+ data.id+'")>删除</a>';
 									 return e +c;
@@ -144,257 +164,200 @@ function datagrid(pageNo){
 				loadMsg : '数据加载中,请稍候......'
 			});
 	
+	//分页
+	var pager = $('#tt').datagrid('getPager');
+	pager.pagination({
+		total : 0,
+		rows : 0,
+		pageNumber : 1,
+		pageList : [ 10, 20, 30 ],// 可以设置每页记录条数的列表
+		onBeforeRefresh : function() {
+		},
+		onSelectPage : function(pageNumber, pageSize) {//分页触发  
+		//	pageNumber--;
+			find(pageNumber, pageSize);
+		}
+	});
+	
+	function find(pageNumber, pageSize) {
+		$("#tt").datagrid('getPager').pagination({
+			pageSize : pageSize,
+			pageNumber : pageNumber
+		});//重置
+		$("#tt").datagrid("loading"); //加屏蔽
+		$.ajax({
+			type : "POST",
+			dataType : "json",
+			url :spath+ "/course/getCourseList",
+			data : {
+				'page' : pageNumber,
+				'rows' : pageSize
+			},
+			success : function(data) {
+				$("#tt").datagrid('loadData', pageData(data.rows, data.total));//这里的pageData是我自己创建的一个对象，用来封装获取的总条数，和数据，data.rows是我在控制器里面添加的一个map集合的键的名称
+				var total = data.total;
+				$("#tt").datagrid("loaded"); //移除屏蔽
+			},
+			error : function(err) {
+				$.messager.alert('操作提示', '获取信息失败...请联系管理员!', 'error');
+				$("#tt").datagrid("loaded"); //移除屏蔽
+			}
+		});
+	}
+	
+	function pageData(list, total) {
+		var obj = new Object();
+		obj.total = total;
+		obj.rows = list;
+		return obj;
+	}
+	
+	function saverow(index) {
+		$('#tt').datagrid('endEdit', index);
+	}
+	function cancelrow(index) {
+		$('#tt').datagrid('cancelEdit', index);
+	}
+	function addrow() {
+		editrow(' ',"","","","","");
+	}
+	function saveall() {
+		$('#tt').datagrid('acceptChanges');
+	}
+	function cancelall() {
+		$('#tt').datagrid('rejectChanges');
+	}
+
+	$(function() {
+		$('#win').window('close');
+		//	$('#win').window('open'); // open a window
+	});
+	
+	function clearForm(){
+		$('#win').window('close');
+	}
+
+	function submitForm(){
+		var pwd = $("#loginPwd").val().trim();
+		if(pwd!=''){
+			$("#loginPwd").val(hex_md5(pwd));
+		}
+		$('#ff').ajaxSubmit({
+		    url:spath+'/course/updateVerifyStatus',  
+			type : "POST",
+			dataType: "json",
+	        success:function(data){  
+                if(data=='1'){
+                	alert("操作成功");
+                }else{
+                	alert("操作失败");
+                }
+                $('#win').window('close');
+//               parent.location.reload();
+	        }  
+	    });   
+	}
+
+	
 }
+
+
 	
 	
 	
 </script>
 </head>
 <body>
-	<div style="border-top-style: ridge;height:300px;">
+<table id="tt"></table>
+<div id="win" class="easyui-window" title=""
+		style="width: 400px; height: 400px"
+		data-options="iconCls:'icon-save',modal:true">
+		<div class="easyui-layout" data-options="fit:true">
+			<div data-options="region:'center'">
+				<div class="easyui-panel" title=" 编辑视频信息" style="width: 100%;height:100%">
+					<div style="padding: 10px 60px 20px 60px">
+						<form id="ff" method="post">
+							<table cellpadding="5">
+								<tr>
+									<td>视频名字：</td>
+									<td>
+									<span class="textbox easyui-fluid" style="width: 171px; height: 30px;">
+									     <input  class="textbox-text validatebox-text textbox-prompt" autocomplete="off" placeholder="" style="margin-left: 0px; margin-right: 0px; padding-top: 8px; padding-bottom: 8px; width: 163px;"
+										style="width: 100%; height: 32px" name="name" id="name">
+										</span>
+									
+									<input type="hidden" name="id" id="adminid" /> 
+									</td>
+								</tr>
+								<tr>
+								
+									<td>类型:</td>
+									<td>
+									<span class="textbox easyui-fluid" style="width: 171px; height: 30px;">
+									     <input  class="textbox-text validatebox-text textbox-prompt" autocomplete="off" placeholder="" style="margin-left: 0px; margin-right: 0px; padding-top: 8px; padding-bottom: 8px; width: 163px;"
+										style="width: 100%; height: 32px" name="categoryId" id="categoryId">
+										</span>
+									</td>
+								</tr>
 
-		<table class="table table-striped table-condensed">
-			<thead>
-				<tr>
-					<th>序号</th>
-					<th>品牌</th>
-					<th>型号</th>
-					<th>联系人</th>
-					<th>发布时间</th>
-					<th> 发布人</th>
-					<th>操作</th>
-				</tr>
-			</thead>
+								<tr>
+									<td>状态：</td>
+									<td>
+									
+									<span class="textbox easyui-fluid" style="width: 171px; height: 30px;">
+									     <input  class="textbox-text validatebox-text textbox-prompt" autocomplete="off" placeholder="" style="margin-left: 0px; margin-right: 0px; padding-top: 8px; padding-bottom: 8px; width: 163px;"
+										style="width: 100%; height: 32px" name="status" id="status">
+										</span>
+									</td>
+								</tr>
 
-			<tbody id="carBody">
+								<tr>
+									<td>价格：</td>
+									<td>
+									
+									<span class="textbox easyui-fluid" style="width: 171px; height: 30px;">
+									     <input  class="textbox-text validatebox-text textbox-prompt" autocomplete="off" placeholder="" style="margin-left: 0px; margin-right: 0px; padding-top: 8px; padding-bottom: 8px; width: 163px;"
+										style="width: 100%; height: 32px" name="price" id="price">
+										</span>
+									</td>
+								</tr>
+								
+									<tr>
+								
+									<td>审核状态:</td>
+									<td>
+									<span class="textbox easyui-fluid" style="width: 171px; height: 30px;">
+									     <input  class="textbox-text validatebox-text textbox-prompt" autocomplete="off" placeholder="" style="margin-left: 0px; margin-right: 0px; padding-top: 8px; padding-bottom: 8px; width: 163px;"
+										style="width: 100%; height: 32px" name="verifyStatus" id="verifyStatus">
+										</span>
+									</td>
+								</tr>
+								
+								
+								<tr>
+									<td>描述：</td>
+									<td>
+									
+									<span class="textbox easyui-fluid" style="width: 171px; height: 30px;">
+									     <input  class="textbox-text validatebox-text textbox-prompt" autocomplete="off" placeholder="" style="margin-left: 0px; margin-right: 0px; padding-top: 8px; padding-bottom: 8px; width: 163px;"
+										style="width: 100%; height: 32px" name="description" id="description">
+										</span>
+									</td>
+								</tr>
+							</table>
+						</form>
+						<div style="text-align: center; padding: 5px">
+							<a href="javascript:void(0)" class="easyui-linkbutton"
+								onclick="submitForm()">保存</a> <a href="javascript:void(0)"
+								class="easyui-linkbutton" onclick="clearForm()">取消</a>
+						</div>
+					</div>
+				</div>
 
 
-			</tbody>
-		</table>
-		<div class="pagination" style="float: right; margin-right: 100px;">
-			<ul id="pageUi">
-				<li class="disabled"><a href="#">&laquo;</a></li>
-				<li class="active"><a href="#">1</a></li>
-				<li class="disabled"><a href="javascript:void(0);">&raquo;</a></li>
-			</ul>
+			</div>
 		</div>
 	</div>
-	<div id="imgBox" style="display: none">
-		<img src="<%=path%>/resources/image/loading.gif" alt="" />
-	</div>
-	<script type="text/javascript"
-		src="<%=path%>/resources/js/jquery/jquery-form.js"></script>
-	<script type='text/javascript'
-		src=' <%=path%>/resources/js/easydialog/easydialog.min.js'></script>
-	<script type="text/javascript" src="<%=path%>/resources/js/escar/util.js"></script>
-	<script type="text/javascript" src="<%=path%>/resources/js/escar/car.js"></script>
-	<script type="text/javascript" src="<%=path%>/resources/js/escar/page.js"></script>
-	<script type="text/javascript">
-		function skip(url) {
-			location.href = "/" + url;
-		}
-
-		function deleteCar(id) {
-			jQuery.ajax({
-				type : 'GET',
-				contentType : 'application/json',
-				url : '/car/delete/' + id,
-				dataType : 'json',
-				success : function(data) {
-					if (data.flag == '0') {
-						alert("请先登录");
-					} else if (data.flag == '1') {
-						alert("成功删除");
-						window.location.reload();
-					} else if (data.flag == '2') {
-						alert("删除失败！");
-					}
-				}
-			});
-		}
-
-		function updateCar(id) {
-			skip('admin/update?id=' + id);
-		}
-
-		function loadListCar(data) {
-			var objs = data;
-			var htmlSrc = [];
-			if (objs.content == null) {
-				return;
-			}
-			var length = objs.content.length;
-			var i = 0
-			var marginTop = 50;
-			var sq = 0;
-			for (; i < length; i++) {
-				htmlSrc.push('<tr>');
-				var car = objs.content[i];
-				var createTime = getMyDate(new Date(car.createTime));
-				var carUrl = "/car/show?id=" + car.id;
-				var imagSrc = "/image/show?fileName=" + car.imageUrl;
-				var carName = car.name;
-
-				htmlSrc.push(' <td>' + (i - sq + 1) + '</td>');
-				if (car.brand == null) {
-					htmlSrc.push(' <td></td>');
-				} else {
-					htmlSrc.push(' <td>' + car.brand.name + '</td>');
-				}
-
-				if (car.brandModel != null) {
-					htmlSrc.push(' <td>' + car.brandModel.name + '</td>');
-				} else {
-					htmlSrc.push(' <td></td>');
-				}
-				if (car.contacts == null) {
-					htmlSrc.push(' <td></td>');
-				} else {
-					htmlSrc.push(' <td>' + car.contacts + '</td>');
-				}
-				htmlSrc.push(' <td>' +createTime + '</td>');
-				if(car.admin==null){
-					htmlSrc.push(' <td></td>');
-				}else{
-					htmlSrc.push(' <td>' + car.admin.userName+ '</td>');
-				}
-				
-				htmlSrc
-						.push(' <td><a style="cursor:pointer" class="btn-sm" href="javascript:deleteCar(\''
-								+ car.id
-								+ '\')">删除</a> <a style="cursor:pointer" class="btn-sm"  target="rightFrame" href="javascript:updateCar(\'' 
-								+ car.id + '\')">修改</a>'
-								+'<span style="margin-left:30px">是否售尽</span>');
-								
-			  if(car.sellout!=null && car.sellout>0){
-				  htmlSrc.push('<input type="checkbox" checked=true onclick="javascript:sellOut(this);" name="sellOut" value=\'' + car.id + '\')>')
-			  }else{
-				  htmlSrc.push('<input type="checkbox"  onclick="javascript:sellOut(this);" name="sellOut" value=\'' + car.id + '\')>')
-			  }	   
-							
-			}
-
-			$('#carBody').append(htmlSrc.join(""));
-		}
-
-		function listAllCar() {
-			$('#carBody').empty();
-			jQuery.ajax({
-				type : 'GET',
-				contentType : 'application/json',
-				url : '/car/list/' + pageNo,
-				dataType : 'json',
-				success : function(data) {
-					if (data.flag == '0') {
-						alert("请先登录");
-					} else if (data.flag == '1') {
-						pageNo = data.data.pageNo;
-						totalPage = data.data.totalPage;
-						pageSet();
-
-						loadListCar(data.data);
-
-					}
-				}
-			});
-		}
-
-		$(function() {
-
-			listAllCar();
-		});
-
-		function openDialog() {
-			easyDialog.open({
-				container : 'imgBox',
-				fixed : false
-			});
-		}
-		function onSubmit() {
-			var carName = $("#carName").val();
-			$('#search_form').ajaxSubmit({
-				url : '/car/list/' + pageNo,
-				type : "POST",
-				dataType : "json",
-				beforeSubmit : function() {
-					openDialog();
-
-				},
-				success : function(data) {
-					easyDialog.close();
-					if (data.flag == '0') {
-						alert("请先登录");
-					} else if (data.flag == '1') {
-						$('#carBody').empty();
-						loadListCar(data.data);
-						pageNo = data.data.pageNo;
-						totalPage = data.data.totalPage;
-						pageSet();
-					}
-
-				}
-			});
-
-			//	}
-			return false;
-		}
-
-		function getData(number) {
-			pageNo = number;
-			jQuery.ajax({
-				//url : '/car/search?carName=' + $("#carName").val() + '&pageNo='
-				url : '/car/list/'
-						+ number,
-				type : "POST",
-				dataType : "json",
-				success : function(data) {
-					if (data.flag == '0') {
-						alert("请先登录");
-					} else if (data.flag == '1') {
-						$('#carBody').empty();
-						loadListCar(data.data);
-						pageNo = data.data.pageNo;
-						totalPage = data.data.totalPage;
-						pageSet();
-					}
-
-				}
-			});
-		}
-
-		function updateCar(id) {
-			skip('admin/publishUpdate?id=' + id+"&new="+Math.random());
-		}
-		
-		function sellOut(obj){
-			
-			var sellout = 0;
-			var carId= $(obj).val();
-			if($(obj)[0].checked){
-				sellout=1;
-			}
-			
-			jQuery.ajax({
-				url : '/car/updateStatus/'
-						+ carId,
-				type : "POST",
-				dataType : "json",
-				data:{sellout:sellout},
-				success : function(data) {
-					if (data.flag == '0') {
-						alert("请先登录");
-					} else if (data.flag == '1') {
-						$('#carBody').empty();
-						loadListCar(data.data);
-						pageNo = data.data.pageNo;
-						totalPage = data.data.totalPage;
-						pageSet();
-					}
-
-				}
-			});
-			
-		}
-	</script>
+	
 </body>
 </html>

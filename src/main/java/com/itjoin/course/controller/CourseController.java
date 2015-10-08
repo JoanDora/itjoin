@@ -290,16 +290,16 @@ public class CourseController {
      * @date	2015-10-5 下午4:27:14
      * @version      
      */ 
-    @RequestMapping("/NewCourseList")
-    public @ResponseBody Object getNewCourseList( @PathVariable("pageNo") int pageNo) throws Exception{
-	if (pageNo < 0) {
-	    pageNo = 0; 
+    @RequestMapping("/getCourseList")
+    public @ResponseBody Object getCourseList(Integer page,Integer rows) throws Exception{
+	if (page < 0) {
+	    page = 0; 
 	}
 	Query query = new Query();
 	Criteria criteria =new Criteria();
 	query.addCriteria(criteria);
 	query.limit(PageConstant.PAGE_SIZE);
-	query.skip(pageNo * PageConstant.PAGE_SIZE);
+	query.skip(page * PageConstant.PAGE_SIZE);
 	Direction direction = Direction.DESC;
 	Sort sort = new Sort(direction, "CreateTime");
 	query.with(sort);
