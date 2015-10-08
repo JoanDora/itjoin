@@ -3,3 +3,5 @@
 .classpath
 target/*
 /target
+.settings
+logback.xml
