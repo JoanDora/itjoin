@@ -28,6 +28,125 @@ ul.ztree {
 <script type="text/javascript"
 	src="<%=path%>/resources/js/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript">
+
+var adminRole='0';
+var path = '${path}';
+alert(path)
+
+	$(function() {
+		
+		
+		jQuery.ajax({  
+		    type : 'POST',  
+		    contentType : 'application/json',  
+		    url : '/admin/getSessionUser',
+		    dataType : 'json',  
+		    success : function(data) 
+		    { 
+		      if(data!=null && data.id!=null){
+		    	  $("#adminPhone").html(data.phone);
+		    	  adminRole = data.role;
+		      }
+		      datagrid();
+		    }
+		} );
+	});
+	
+function datagrid(pageNo){
+	$('#tt').datagrid(
+			{
+				title : '视频列表',
+				iconCls : 'icon-edit',
+				pagination : true,//分页控件 
+				singleSelect : true,
+				rownumbers : true,
+				//width : 700,
+				height : 'auto',
+				url : "/course/NewCourseList?page=0&rows=0",
+				columns : [ [
+							{
+								field : 'name',
+								title : '视频名字',
+								width : 100,
+								editor : 'text'
+							},
+							{
+								field : 'categoryId',
+								title : '类型',
+								width : 100,
+								editor : 'text'
+							},
+							{
+								field : 'status',
+								title : '状态',
+								width : 160,
+								editor : 'text'
+							},
+							{
+								field : 'price',
+								title : '价格',
+								width : 80,
+								editor : 'text'
+							},
+						{
+							field : 'action',
+							title : '操作',
+							width : 170,
+							align : 'center',
+							formatter : function(value, row, index) {
+								/* 	if (row.editing) {
+										var s = '<a href="#" onclick="saverow('
+												+ index + ')">保存</a> ';
+										var c = '<a href="#" onclick="deleterow('
+												+ index + ')">删除</a>';
+										return s + c;
+									} else { */
+
+										
+										
+								var data = row;
+								var e = '<a href="#" onclick=editrow('
+										+ index + ',"' + data.id + '","'
+										+ data.userName + '","'
+										+ data.phone + '","' + data.email
+										+ '","' + data.sex + '")>编辑</a> ';
+								/* var d = '<a href="#" onclick="deleterow('
+										+ index + ')">删除</a>'; */
+								/* return e + d; */
+								if(adminRole=='1'){
+									/*  var d = '<a href="#" style="margin-left:10px;margin-right:10px"onclick=editrow('
+											+ index + ',"","","","","")>添加</a>';  */
+											
+									var c = '<a href="#" onclick=deleterow('
+												+ index + ',"'+ data.id+'")>删除</a>';
+									 return e +c;
+								}
+								return e;
+								//}
+							}
+						} ] ],
+					
+				onBeforeEdit : function(index, row) {
+					row.editing = true;
+					$('#tt').datagrid('refreshRow', index);
+					editcount++;
+				},
+				onAfterEdit : function(index, row) {
+					row.editing = false;
+					$('#tt').datagrid('refreshRow', index);
+					editcount--;
+				},
+				onCancelEdit : function(index, row) {
+					row.editing = false;
+					$('#tt').datagrid('refreshRow', index);
+					editcount--;
+				},
+				loadMsg : '数据加载中,请稍候......'
+			});
+	
+}
+	
+	
 	
 </script>
 </head>
