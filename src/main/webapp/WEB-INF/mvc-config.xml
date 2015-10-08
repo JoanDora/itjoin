@@ -11,7 +11,7 @@
             base-package="com.itjoin"/>  
     <!-- 将静态文件制定到某个特殊的文件夹中统一处理 -->
   <mvc:resources location="/resources/"  mapping="/resources/**"/>
-	<mvc:resources mapping="/pages/**" location="/pages/" /> 
+	<mvc:resources mapping="/html/**" location="/html/" /> 
 	<mvc:resources location="/file/"  mapping="/file/**"/>
 	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager" />
 
@@ -37,7 +37,7 @@
       <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
       <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/"/>
-        <property name="suffix" value=".jsp"/>
+        <property name="suffix" value=".html"/>
       </bean>
     </list>
   </property>
