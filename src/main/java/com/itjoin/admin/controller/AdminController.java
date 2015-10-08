@@ -175,6 +175,7 @@ public class AdminController {
 			}
 			return 1;
 		}
+		
 		@RequestMapping(value = "/getAll")
 		@ResponseBody
 		public Pagination getALLUser(Integer page,Integer rows){
