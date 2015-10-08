@@ -1,0 +1,131 @@
+/***
+ *  鈻勨枅鈻堚枅鈻堚杽      鈻掆枅鈻堚枅鈻堚枅     鈻掆枅鈻�   鈻堚枅鈻� Cox CSS Framework   
+ * 鈻掆枅鈻堚杸 鈻€鈻�     鈻掆枅鈻堚枓  鈻堚枅鈻�   鈻掆枓 鈻� 鈻� 鈻掆枒   
+ * 鈻掆枔鈻�    鈻�    鈻掆枅鈻堚枒  鈻堚枅鈻�   鈻戔枒  鈻�   鈻�   
+ * 鈻掆枔鈻撯杽 鈻勨枅鈻堚枓   鈻掆枅鈻�   鈻堚枅鈻�    鈻� 鈻� 鈻� 鈻�    
+ * 鈻� 鈻撯枅鈻堚枅鈻€ 鈻�   鈻� 鈻堚枅鈻堚枅鈻撯枓鈻�   鈻掆枅鈻堚枓 鈻掆枅鈻堚枓   
+ * 鈻� 鈻戔枓 鈻�  鈻�   鈻� 鈻掆枒鈻掆枒鈻掆枒    鈻掆枓 鈻� 鈻戔枔 鈻�   
+ *   鈻�  鈻�        鈻� 鈻� 鈻掆枒    鈻戔枒   鈻戔枓 鈻�   
+ * 鈻�           鈻� 鈻� 鈻� 鈻�      鈻�    鈻�   
+ * 鈻� 鈻�             鈻� 鈻�      鈻�    鈻�     
+ * 鈻�                  
+ * ----------------------------------------------------------------------------
+ * <utils.less> - 2014/3/10
+ * @version 0.1
+ * @author  Joye, maolion.j@gmail.com
+ * @website http://maolion.com
+ */
+/**宸ュ叿闆�**/
+/**
+ * clearWhiteBorder 娓呴櫎鐩掓ā鍨嬬殑绌虹櫧杈规
+ * @example
+ * #box{
+ *     .clearWhiteBorder;
+ * }
+ */
+/**
+ * ellipsisText 瀛楃涓叉孩鍑烘柇缁濋殣钘�
+ * @example
+ * #box{
+ *     .ellipsisText;
+ * }
+ */
+.ellipsisText {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+/**
+ * borderRadius border-radius 鍏煎閫傞厤鍣�
+ * @param {...} [top-left, top-right, bottom-right, bottom-left]
+ *              [top-left, top-right&bottom-right, bottom-right]
+ *              [top-left&bottom-right, top-right&bottom-right]
+ *              [top-left&top-right&bottom-right&bottom-left]
+ * @example
+ * #box{
+ *     .borderRadius(10px, 10px, 10px, 10px);
+ *     .borderRadius(10px, 10px, 10px);
+ *     .borderRadius(10px, 10px);
+ *     .borderRadius(10px);
+ * }
+ */
+/**
+ * boxSizing border-sizing 鍏煎閫傞厤鍣�
+ * @param {Value} value
+ * @example
+ * #box{
+ *     .boxSizing(border-box)
+ * }
+ */
+/**
+ * userSelect 鎺у埗缃戦〉鍐呭鐨勯€夋嫨鑼冨洿
+ * @param {Vlaue} value
+ * @example
+ * #box{
+ *     .userSelect(none);
+ * }
+ */
+/**
+ * transition 瀹氫箟CSS灞炴€у€煎湪涓€瀹氱殑鏃堕棿鍖洪棿鍐呭钩婊戝湴杩囨浮
+ * @param {Vlaue} value
+ * @example
+ * #box{
+ *     .transition(all ease .15s);
+ * }
+ */
+/**
+ * boxShadow 瀹氫箟鐩掑厓绱犵殑闃村奖
+ * @param {Vlaue} value
+ * @example
+ * #box{
+ *     .boxShadow(1px 1px 1px 1px rgba(255, 255, 255, .3));
+ * }
+ */
+.container {
+  margin: 20px auto;
+  position: relative;
+  height: 600px;
+  box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadown: 0 0 2px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadown: 0 0 2px 0px rgba(0, 0, 0, 0.2);
+  -ms-box-shadown: 0 0 2px 0px rgba(0, 0, 0, 0.2);
+}
+.container:after,
+.content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.container:after {
+  z-index: 1;
+  content: " ";
+  height: 500px;
+  top: 50px;
+  border-radius: 160px;
+  -moz-border-radius: 160px;
+  -webkit-border-radius: 160px;
+  box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadown: 0 0 12px 1px rgba(0, 0, 0, 0.15);
+  -moz-box-shadown: 0 0 12px 1px rgba(0, 0, 0, 0.15);
+  -ms-box-shadown: 0 0 12px 1px rgba(0, 0, 0, 0.15);
+}
+.content {
+  z-index: 2;
+  overflow: hidden;
+  background: #fff;
+}
+.grid-c2 {
+  padding: 30px 50px;
+}
+.grid-c2 h2 {
+  height: 60px;
+  line-height: 60px;
+  font-size: 20px;
+  border-bottom: 1px dotted #ccc;
+  cursor: default;
+  color: #666;
+  margin-bottom: 10px;
+}
+.sidebar-nav {
+  display: none;
+}

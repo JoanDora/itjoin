@@ -1,0 +1,329 @@
+/***
+ *  鈻勨枅鈻堚枅鈻堚杽      鈻掆枅鈻堚枅鈻堚枅     鈻掆枅鈻�   鈻堚枅鈻� Cox CSS Framework   
+ * 鈻掆枅鈻堚杸 鈻€鈻�     鈻掆枅鈻堚枓  鈻堚枅鈻�   鈻掆枓 鈻� 鈻� 鈻掆枒   
+ * 鈻掆枔鈻�    鈻�    鈻掆枅鈻堚枒  鈻堚枅鈻�   鈻戔枒  鈻�   鈻�   
+ * 鈻掆枔鈻撯杽 鈻勨枅鈻堚枓   鈻掆枅鈻�   鈻堚枅鈻�    鈻� 鈻� 鈻� 鈻�    
+ * 鈻� 鈻撯枅鈻堚枅鈻€ 鈻�   鈻� 鈻堚枅鈻堚枅鈻撯枓鈻�   鈻掆枅鈻堚枓 鈻掆枅鈻堚枓   
+ * 鈻� 鈻戔枓 鈻�  鈻�   鈻� 鈻掆枒鈻掆枒鈻掆枒    鈻掆枓 鈻� 鈻戔枔 鈻�   
+ *   鈻�  鈻�        鈻� 鈻� 鈻掆枒    鈻戔枒   鈻戔枓 鈻�   
+ * 鈻�           鈻� 鈻� 鈻� 鈻�      鈻�    鈻�   
+ * 鈻� 鈻�             鈻� 鈻�      鈻�    鈻�     
+ * 鈻�                  
+ * ----------------------------------------------------------------------------
+ * <utils.less> - 2014/3/10
+ * @version 0.1
+ * @author  Joye, maolion.j@gmail.com
+ * @website http://maolion.com
+ */
+/**宸ュ叿闆�**/
+/**
+ * clearWhiteBorder 娓呴櫎鐩掓ā鍨嬬殑绌虹櫧杈规
+ * @example
+ * #box{
+ *     .clearWhiteBorder;
+ * }
+ */
+/**
+ * ellipsisText 瀛楃涓叉孩鍑烘柇缁濋殣钘�
+ * @example
+ * #box{
+ *     .ellipsisText;
+ * }
+ */
+.ellipsisText {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+/**
+ * borderRadius border-radius 鍏煎閫傞厤鍣�
+ * @param {...} [top-left, top-right, bottom-right, bottom-left]
+ *              [top-left, top-right&bottom-right, bottom-right]
+ *              [top-left&bottom-right, top-right&bottom-right]
+ *              [top-left&top-right&bottom-right&bottom-left]
+ * @example
+ * #box{
+ *     .borderRadius(10px, 10px, 10px, 10px);
+ *     .borderRadius(10px, 10px, 10px);
+ *     .borderRadius(10px, 10px);
+ *     .borderRadius(10px);
+ * }
+ */
+/**
+ * boxSizing border-sizing 鍏煎閫傞厤鍣�
+ * @param {Value} value
+ * @example
+ * #box{
+ *     .boxSizing(border-box)
+ * }
+ */
+/**
+ * userSelect 鎺у埗缃戦〉鍐呭鐨勯€夋嫨鑼冨洿
+ * @param {Vlaue} value
+ * @example
+ * #box{
+ *     .userSelect(none);
+ * }
+ */
+/**
+ * transition 瀹氫箟CSS灞炴€у€煎湪涓€瀹氱殑鏃堕棿鍖洪棿鍐呭钩婊戝湴杩囨浮
+ * @param {Vlaue} value
+ * @example
+ * #box{
+ *     .transition(all ease .15s);
+ * }
+ */
+/**
+ * boxShadow 瀹氫箟鐩掑厓绱犵殑闃村奖
+ * @param {Vlaue} value
+ * @example
+ * #box{
+ *     .boxShadow(1px 1px 1px 1px rgba(255, 255, 255, .3));
+ * }
+ */
+.register-form {
+  background: url(/Template/styles/images/register/bg.jpg?v=0.6.6) no-repeat 800px 250px #ffffff;
+}
+.register-form form {
+  width: 720px;
+  margin-top: 20px;
+}
+.register-form label,
+.register-form .label {
+  display: block;
+  font-size: 0;
+  padding-left: 100px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  _zoom: 1;
+}
+.register-form .error-tip {
+  line-height: 30px;
+  font-size: 13px;
+  color: red;
+}
+.register-form .title {
+  float: left;
+  width: 80px;
+  margin-left: -100px;
+  text-align: right;
+  line-height: 44px;
+  font-size: 16px;
+  color: #333;
+}
+.register-form .auth-code-img,
+.register-form .auth-code-refresh-btn,
+.register-form .state-tip,
+.register-form .state-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+.register-form input {
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  width: 280px;
+  font-size: 16px;
+}
+.register-form .auth-code-input {
+  width: 115px;
+  font-size: 24px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+.register-form .auth-code-wrap {
+  width: 200px;
+  float: left;
+}
+.register-form .auth-code-img {
+  width: 112px;
+  height: 44px;
+  margin-left: 5px;
+  display: none;
+  background: url(/Template/styles/images/icons/loading-16.gif?v=0.6.6) no-repeat center;
+}
+.register-form .auth-code-refresh-btn {
+  font-size: 14px;
+  margin-left: 5px;
+  display: none;
+}
+.register-form .tip {
+  width: 315px;
+  padding-left: 10px;
+  float: left;
+  line-height: 18px;
+  font-size: 13px;
+  color: #a0a0a0;
+}
+.register-form .state-tip {
+  display: block;
+  line-height: 24px;
+  font-size: 12px!important;
+  color: #999;
+}
+.register-form .state-tip.error {
+  color: red;
+}
+.register-form .state-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+.register-form .state-icon.check {background-repeat: no-repeat;}
+.register-form .state-icon.error {background-repeat: no-repeat;}
+.register-form .state-icon.wait {
+  background: url(/Template/styles/images/icons/loading-16.gif?v=0.6.6) no-repeat;
+}
+.register-form .btn-wrap {
+  padding: 5px 0 0 100px;
+}
+.register-form .btn-wrap button {
+  font-size: 14px;
+  letter-spacing: 2px;
+  display: block;
+  padding: 0;
+  height: 35px;
+  line-height: 35px;
+  width: 150px;
+  -webkit-transition: background ease .2s;
+  -moz-transition: background ease .2s;
+  transition: background ease .2s;
+}
+.register-form .btn-wrap a {
+  display: block;
+  font-size: 13px;
+  line-height: 30px;
+}
+.grid-c2 {
+  height: 540px;
+}
+.other {
+  padding: 45px 0 0 40px;
+  cursor: default;
+}
+.other span,
+.other a {
+  display: inline-block;
+  vertical-align: middle;
+}
+.other span {
+  width: 150px;
+  margin-right: 10px;
+}
+.old-user-entry {
+  margin-bottom: 10px;
+}
+.old-user-entry span,
+.old-user-entry a {
+  vertical-align: bottom;
+}
+.old-user-entry span {
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 30px;
+}
+.old-user-entry a {
+  line-height: 40px;
+  background: #ea5615;
+  padding: 0 30px;
+  color: #fff;
+  -webkit-transition: background-color ease .2s;
+  -moz-transition: background-color ease .2s;
+  transition: background-color ease .2s;
+}
+.old-user-entry a:hover {
+  color: #fff!important;
+  background: #CE4B12;
+}
+.sns-user-entry {
+  font-size: 0;
+  visibility: hidden;
+}
+.sns-user-entry span {
+  font-size: 13px;
+  color: #666;
+}
+.sns-user-entry a,
+.sns-user-entry i {
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *zoom: 1;
+}
+.sns-user-entry a {
+  font-size: 13px;
+  margin-right: 20px;
+}
+.sns-user-entry i {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+}
+.sns-user-entry .qq-user-entry i {background-repeat: no-repeat;}
+.sns-user-entry .weibo-user-entry i {background-repeat: no-repeat;}
+.register-success .highlight {
+  display: block;
+  font-size: 30px;
+  line-height: 30px;
+  margin-bottom: 10px;
+  color: #eb5615;
+  padding: 100px 0 50px 0;
+}
+.register-success p {
+  text-align: center;
+  line-height: 18px;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+.register-success a {
+  color: #eb5615;
+  margin: 0 5px;
+}
+.register-success .state-tip.error {
+  color: red;
+}
+.register-success .tip {
+  margin-top: 50px;
+  border-top: 1px dotted #ccc;
+  color: #999;
+}
+.register-success .tip p {
+  text-align: left;
+  font-size: 13px;
+}
+.register-success .tip li {
+  font-size: 13px;
+  line-height: 24px;
+}
+.register-success .wrap {
+  width: 500px;
+  margin: 50px auto 0 auto;
+}
+.sidebar-nav {
+  display: none!important;
+}
+.warning-tip {
+  height: 540px;
+}
+.warning-tip .highlight {
+  display: block;
+  font-size: 30px;
+  line-height: 30px;
+  margin-bottom: 10px;
+  color: #eb5615;
+  padding: 0 0 50px 0;
+}
+.warning-tip table {
+  width: 100%;
+  height: 540px;
+}
+.warning-tip table td {
+  height: 540px;
+  vertical-align: middle;
+  text-align: center;
+}
+.warning-tip table p {
+  font-size: 16px;
+  text-align: center;
+}
+.sns-user-entry .qq-user-entry i{background-position:0px 0px}.sns-user-entry .weibo-user-entry i{background-position:-29px 0px}.register-form .state-icon.check{background-position:0px -29px}.register-form .state-icon.error{background-position:-21px -29px}.sns-user-entry .qq-user-entry i,.sns-user-entry .weibo-user-entry i,.register-form .state-icon.check,.register-form .state-icon.error{background-image: url(/resources/image/register_z.png)}

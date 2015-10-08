@@ -1,0 +1,232 @@
+/***
+ *  鈻勨枅鈻堚枅鈻堚杽      鈻掆枅鈻堚枅鈻堚枅     鈻掆枅鈻�   鈻堚枅鈻� Cox CSS Framework   
+ * 鈻掆枅鈻堚杸 鈻€鈻�     鈻掆枅鈻堚枓  鈻堚枅鈻�   鈻掆枓 鈻� 鈻� 鈻掆枒   
+ * 鈻掆枔鈻�    鈻�    鈻掆枅鈻堚枒  鈻堚枅鈻�   鈻戔枒  鈻�   鈻�   
+ * 鈻掆枔鈻撯杽 鈻勨枅鈻堚枓   鈻掆枅鈻�   鈻堚枅鈻�    鈻� 鈻� 鈻� 鈻�    
+ * 鈻� 鈻撯枅鈻堚枅鈻€ 鈻�   鈻� 鈻堚枅鈻堚枅鈻撯枓鈻�   鈻掆枅鈻堚枓 鈻掆枅鈻堚枓   
+ * 鈻� 鈻戔枓 鈻�  鈻�   鈻� 鈻掆枒鈻掆枒鈻掆枒    鈻掆枓 鈻� 鈻戔枔 鈻�   
+ *   鈻�  鈻�        鈻� 鈻� 鈻掆枒    鈻戔枒   鈻戔枓 鈻�   
+ * 鈻�           鈻� 鈻� 鈻� 鈻�      鈻�    鈻�   
+ * 鈻� 鈻�             鈻� 鈻�      鈻�    鈻�     
+ * 鈻�                  
+ * ----------------------------------------------------------------------------
+ * <utils.less> - 2014/3/10
+ * @version 0.1
+ * @author  Joye, maolion.j@gmail.com
+ * @website http://maolion.com
+ */
+/**宸ュ叿闆�**/
+/**
+ * clearWhiteBorder 娓呴櫎鐩掓ā鍨嬬殑绌虹櫧杈规
+ * @example
+ * #box{
+ *     .clearWhiteBorder;
+ * }
+ */
+/**
+ * ellipsisText 瀛楃涓叉孩鍑烘柇缁濋殣钘�
+ * @example
+ * #box{
+ *     .ellipsisText;
+ * }
+ */
+.ellipsisText {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+/**
+ * borderRadius border-radius 鍏煎閫傞厤鍣�
+ * @param {...} [top-left, top-right, bottom-right, bottom-left]
+ *              [top-left, top-right&bottom-right, bottom-right]
+ *              [top-left&bottom-right, top-right&bottom-right]
+ *              [top-left&top-right&bottom-right&bottom-left]
+ * @example
+ * #box{
+ *     .borderRadius(10px, 10px, 10px, 10px);
+ *     .borderRadius(10px, 10px, 10px);
+ *     .borderRadius(10px, 10px);
+ *     .borderRadius(10px);
+ * }
+ */
+/**
+ * boxSizing border-sizing 鍏煎閫傞厤鍣�
+ * @param {Value} value
+ * @example
+ * #box{
+ *     .boxSizing(border-box)
+ * }
+ */
+/**
+ * userSelect 鎺у埗缃戦〉鍐呭鐨勯€夋嫨鑼冨洿
+ * @param {Vlaue} value
+ * @example
+ * #box{
+ *     .userSelect(none);
+ * }
+ */
+/**
+ * transition 瀹氫箟CSS灞炴€у€煎湪涓€瀹氱殑鏃堕棿鍖洪棿鍐呭钩婊戝湴杩囨浮
+ * @param {Vlaue} value
+ * @example
+ * #box{
+ *     .transition(all ease .15s);
+ * }
+ */
+/**
+ * boxShadow 瀹氫箟鐩掑厓绱犵殑闃村奖
+ * @param {Vlaue} value
+ * @example
+ * #box{
+ *     .boxShadow(1px 1px 1px 1px rgba(255, 255, 255, .3));
+ * }
+ */
+.welcome-slogan {
+  line-height: 40px;
+  font-size: 18px;
+  text-align: center;
+  background-color: transparent!important;
+}
+.welcome-slogan span {
+  color: #e85711;
+}
+.login-container {
+  height: 500px;
+  background: #f4f4f4;
+  margin-bottom: 50px;
+  position: relative;
+}
+.login-container .grid-c1 {
+  position: relative;
+  background-color: transparent!important;
+}
+.banner {
+  background: url(/resources/image/banner1.jpg) no-repeat 130px center transparent;
+  height: 500px;
+}
+.login-form {
+  width: 310px;
+  height: 400px;
+  padding: 25px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -225px;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-shadown: 0 0 2px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadown: 0 0 2px 0 rgba(0, 0, 0, 0.1);
+  -ms-box-shadown: 0 0 2px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+.login-form .head {
+  overflow: hidden;
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+.login-form .head h2 {
+  float: left;
+  color: #eb6d31;
+  font-size: 16px;
+}
+.login-form .head span {
+  float: right;
+  font-size: 12px;
+  color: #a6a6a6;
+}
+.login-form .head a {
+  color: #ea511d;
+}
+.login-form .tip {
+  height: 40px;
+  line-height: 40px;
+  font-size: 13px;
+}
+.login-form .tip.error {
+  color: #ED2F2F;
+}
+.login-form .input-text {
+  width: 276px;
+  margin-bottom: 25px;
+}
+.login-form .input-text input {
+  height: 30px;
+  line-height: 30px;
+  font-size: 16px;
+}
+.login-form .input-text span {
+  height: 42px;
+  line-height: 42px;
+}
+.login-form .input-text i {
+  display: inline-block;
+  vertical-align: middle;
+}
+.login-form .user i {width: 22px;
+  height: 20px;
+  *margin-top: 11px;background-repeat: no-repeat;}
+.login-form .pwd i {width: 18px;
+  height: 24px;
+  *margin-top: 9px;background-repeat: no-repeat;}
+.tools {
+  font-size: 12px;
+  margin-top: 15px;
+}
+.tools label {
+  float: left;
+}
+.tools span {
+  float: right;
+}
+.tools a {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+.btn-bar {
+  margin: 10px 0;
+}
+.btn-bar button {
+  padding: 0 25px;
+  height: 40px;
+  line-height: 40px;
+  background: #e85711;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  -webkit-transition: background-color ease .2s;
+  -moz-transition: background-color ease .2s;
+  transition: background-color ease .2s;
+}
+.btn-bar button:hover {
+  background: #f0611b;
+}
+.other-entry {
+  visibility: hidden;
+  font-size: 12px;
+}
+.other-entry p {
+  line-height: 30px;
+  background-color: #f6f6f6;
+  text-indent: 10px;
+}
+.other-entry a,
+.other-entry i {
+  display: inline-block;
+  vertical-align: middle;
+}
+.other-entry a {
+  font-size: 13px;
+  margin-right: 30px;
+}
+.other-entry i {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+}
+.other-entry .qq-user-entry i {background-repeat: no-repeat;}
+.other-entry .weibo-user-entry i {background-repeat: no-repeat;}
+.login-form .pwd i{background-position:0px 0px}.other-entry .qq-user-entry i{background-position:-23px 0px}.other-entry .weibo-user-entry i{background-position:-52px 0px}.login-form .user i{background-position:0px -29px}.login-form .pwd i,.other-entry .qq-user-entry i,.other-entry .weibo-user-entry i,.login-form .user i{background-image: url(/Template/styles/images/login_z.png?v=0.6.6)}

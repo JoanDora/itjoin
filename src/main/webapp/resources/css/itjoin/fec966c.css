@@ -1,0 +1,449 @@
+/***
+ *  ▄████▄      ?█████     ?██   ██? Cox CSS Framework   
+ * ?██? ?█     ?██?  ██?   ?? █ █ ??   
+ * ?▓█    ▄    ?██?  ██?   ??  █   ?   
+ * ?▓▓▄ ▄██?   ?██   ██?    ? █ █ ?    
+ * ? ▓███? ?   ? ████▓??   ?██? ?██?   
+ * ? ?? ?  ?   ? ??????    ?? ? ?▓ ?   
+ *   ?  ?        ? ? ??    ??   ?? ?   
+ * ?           ? ? ? ?      ?    ?   
+ * ? ?             ? ?      ?    ?     
+ * ?                  
+ * ----------------------------------------------------------------------------
+ * <utils.less> - 2014/3/10
+ * @version 0.1
+ * @author  Joye, maolion.j@gmail.com
+ * @website http://maolion.com
+ */
+/**工具集**/
+/**
+ * clearWhiteBorder 清除盒模型的空白边框
+ * @example
+ * #box{
+ *     .clearWhiteBorder;
+ * }
+ */
+/**
+ * ellipsisText 字符串溢出断绝隐藏
+ * @example
+ * #box{
+ *     .ellipsisText;
+ * }
+ */
+.ellipsisText {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+/**
+ * borderRadius border-radius 兼容适配器
+ * @param {...} [top-left, top-right, bottom-right, bottom-left]
+ *              [top-left, top-right&bottom-right, bottom-right]
+ *              [top-left&bottom-right, top-right&bottom-right]
+ *              [top-left&top-right&bottom-right&bottom-left]
+ * @example
+ * #box{
+ *     .borderRadius(10px, 10px, 10px, 10px);
+ *     .borderRadius(10px, 10px, 10px);
+ *     .borderRadius(10px, 10px);
+ *     .borderRadius(10px);
+ * }
+ */
+/**
+ * boxSizing border-sizing 兼容适配器
+ * @param {Value} value
+ * @example
+ * #box{
+ *     .boxSizing(border-box)
+ * }
+ */
+/**
+ * userSelect 控制网页内容的选择范围
+ * @param {Vlaue} value
+ * @example
+ * #box{
+ *     .userSelect(none);
+ * }
+ */
+/**
+ * transition 定义CSS属性值在一定的时间区间内平滑地过渡
+ * @param {Vlaue} value
+ * @example
+ * #box{
+ *     .transition(all ease .15s);
+ * }
+ */
+/**
+ * boxShadow 定义盒元素的阴影
+ * @param {Vlaue} value
+ * @example
+ * #box{
+ *     .boxShadow(1px 1px 1px 1px rgba(255, 255, 255, .3));
+ * }
+ */
+.building-nav {
+  height: 172px;
+  overflow: visible;
+  position: relative;
+  background-color: transparent!important;
+}
+.building-nav .nav {
+  position: absolute;
+  width: 371px;
+  height: 172px;
+  top: 0;
+  left: 0;
+  background: url(/Template/styles/images/building_nav/nav_bg.png?v=0.6.6) no-repeat 0 0;
+  z-index: 10;
+}
+.building-nav .nav li {
+  display: block;
+  height: 28px;
+  border-bottom: 1px solid #222;
+  width: 110px;
+  _width: 95px;
+}
+.building-nav .nav a {
+  font-size: 12px;
+  color: #fff;
+  display: block;
+  line-height: 28px;
+  margin-left: 15px;
+  width: 110px;
+  _width: 95px;
+  border-top: 1px solid #666;
+}
+.building-nav .nav .active {
+  color: #eb5615;
+}
+.building-nav .nav .first a {
+  border-top: none;
+}
+.building-nav .nav .item-1 {
+  margin: 27px 0 0 240px;
+  *margin-left: 225px;
+}
+.building-nav .nav .item-2 {
+  margin: 0 0 0 225px;
+  *margin-left: 210px;
+}
+.building-nav .nav .item-3 {
+  margin: 0 0 0 210px;
+  *margin-left: 195px;
+}
+.building-nav .nav .item-4 {
+  margin: 0 0 0 195px;
+  *margin-left: 180px;
+}
+.building-nav .nav .item-5 {
+  margin: 0 0 0 180px;
+  *margin-left: 165px;
+}
+.building-nav .nav .last {
+  border-bottom: none;
+}
+.building-nav .desc {
+  position: absolute;
+  height: 147px;
+  top: 25px;
+  left: 293px;
+  z-index: 9;
+}
+.building-nav .desc .wrap {position: relative;
+  padding-left: 60px;
+  height: 147px;background-repeat: repeat-x}
+.building-nav .desc td {
+  height: 147px;
+  vertical-align: middle;
+}
+.building-nav .desc p {
+  cursor: default;
+  z-index: 2;
+  margin: 0;
+  font-size: 13px;
+  color: #fff;
+  font-weight: bold;
+  line-height: 18px;
+}
+.building-nav .desc p span {
+  display: block;
+  line-height: 20px;
+}
+.building-nav .desc .l1 {
+  text-indent: 20px;
+}
+.building-nav .desc .l2 {
+  text-indent: 10px;
+}
+.building-nav .desc .l3 {
+  text-indent: 0;
+}
+.building-nav .desc b {position: absolute;
+  display: block;
+  top: 0;
+  right: -73px;
+  width: 73px;
+  height: 147px;background-repeat: no-repeat;}
+.building-nav .notice {
+  height: 25px;
+  margin-left: 150px;
+  padding-left: 30px;
+  overflow: hidden;
+  position: relative;
+  z-index: 100;
+  _zoom: 1;
+}
+.building-nav .notice i {display: block;
+  float: left;
+  margin: 5px 0 0 -20px;
+  width: 17px;
+  height: 15px;background-repeat: no-repeat;}
+.building-nav .notice .list {
+  overflow: hidden;
+  float: left;
+  width: 100%;
+}
+.building-nav .notice li {
+  font-size: 12px;
+  width: 340px;
+  height: 25px;
+  line-height: 24px;
+  float: left;
+  overflow: hidden;
+}
+.building-nav .notice li a {
+  vertical-align: middle;
+  display: inline-block;
+  width: 255px;
+  color: #444;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.building-nav .notice li span {
+  float: right;
+  width: 70px;
+  padding-right: 15px;
+  text-align: right;
+  color: #aaa;
+  cursor: default;
+}
+.building-nav .slider {
+  z-index: 1;
+  height: 147px;
+}
+.building-nav .slider .item {
+  position: relative;
+  width: 1200px;
+  height: 147px;
+  text-align: right;
+}
+.building-nav .slider p {
+  display: none;
+}
+.building-nav .slider img {
+  width: 930px;
+  height: 147px;
+  background: url(/Template/styles/images/loading-4.gif?v=0.6.6) no-repeat center;
+}
+.building-nav .pics a {position: absolute;
+  width: 135px;
+  height: 55px;
+  
+  right: 10px;
+  top: 46px;background-repeat: no-repeat;}
+.building-nav-955 .pics {
+  padding-top: 25px;
+}
+.building-nav-955 .item {
+  width: 955px!important;
+  overflow: hidden;
+}
+.building-nav-955 img {
+  margin-right: -30px;
+}
+.building-nav .desc .wrap{background-position:0px 0px}.building-nav .desc .wrap{background-image: url(/Template/styles/images/building-nav_x.png?v=0.6.6)}.building-nav .desc b{background-position:0px 0px}.building-nav .pics a{background-position:-78px 0px}.building-nav .notice i{background-position:-78px -60px}.building-nav .desc b,.building-nav .pics a,.building-nav .notice i{background-image: url(/Template/styles/images/building-nav_z.png?v=0.6.6)}
+/***
+ *  ▄████▄      ?█████     ?██   ██? Cox CSS Framework   
+ * ?██? ?█     ?██?  ██?   ?? █ █ ??   
+ * ?▓█    ▄    ?██?  ██?   ??  █   ?   
+ * ?▓▓▄ ▄██?   ?██   ██?    ? █ █ ?    
+ * ? ▓███? ?   ? ████▓??   ?██? ?██?   
+ * ? ?? ?  ?   ? ??????    ?? ? ?▓ ?   
+ *   ?  ?        ? ? ??    ??   ?? ?   
+ * ?           ? ? ? ?      ?    ?   
+ * ? ?             ? ?      ?    ?     
+ * ?                  
+ * ----------------------------------------------------------------------------
+ * <utils.less> - 2014/3/10
+ * @version 0.1
+ * @author  Joye, maolion.j@gmail.com
+ * @website http://maolion.com
+ */
+/**工具集**/
+/**
+ * clearWhiteBorder 清除盒模型的空白边框
+ * @example
+ * #box{
+ *     .clearWhiteBorder;
+ * }
+ */
+/**
+ * ellipsisText 字符串溢出断绝隐藏
+ * @example
+ * #box{
+ *     .ellipsisText;
+ * }
+ */
+.ellipsisText {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+/**
+ * borderRadius border-radius 兼容适配器
+ * @param {...} [top-left, top-right, bottom-right, bottom-left]
+ *              [top-left, top-right&bottom-right, bottom-right]
+ *              [top-left&bottom-right, top-right&bottom-right]
+ *              [top-left&top-right&bottom-right&bottom-left]
+ * @example
+ * #box{
+ *     .borderRadius(10px, 10px, 10px, 10px);
+ *     .borderRadius(10px, 10px, 10px);
+ *     .borderRadius(10px, 10px);
+ *     .borderRadius(10px);
+ * }
+ */
+/**
+ * boxSizing border-sizing 兼容适配器
+ * @param {Value} value
+ * @example
+ * #box{
+ *     .boxSizing(border-box)
+ * }
+ */
+/**
+ * userSelect 控制网页内容的选择范围
+ * @param {Vlaue} value
+ * @example
+ * #box{
+ *     .userSelect(none);
+ * }
+ */
+/**
+ * transition 定义CSS属性值在一定的时间区间内平滑地过渡
+ * @param {Vlaue} value
+ * @example
+ * #box{
+ *     .transition(all ease .15s);
+ * }
+ */
+/**
+ * boxShadow 定义盒元素的阴影
+ * @param {Vlaue} value
+ * @example
+ * #box{
+ *     .boxShadow(1px 1px 1px 1px rgba(255, 255, 255, .3));
+ * }
+ */
+.select-area {
+  position: absolute;
+  width: 400px;
+  z-index: 4000;
+  height: auto;
+  display: none;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadown: 0px 2px 2px 1px rgba(0, 0, 0, 0.3);
+  -moz-box-shadown: 0px 2px 2px 1px rgba(0, 0, 0, 0.3);
+  -ms-box-shadown: 0px 2px 2px 1px rgba(0, 0, 0, 0.3);
+}
+.select-area.loading {
+  padding: 20px 10px;
+  background: url(/Template/styles/images/icons/loading-2.gif?v=0.6.6) #ffffff no-repeat center;
+}
+.select-area.loading .btn-bar {
+  display: none;
+}
+.select-area.loading .level {
+  display: none;
+}
+.select-area .level-wrap {
+  width: 400px;
+  overflow: hidden;
+}
+.select-area .level {
+  width: 345px;
+  max-height: 300px;
+  font-size: 13px;
+  padding: 5px 5px 5px 50px;
+  overflow: auto;
+  _zoom: 1;
+}
+.select-area .level:last-child {
+  border: none;
+}
+.select-area .level.show {
+  display: block;
+}
+.select-area .level span {
+  float: left;
+  width: 45px;
+  margin-left: -45px;
+  line-height: 24px;
+  height: 24px;
+  cursor: default;
+}
+.select-area .level a {
+  display: inline-block;
+  margin: 2px;
+  color: #336699;
+  border: 1px solid #fff;
+  padding: 3px 5px;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+}
+.select-area .level a:hover,
+.select-area .level a.active {
+  border: 1px solid #eb5615;
+}
+.select-area .btn-bar {
+  font-size: 12px;
+  padding: 0 30px 5px 0;
+  min-height: 26px;
+  position: relative;
+  border-bottom: 1px solid #ccc;
+}
+.select-area .btn-bar a,
+.select-area .btn-bar span {
+  line-height: 24px;
+}
+.select-area .btn-bar a {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.select-area .btn-bar span {
+  display: inline-block;
+  cursor: default;
+  margin: 0 2px 2px 0;
+  padding: 0 10px;
+  background: #ea5514;
+  color: #fff;
+  position: static;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -webkit-transition: background-color ease .2s;
+  -moz-transition: background-color ease .2s;
+  transition: background-color ease .2s;
+}
+.select-area .btn-bar span:hover {
+  background: #C94811;
+}
