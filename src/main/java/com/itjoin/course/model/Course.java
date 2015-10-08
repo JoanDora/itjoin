@@ -42,7 +42,6 @@ public class Course {
 
     private int price;
     
-    private String introduce;
 
     private Date createTime;
 
@@ -57,18 +56,6 @@ public class Course {
     
     public void setVerifyStatus(int verifyStatus) {
         this.verifyStatus = verifyStatus;
-    }
-
-
-
-    public String getIntroduce() {
-        return introduce;
-    }
-
-
-    
-    public void setIntroduce(String introduce) {
-        this.introduce = introduce;
     }
 
 
