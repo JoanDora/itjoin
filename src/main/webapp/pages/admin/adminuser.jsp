@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css"
-	href="<%=path%>/resources/css/easyui/icon.css" />
+href="<%=path%>/resources/css/easyui/icon.css" />
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/resources/css/easyui/easyui.css">
 <script type="text/javascript"
