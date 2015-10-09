@@ -57,9 +57,15 @@ public class CourseCategoryCotroller {
      * @date	2015-10-4 上午10:32:12
      * @version      
      */ 
-    @RequestMapping("/add")
-    public @ResponseBody void save(CourseCategory courseCategory){
-	 courseCategoryRepos.save(courseCategory);
+    @RequestMapping("/save")
+    public @ResponseBody Object save(CourseCategory courseCategory){
+	 try {
+	    courseCategoryRepos.save(courseCategory);
+	     return 1;
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    return 0;
+	}
     }
     
     /**

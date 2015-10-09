@@ -35,25 +35,14 @@
 		} else {
 
 			dt = new Date(value);
-
 		}
-
 		return dt.format("yyyy-MM-dd hh:mm:ss"); //扩展的Date的format方法(上述插件实现)
 	}
 	
-	function editrow(index, id, verifyStatus) {
-        $("#courseId").val(id);
-        if(verifyStatus !=''){
-        	$("input[name='verifyStatus']").each(function(index,domEle){
-        		if($(this).val()==verifyStatus){
-        			$(this).attr("checked", 'true');
-        		}
-        	});
-        }
-        
+	function editrow( id, name) {
+        $("#id").val(name);
+        $("#name").val(name)
 		$('#win').window('open');
-		$("#adminid").val(id);
-	
 	}
 	
 	var spath = $('#basePath').attr("value");
@@ -87,71 +76,9 @@
 							columns : [ [
 									{
 										field : 'name',
-										title : '视频名字',
+										title : '分类名',
 										width : 100,
 										editor : 'text'
-									},
-									{
-										field : 'status',
-										title : '状态',
-										width : 160,
-										editor : 'text',
-										formatter : function(value) {
-											var result = '';
-											if (value == '0') {
-												result = "更新中"
-											}
-											if (value == '1') {
-												result = "更新完毕"
-											}
-											return result;
-										}
-									},
-									{
-										field : 'price',
-										title : '价格',
-										width : 80,
-										editor : 'text'
-									},
-									{
-										field : 'verifyStatus',
-										title : '审核状态',
-										width : 80,
-										editor : 'text',
-										formatter : function(value) {
-											var result = '';
-											if (value == '0') {
-												result = "待审核"
-											}
-											if (value == '1') {
-												result = "审核成功"
-
-											}
-											if (value == '2') {
-												result = "审核失败"
-											}
-											return result;
-										}
-									},
-									{
-										field : 'description',
-										title : '描述',
-										width : 80,
-										editor : 'text'
-									},
-									{
-										field : 'createTime',
-										title : '创建时间',
-										width : 200,
-										editor : 'datebox',
-										formatter : formatDatebox
-									},
-									{
-										field : 'updateTime',
-										title : '更新时间',
-										width : 200,
-										editor : 'datebox',
-										formatter : formatDatebox
 									},
 									{
 										field : 'action',
@@ -161,12 +88,10 @@
 										formatter : function(value, row, index) {
 											var data = row;
 											var e = '<a href="#" onclick=editrow('
-													+ index
-													+ ',"'
 													+ data.id
 													+ '","'
-													+ data.verifyStatus
-													+ '")>审核</a> ';
+													+ data.name
+													+ '")>编辑</a> ';
 											if (adminRole == '1') {
 												var c = '<a href="#" onclick=deleterow('
 														+ index
@@ -195,7 +120,16 @@
 							},
 							loadMsg : '数据加载中,请稍候......'
 						});
-
+		
+		if(adminRole=='1'){
+			$('#tt').datagrid({
+				toolbar:[ {
+					text : '增加',
+					iconCls : 'icon-add',
+					handler : addrow
+				}]
+			});
+		}
 		//分页
 		var pager = $('#tt').datagrid('getPager');
 		pager.pagination({
@@ -224,7 +158,7 @@
 			$.ajax({
 				type : "POST",
 				dataType : "json",
-				url : spath + "/course/getCourseList",
+				url : spath + "/courseCategory/list",
 				data : {
 					'page' : pageNumber,
 					'rows' : pageSize
@@ -258,7 +192,7 @@
 		$('#tt').datagrid('cancelEdit', index);
 	}
 	function addrow() {
-		editrow(' ', "", "", "", "", "");
+		editrow( "", "");
 	}
 	function saveall() {
 		$('#tt').datagrid('acceptChanges');
@@ -277,16 +211,10 @@
 	}
 
 	function submitForm() {
-		var verifyStatus = $("input[name='verifyStatus']:checked").val();
-		var courseId = $("#courseId").val();
 		$('#ff').ajaxSubmit({
-			url : spath + '/course/updateVerifyStatus',
-			type : "GET",
+			url : spath + '/courseCategory/save',
+			type : "POST",
 			dataType : "json",
-			data:{
-				'verifyStatus':verifyStatus,
-				'id':courseId
-				},
 			success : function(data) {
 				if (data == '1') {
 					alert("操作成功");
@@ -307,15 +235,14 @@
 		data-options="iconCls:'icon-save',modal:true">
 		<div class="easyui-layout" data-options="fit:true">
 			<div data-options="region:'center'">
-				<div class="easyui-panel" title=" 审核视频信息"
+				<div class="easyui-panel" title=" 分类信息编辑"
 					style="width: 100%; height: 100%">
 					<div style="padding: 10px 60px 20px 60px">
 						<form id="ff" method="post">
-						    <input type="hidden" id="courseId">
+						    <input type="hidden" id="id" name="id">
 							<table cellpadding="5">
 								<tr>
-									<td>审核通过:<input type="radio" name="verifyStatus" value="1"  checked="checked"></td>
-									<td>审核未通过:<input type="radio" name="verifyStatus" value="0"></td>
+									<td>分类名称:<input type="text" name="name" id="name" ></td>
 								</tr>
 							</table>
 						</form>

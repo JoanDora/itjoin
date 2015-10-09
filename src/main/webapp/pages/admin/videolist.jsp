@@ -52,8 +52,6 @@
         }
         
 		$('#win').window('open');
-		$("#adminid").val(id);
-	
 	}
 
 	
