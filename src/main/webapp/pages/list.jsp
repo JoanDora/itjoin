@@ -14,36 +14,8 @@
 </head>
 
 <body>
-	<header  class="C_header">
-    	<div class="C_layout">
-        	<a href="#"><img src="<%=path%>/resources/images/C_logo.jpg" /></a>
-            <ul class="C_nav">
-            	<li><a href="index.jsp">首页</a></li>
-                <li><a href="#">课程<i class="glyphicon glyphicon-triangle-bottom"></i></a>
-                	<div class="C_nav2">
-                    	<a href="#">DIV+CSS</a>
-                        <a href="#">ET</a>
-                         <a href="#">JAVA</a>
-                        <a href="#">前端技术 </a>
-                        <a href="#">JAVA</a>
-                        <a href="#">asp</a>
-                        <a href="#">.NET</a>
-                        <a href="#">网页设计</a>
-                        <a href="#">安卓</a>                    </div>
-                </li>
-                   <li><a href="uploadvideo.jsp">上传视频</a></li>
-                <li><a href="about.jsp">关于我们</a></li>
-            </ul>
-            <div class="C_top_right">
-            	<div class="C_search">
-                	<input type="text" class="C_text" value="关键字查找"/>
-                    <i class="glyphicon glyphicon-search"></i>                </div>
-                <div class="C_dl">
-                	<a href="#">登录</a><span>|</span>
-                    <a href="#">注册</a>                </div>
-            </div>
-        </div>
-</header>
+<div style="height:100%">
+	<%@ include file="header.jsp" %> 
 	<div class=" C_content" >
 		<div class=" C_layout" style="overflow:hidden;">
         	<div class="C_wz">您当前所在位置：<a href="#">首页</a>&gt;<a href="#">课程列表</a>&gt;<a href="#">手机开发</a></div>
@@ -141,10 +113,8 @@
             </div>
         </div>
     </div>
-    <footer>
-    	Copytright 2008-2013  课程内容版权均归学ii分享联盟网所有 桂ICP备15004246号
-    </footer>
-   
+    <%@ include file="footer.jsp" %> 
+   </div>
     <script type="text/javascript" src="<%=path%>/resources/js/jquery.min.js"></script>
     <script type="text/javascript" src="<%=path%>/resources/js/jquery.jslides.js"></script>
    

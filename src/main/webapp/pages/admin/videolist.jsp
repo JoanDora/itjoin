@@ -159,7 +159,7 @@
 													+ data.id
 													+ '","'
 													+ data.verifyStatus
-													+ '")>编辑</a> ';
+													+ '")>审核</a> ';
 											if (adminRole == '1') {
 												var c = '<a href="#" onclick=deleterow('
 														+ index
@@ -270,10 +270,6 @@
 	}
 
 	function submitForm() {
-		var pwd = $("#loginPwd").val().trim();
-		if (pwd != '') {
-			$("#loginPwd").val(hex_md5(pwd));
-		}
 		$('#ff').ajaxSubmit({
 			url : spath + '/course/updateVerifyStatus',
 			type : "POST",
@@ -294,62 +290,16 @@
 <body>
 	<table id="tt"></table>
 	<div id="win" class="easyui-window" title=""
-		style="width: 400px; height: 400px"
+		style="width: 400px; height: 130px;"
 		data-options="iconCls:'icon-save',modal:true">
 		<div class="easyui-layout" data-options="fit:true">
 			<div data-options="region:'center'">
-				<div class="easyui-panel" title=" 编辑视频信息"
+				<div class="easyui-panel" title=" 审核视频信息"
 					style="width: 100%; height: 100%">
 					<div style="padding: 10px 60px 20px 60px">
 						<form id="ff" method="post">
 							<table cellpadding="5">
 								<tr>
-									<td>视频名字：</td>
-									<td><span class="textbox easyui-fluid"
-										style="width: 171px; height: 30px;"> <input
-											class="textbox-text validatebox-text textbox-prompt"
-											autocomplete="off" placeholder=""
-											style="margin-left: 0px; margin-right: 0px; padding-top: 8px; padding-bottom: 8px; width: 163px;"
-											style="width: 100%; height: 32px" name="name" id="name">
-									</span> <input type="hidden" name="id" id="adminid" /></td>
-								</tr>
-								<tr>
-
-									<td>类型:</td>
-									<td><span class="textbox easyui-fluid"
-										style="width: 171px; height: 30px;"> <input
-											class="textbox-text validatebox-text textbox-prompt"
-											autocomplete="off" placeholder=""
-											style="margin-left: 0px; margin-right: 0px; padding-top: 8px; padding-bottom: 8px; width: 163px;"
-											style="width: 100%; height: 32px" name="categoryId"
-											id="categoryId">
-									</span></td>
-								</tr>
-
-								<tr>
-									<td>状态：</td>
-									<td><span class="textbox easyui-fluid"
-										style="width: 171px; height: 30px;"> <input
-											class="textbox-text validatebox-text textbox-prompt"
-											autocomplete="off" placeholder=""
-											style="margin-left: 0px; margin-right: 0px; padding-top: 8px; padding-bottom: 8px; width: 163px;"
-											style="width: 100%; height: 32px" name="status" id="status">
-									</span></td>
-								</tr>
-
-								<tr>
-									<td>价格：</td>
-									<td><span class="textbox easyui-fluid"
-										style="width: 171px; height: 30px;"> <input
-											class="textbox-text validatebox-text textbox-prompt"
-											autocomplete="off" placeholder=""
-											style="margin-left: 0px; margin-right: 0px; padding-top: 8px; padding-bottom: 8px; width: 163px;"
-											style="width: 100%; height: 32px" name="price" id="price">
-									</span></td>
-								</tr>
-
-								<tr>
-
 									<td>审核状态:</td>
 									<td><span class="textbox easyui-fluid"
 										style="width: 171px; height: 30px;"> <input
@@ -358,19 +308,6 @@
 											style="margin-left: 0px; margin-right: 0px; padding-top: 8px; padding-bottom: 8px; width: 163px;"
 											style="width: 100%; height: 32px" name="verifyStatus"
 											id="verifyStatus">
-									</span></td>
-								</tr>
-
-
-								<tr>
-									<td>描述：</td>
-									<td><span class="textbox easyui-fluid"
-										style="width: 171px; height: 30px;"> <input
-											class="textbox-text validatebox-text textbox-prompt"
-											autocomplete="off" placeholder=""
-											style="margin-left: 0px; margin-right: 0px; padding-top: 8px; padding-bottom: 8px; width: 163px;"
-											style="width: 100%; height: 32px" name="description"
-											id="description">
 									</span></td>
 								</tr>
 							</table>
