@@ -26,6 +26,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itjoin.constant.PageConstant;
@@ -61,6 +62,7 @@ public class CourseController {
     @Resource
     private CourseRepos courseRepos;
 
+    
     @Resource
     private CourseExtRepos courseExtRepos;
 
@@ -146,6 +148,24 @@ public class CourseController {
 	    return 0;
 	}
     }
+    
+    
+    @RequestMapping(value = "/deleteByCourseId/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public   Object deleteByCourseId(@PathVariable("id") String id) {
+	try {
+	    Course course =new Course();
+	    course.setId(id);
+	    courseRepos.deleteById(course);
+	    return 1;
+	} catch (Exception e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	    return 0;
+	}
+	
+    }
+    
 
     /**
      * <p>

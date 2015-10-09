@@ -55,6 +55,7 @@
 		$("#adminid").val(id);
 	
 	}
+
 	
 	var spath = $('#basePath').attr("value");
 	var adminRole = '0';
@@ -275,6 +276,31 @@
 
 	function clearForm() {
 		$('#win').window('close');
+	}
+	
+	function deleterow(index,id) {
+		$.messager.confirm('确认', '是否真的删除?', function(r) {
+			if (r) {
+				$.ajax({
+					type : "GET",
+					dataType : "json",
+					url : "/course/deleteByCourseId/"+id+"?new="+ Math.random(),
+					success : function(data) {
+						if(data=='1'){
+							alert("删除成功");
+							$('#tt').datagrid('deleteRow', index);
+						}else{
+							alert("删除失败");
+						}
+				
+					},
+					error : function(err) {
+						$.messager.alert('操作提示', '获取信息失败...请联系管理员!', 'error');
+					}
+				});
+				
+			}
+		});
 	}
 
 	function submitForm() {
