@@ -167,7 +167,7 @@
 	</div>
 	<div region="south" split="true"
 		style="height: 30px; background: #D2E0F2;">
-		<div class="footer">二手车后台管理</div>
+		<div class="footer">IT分享联盟后台管理</div>
 	</div>
 	<div region="west" hide="true" split="true" title="系统分类导航"
 		style="width: 180px;" id="west">
