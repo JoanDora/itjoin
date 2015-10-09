@@ -88,7 +88,7 @@
 										formatter : function(value, row, index) {
 											var data = row;
 											var e = '<a href="#" onclick=editrow('
-													+ data.id
+													+'"'+ data.id
 													+ '","'
 													+ data.name
 													+ '")>编辑</a> ';

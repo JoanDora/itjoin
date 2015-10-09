@@ -13,6 +13,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -60,6 +61,9 @@ public class CourseCategoryCotroller {
     @RequestMapping("/save")
     public @ResponseBody Object save(CourseCategory courseCategory){
 	 try {
+	     if(StringUtils.isBlank(courseCategory.getId())){
+		 courseCategory.setId(null);
+	     }
 	    courseCategoryRepos.save(courseCategory);
 	     return 1;
 	} catch (Exception e) {
