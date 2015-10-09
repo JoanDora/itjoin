@@ -195,6 +195,14 @@
 				find(pageNumber, pageSize);
 			}
 		});
+		
+		var editcount = 0;
+		function editrow(index, id, verifyStatus) {
+
+			$('#win').window('open');
+			$("#adminid").val(id);
+		
+		}
 
 		function find(pageNumber, pageSize) {
 			$("#tt").datagrid('getPager').pagination({
