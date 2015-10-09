@@ -123,11 +123,17 @@ public class CourseCategoryCotroller {
      * @date	2015-10-4 上午10:35:53
      * @version      
      */ 
-    @RequestMapping("/delete")
-    public @ResponseBody void delete(@PathVariable("id")String id){
-	CourseCategory courseCategory=new CourseCategory();
-	courseCategory.setId(id);
-	courseCategoryRepos.deleteById(courseCategory);
+    @RequestMapping("/delete/{id}")
+    public @ResponseBody Object delete(@PathVariable("id")String id){
+	try {
+	    CourseCategory courseCategory=new CourseCategory();
+	    courseCategory.setId(id);
+	    courseCategoryRepos.deleteById(courseCategory);
+	    return 1;
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    return 0;
+	}
     }
     
 	
