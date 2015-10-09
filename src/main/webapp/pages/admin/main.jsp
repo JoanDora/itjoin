@@ -30,7 +30,14 @@
 					"menuname" : "视频列表",
 					"icon" : "icon-nav",
 					"url" : "/admin/videolist?new=" + Math.random()
-				} ]
+				},
+				{
+					"menuid" : "111",
+					"menuname" : "视频分类",
+					"icon" : "icon-nav",
+					"url" : "/admin/categorylist?new=" + Math.random()
+				} 
+				]
 			}
 			, {
 				"menuid" : "20",
