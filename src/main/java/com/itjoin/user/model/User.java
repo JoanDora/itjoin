@@ -1,91 +1,143 @@
 package com.itjoin.user.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 
-    private String id;
+import com.itjoin.base.QueryField;
+import com.itjoin.base.QueryType;
 
-    private String name;
+public class User implements Serializable{
+       
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1476012733636593919L;
+	
+	@Id
+	//用户Id
+	private String  id;
 
-    private String pwd;
+	
+    @QueryField(type = QueryType.EQUALS, attribute = "phone")
+	@Indexed(unique = true)
+	//手机号码
+	private String phone;
+   
+	//用户名
+	private String userName;
+	
+	 @QueryField(type = QueryType.EQUALS, attribute = "loginPwd")
+	//登录密码
+	private String loginPwd;
+	
+	//支付密码
+	private String payPwd;
 
-    private String phone;
+	//性别(1 表示男人 ,0 表示女人)
+	private String sex;
+	private Date createTime;
+	private Date updateTime;
+	
+	public Date getUpdateTime() {
+		return updateTime;
+	}
 
-    private String email;
-    
-    private byte type;//用户种类：0普通用户1管理员
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
 
-    private Date createTime;
+	private Date lastLoginTime;
 
-    private Date updateTime;
-    
-    
+	private String email;
+	
+	private String address;
+	
+	
+	
+	
+	public String getAddress() {
+		return address;
+	}
 
-    
-    public byte getType() {
-        return type;
-    }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-    
-    public void setType(byte type) {
-        this.type = type;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getId() {
-	return id;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setId(String id) {
-	this.id = id;
-    }
+	public Date getCreateTime() {
+		return createTime;
+	}
 
-    public String getName() {
-	return name;
-    }
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 
-    public void setName(String name) {
-	this.name = name;
-    }
+	public Date getLastLoginTime() {
+		return lastLoginTime;
+	}
 
-    public String getPwd() {
-	return pwd;
-    }
+	public void setLastLoginTime(Date lastLoginTime) {
+		this.lastLoginTime = lastLoginTime;
+	}
 
-    public void setPwd(String pwd) {
-	this.pwd = pwd;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public String getPhone() {
-	return phone;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public void setPhone(String phone) {
-	this.phone = phone;
-    }
+	public String getPhone() {
+		return phone;
+	}
 
-    public String getEmail() {
-	return email;
-    }
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-    public void setEmail(String email) {
-	this.email = email;
-    }
+	public String getUserName() {
+		return userName;
+	}
 
-    public Date getCreateTime() {
-	return createTime;
-    }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public void setCreateTime(Date createTime) {
-	this.createTime = createTime;
-    }
+	public String getLoginPwd() {
+		return loginPwd;
+	}
 
-    public Date getUpdateTime() {
-	return updateTime;
-    }
+	public void setLoginPwd(String loginPwd) {
+		this.loginPwd = loginPwd;
+	}
 
-    public void setUpdateTime(Date updateTime) {
-	this.updateTime = updateTime;
-    }
+	public String getPayPwd() {
+		return payPwd;
+	}
 
+	public void setPayPwd(String payPwd) {
+		this.payPwd = payPwd;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	
+	
 }
