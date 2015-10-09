@@ -40,6 +40,14 @@
 
 		return dt.format("yyyy-MM-dd hh:mm:ss"); //扩展的Date的format方法(上述插件实现)
 	}
+	
+	function editrow(index, id, verifyStatus) {
+
+		$('#win').window('open');
+		$("#adminid").val(id);
+	
+	}
+	
 	var spath = $('#basePath').attr("value");
 	var adminRole = '0';
 	$(function() {
@@ -196,13 +204,9 @@
 			}
 		});
 		
-		var editcount = 0;
-		function editrow(index, id, verifyStatus) {
-
-			$('#win').window('open');
-			$("#adminid").val(id);
-		
 		}
+		var editcount = 0;
+		
 
 		function find(pageNumber, pageSize) {
 			$("#tt").datagrid('getPager').pagination({
@@ -231,59 +235,59 @@
 			});
 		}
 
-		function pageData(list, total) {
-			var obj = new Object();
-			obj.total = total;
-			obj.rows = list;
-			return obj;
-		}
+	
 
-		function saverow(index) {
-			$('#tt').datagrid('endEdit', index);
-		}
-		function cancelrow(index) {
-			$('#tt').datagrid('cancelEdit', index);
-		}
-		function addrow() {
-			editrow(' ', "", "", "", "", "");
-		}
-		function saveall() {
-			$('#tt').datagrid('acceptChanges');
-		}
-		function cancelall() {
-			$('#tt').datagrid('rejectChanges');
-		}
+	function pageData(list, total) {
+		var obj = new Object();
+		obj.total = total;
+		obj.rows = list;
+		return obj;
+	}
 
-		$(function() {
-			$('#win').window('close');
-			//	$('#win').window('open'); // open a window
-		});
+	function saverow(index) {
+		$('#tt').datagrid('endEdit', index);
+	}
+	function cancelrow(index) {
+		$('#tt').datagrid('cancelEdit', index);
+	}
+	function addrow() {
+		editrow(' ', "", "", "", "", "");
+	}
+	function saveall() {
+		$('#tt').datagrid('acceptChanges');
+	}
+	function cancelall() {
+		$('#tt').datagrid('rejectChanges');
+	}
 
-		function clearForm() {
-			$('#win').window('close');
+	$(function() {
+		$('#win').window('close');
+		//	$('#win').window('open'); // open a window
+	});
+
+	function clearForm() {
+		$('#win').window('close');
+	}
+
+	function submitForm() {
+		var pwd = $("#loginPwd").val().trim();
+		if (pwd != '') {
+			$("#loginPwd").val(hex_md5(pwd));
 		}
-
-		function submitForm() {
-			var pwd = $("#loginPwd").val().trim();
-			if (pwd != '') {
-				$("#loginPwd").val(hex_md5(pwd));
-			}
-			$('#ff').ajaxSubmit({
-				url : spath + '/course/updateVerifyStatus',
-				type : "POST",
-				dataType : "json",
-				success : function(data) {
-					if (data == '1') {
-						alert("操作成功");
-					} else {
-						alert("操作失败");
-					}
-					$('#win').window('close');
-					//               parent.location.reload();
+		$('#ff').ajaxSubmit({
+			url : spath + '/course/updateVerifyStatus',
+			type : "POST",
+			dataType : "json",
+			success : function(data) {
+				if (data == '1') {
+					alert("操作成功");
+				} else {
+					alert("操作失败");
 				}
-			});
-		}
-
+				$('#win').window('close');
+				//               parent.location.reload();
+			}
+		});
 	}
 </script>
 </head>
