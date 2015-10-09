@@ -38,6 +38,7 @@ import com.itjoin.course.repositories.CourseExtRepos;
 import com.itjoin.course.repositories.CourseRepos;
 import com.itjoin.course.repositories.CourseSubExtRepos;
 import com.itjoin.course.repositories.CourseSubRepos;
+import com.itjoin.util.Pagination;
 
 /**
  * <p>
@@ -62,9 +63,9 @@ public class CourseController {
 
     @Resource
     private CourseSubRepos courseSubRepos;
-    
-    @Resource 
-    private  CourseSubExtRepos  courseSubExtRepos;
+
+    @Resource
+    private CourseSubExtRepos courseSubExtRepos;
 
     /**
      * <p>
@@ -80,7 +81,8 @@ public class CourseController {
      * @version
      */
     @RequestMapping("/save")
-    public @ResponseBody void save(CourseDetailInputParam courseDetailParam) {
+    @ResponseBody
+    public   void save(CourseDetailInputParam courseDetailParam) {
 	Course c = null;
 	if (courseDetailParam.getCourse() != null) {
 	    String courseName = courseDetailParam.getCourse().getName();
@@ -101,31 +103,32 @@ public class CourseController {
 	    query.addCriteria(criteria);
 	    CourseSub sub = courseSubRepos.findOne(query);
 	    CourseSub courseSub = courseDetailParam.getCourseSub();
-            courseSub.setCourseId(c.getId());
-	    if (sub == null) { 
+	    courseSub.setCourseId(c.getId());
+	    if (sub == null) {
 		courseSubRepos.save(courseSub);
-	    }else{
+	    } else {
 		courseSubRepos.updateById(sub.getId(), courseSub);
 	    }
 	}
     }
 
-    
     /**
      * <p>
      * 
-     *更新视频审核状态
-     *
+     * 更新视频审核状态
+     * 
      * </p>
+     * 
      * @param id
      * @param verifyStatus
-     *  
-     * @author	hz14121005 
-     * @date	2015-10-6 下午2:40:53
-     * @version      
-     */ 
+     * 
+     * @author hz14121005
+     * @date 2015-10-6 下午2:40:53
+     * @version
+     */
     @RequestMapping("/updateVerifyStatus")
-    public @ResponseBody void updateVerifyStatus(@PathVariable("id") String id,int verifyStatus) {
+    public @ResponseBody
+    void updateVerifyStatus(@PathVariable("id") String id, int verifyStatus) {
 	Course course = courseRepos.findById(id);
 	course.setVerifyStatus(verifyStatus);
 	courseRepos.updateById(course.getId(), course);
@@ -144,15 +147,16 @@ public class CourseController {
      * @author hz14121005
      * @date 2015-10-4 上午10:44:40
      * @version
-     * @throws NoSuchMethodException 
-     * @throws InvocationTargetException 
-     * @throws Exception 
+     * @throws NoSuchMethodException
+     * @throws InvocationTargetException
+     * @throws Exception
      */
     @RequestMapping("/viewById")
-    public @ResponseBody Object viewById(@PathVariable("id") String id) throws Exception{
+    public @ResponseBody
+    Object viewById(@PathVariable("id") String id) throws Exception {
 	CourseDatailOutputParam courseDetailParam = new CourseDatailOutputParam();
 	Course course = courseRepos.findById(id);
-	CourseParam  courseParam=new CourseParam();
+	CourseParam courseParam = new CourseParam();
 	PropertyUtils.copyProperties(courseParam, course);
 	Query query = new Query();
 	Criteria criteria = Criteria.where("courseId").is(id);
@@ -173,19 +177,19 @@ public class CourseController {
 	Query query2 = new Query();
 	Criteria criteria2 = Criteria.where("courseId").is(id);
 	query2.addCriteria(criteria2);
-	List<CourseSub>  list=courseSubRepos.find(query2);
-	List<CourseSubParam>  li=new ArrayList<CourseSubParam>();
-	if(list!=null&&!list.isEmpty()){
-	    for(CourseSub courseSub:list){
-		CourseSubParam courseSubParam=new CourseSubParam();
+	List<CourseSub> list = courseSubRepos.find(query2);
+	List<CourseSubParam> li = new ArrayList<CourseSubParam>();
+	if (list != null && !list.isEmpty()) {
+	    for (CourseSub courseSub : list) {
+		CourseSubParam courseSubParam = new CourseSubParam();
 		PropertyUtils.copyProperties(courseSubParam, courseSub);
 		Query query3 = new Query();
 		Criteria criteria3 = Criteria.where("subCourseId").is(courseSub.getId());
 		query3.addCriteria(criteria3);
-		CourseSubExt courseSubExt=courseSubExtRepos.findOne(query3);
-		int browseTimes=0;
-		if(courseSubExt!=null){
-		    browseTimes=courseSubExt.getBrowseTimes();
+		CourseSubExt courseSubExt = courseSubExtRepos.findOne(query3);
+		int browseTimes = 0;
+		if (courseSubExt != null) {
+		    browseTimes = courseSubExt.getBrowseTimes();
 		}
 		courseSubParam.setBrowseTimes(browseTimes);
 		li.add(courseSubParam);
@@ -194,24 +198,24 @@ public class CourseController {
 	courseDetailParam.setCourseSub(li);
 	return courseDetailParam;
     }
-    
+
     @RequestMapping("/updateBySubId")
-    public @ResponseBody void updateBySubId(@PathVariable("subId") String subId) {
+    public @ResponseBody
+    void updateBySubId(@PathVariable("subId") String subId) {
 	Query query = new Query();
 	Criteria criteria = Criteria.where("subCourseId").is(subId);
 	query.addCriteria(criteria);
-	CourseSubExt courseSubExt=courseSubExtRepos.findOne(query);
-	if(courseSubExt==null){
-	    courseSubExt=new CourseSubExt();
+	CourseSubExt courseSubExt = courseSubExtRepos.findOne(query);
+	if (courseSubExt == null) {
+	    courseSubExt = new CourseSubExt();
 	    courseSubExt.setBrowseTimes(1);
 	    courseSubExt.setSubCourseId(subId);
 	    courseSubExtRepos.save(courseSubExt);
-	}else{
-	    courseSubExt.setBrowseTimes(courseSubExt.getBrowseTimes()+1);
+	} else {
+	    courseSubExt.setBrowseTimes(courseSubExt.getBrowseTimes() + 1);
 	    courseSubExtRepos.updateById(courseSubExt.getId(), courseSubExt);
 	}
     }
-    
 
     /**
      * <p>
@@ -228,9 +232,10 @@ public class CourseController {
      * @version
      */
     @RequestMapping("/searchByCategoryId")
-    public @ResponseBody Object searchByCategoryId(@PathVariable("categoryId") String categoryId, @PathVariable("pageNo") int pageNo) {
+    public @ResponseBody
+    Object searchByCategoryId(@PathVariable("categoryId") String categoryId, @PathVariable("pageNo") int pageNo) {
 	if (pageNo < 0) {
-	    pageNo = 0; 
+	    pageNo = 0;
 	}
 	Query query = new Query();
 	Criteria criteria = Criteria.where("categoryId").is(categoryId);
@@ -238,31 +243,32 @@ public class CourseController {
 	query.limit(PageConstant.PAGE_SIZE);
 	query.skip(pageNo * PageConstant.PAGE_SIZE);
 	Direction direction = Direction.DESC;
-	Sort sort = new Sort(direction, "CreateTime");
+	Sort sort = new Sort(direction, "createTime");
 	query.with(sort);
 	return courseRepos.find(query);
     }
-    
-    
+
     /**
      * <p>
      * 
-     *根据名字搜索课程
-     *
+     * 根据名字搜索课程
+     * 
      * </p>
+     * 
      * @param name
      * @param pageNum
      * @return
      * @throws Exception
-     *  
-     * @author	hz14121005 
-     * @date	2015-10-5 下午4:23:03
-     * @version      
-     */ 
+     * 
+     * @author hz14121005
+     * @date 2015-10-5 下午4:23:03
+     * @version
+     */
     @RequestMapping("/searchByName")
-    public @ResponseBody Object searchByName(@PathVariable("name") String name, @PathVariable("pageNo") int pageNo) throws Exception{
+    @ResponseBody
+    public  Object searchByName(@PathVariable("name") String name, @PathVariable("pageNo") int pageNo) throws Exception {
 	if (pageNo < 0) {
-	    pageNo = 0; 
+	    pageNo = 0;
 	}
 	Query query = new Query();
 	Criteria criteria = Criteria.where("name").is(name);
@@ -270,44 +276,47 @@ public class CourseController {
 	query.limit(PageConstant.PAGE_SIZE);
 	query.skip(pageNo * PageConstant.PAGE_SIZE);
 	Direction direction = Direction.DESC;
-	Sort sort = new Sort(direction, "CreateTime");
+	Sort sort = new Sort(direction, "createTime");
 	query.with(sort);
 	List<Course> course = courseRepos.find(query);
 	return course;
     }
-    
+
     /**
      * <p>
      * 
-     *获取最新课程列表
-     *
+     * 获取最新课程列表
+     * 
      * </p>
+     * 
      * @param pageNo
      * @return
      * @throws Exception
-     *  
-     * @author	hz14121005 
-     * @date	2015-10-5 下午4:27:14
-     * @version      
-     */ 
+     * 
+     * @author hz14121005
+     * @date 2015-10-5 下午4:27:14
+     * @version
+     */
     @RequestMapping("/getCourseList")
-    public @ResponseBody Object getCourseList(Integer page,Integer rows) throws Exception{
-	if (page < 0) {
-	    page = 0; 
+    @ResponseBody
+    public Pagination getCourseList(Integer page, Integer rows) throws Exception {
+	int intPageSize = rows == null || rows <= 0 ? PageConstant.PAGE_SIZE : rows;
+	if (page > 0) {
+	    page--;
 	}
 	Query query = new Query();
-	Criteria criteria =new Criteria();
+	Criteria criteria = new Criteria();
 	query.addCriteria(criteria);
-	query.limit(PageConstant.PAGE_SIZE);
-	query.skip(page * PageConstant.PAGE_SIZE);
+	query.limit(intPageSize);
+	query.skip(page * intPageSize);
 	Direction direction = Direction.DESC;
-	Sort sort = new Sort(direction, "CreateTime");
+	Sort sort = new Sort(direction, "createTime");
 	query.with(sort);
 	List<Course> course = courseRepos.find(query);
-	return course;
+	Pagination pagination = new Pagination();
+	pagination.setRows(course);
+	pagination.setTotal(courseRepos.count(new Query() ));
+	return pagination;
     }
-    
-    
-    
 
 }

@@ -27,7 +27,7 @@ public class CourseSub {
     private String id;
 
     private String courseId;
-
+  
     private String name;
 
     private int serial;
