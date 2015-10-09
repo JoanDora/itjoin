@@ -84,21 +84,6 @@ public class CourseController {
     @RequestMapping("/save")
     @ResponseBody
     public   void save(CourseDetailInputParam courseDetailParam) {
-	 courseDetailParam=new CourseDetailInputParam();
-	 Course  course=new Course();
-	 course.setCategoryId("1");
-	 course.setCreateTime(new Date());
-	 course.setUpdateTime(new Date());
-	 course.setDescription("aaaa2");
-	 course.setName("mingzi4");
-	 course.setPrice(100);
-	 course.setVerifyStatus(1);
-	 course.setStatus(1);
-	 course.setTeacherId("1");
-	 course.setImageUrl("www.baidu.com");
-	 courseDetailParam.setCourse(course);
-	
-	 
 	 
 	Course c = null;
 	if (courseDetailParam.getCourse() != null) {
