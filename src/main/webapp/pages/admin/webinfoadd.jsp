@@ -52,7 +52,7 @@
 		var content = editor.getData();
 		var title = $('#titile').val();
 		$('#strategyForm').ajaxSubmit({
-			url : '/strategy/save',
+			url : '/webinfo/save',
 			type : "POST",
 			data:{titile:title,content:content},
 			dataType : "json",
