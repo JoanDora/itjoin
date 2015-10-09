@@ -5,6 +5,7 @@ a:hover{ text-decoration:none;}
 ul,li,h2,h3{ list-style:none;}
 ul,li{ margin-bottom:0px;}
 ul{-webkit-padding-start:0px;}
+
 input:focus{}
 body{ font-family:"微软雅黑"; font-size:16px;}
 .C_layout{ width:1200px; margin:0 auto;}
@@ -71,6 +72,7 @@ footer{ background:#323436; line-height:107px; margin-top:40px; color:#666; text
 
 
 /* 商品列表 */
+.C_content{ min-height:500px;}
 .C_wz{ line-height:105px; font-size:14px;}
 .C_wz a{ margin:0 5px;}
 .C_wz a:last-child{ color:#58a210;}
@@ -126,15 +128,33 @@ footer{ background:#323436; line-height:107px; margin-top:40px; color:#666; text
 
 /* 上传视频 */
 .C_scsp{ margin-top:45px; width:800px;}
-.C_scsp ul>li>span{ width:80px; float:left; text-align:right; line-height:35px; padding-right:5px;}
+.C_scsp ul>li>span,.C_box ul li span{ width:80px; float:left; text-align:right; line-height:35px; padding-right:5px;}
 .C_scsp ul li:nth-child(2) input{ width:80%;}
-.C_scsp ul input{  width:80%; border:1px solid #ddd; line-height:35px; padding-left:5px;}
-.C_scsp ul li{ margin-bottom:20px; overflow:hidden;}
+.C_scsp ul input{  width:80%; border:1px solid #ddd; line-height:35px; }
+.C_scsp ul li{ margin-bottom:20px; width:100%; overflow:hidden;}
 .C_scsp ul li textarea{ width:80%; border:1px solid #ddd; height:100px; padding-left:5px;}
-.C_scsp ul li button{ margin-left:80px; background:#58a210; padding:0 20px; line-height:40px; border:none; color:#fff; border-radius:4px; }
-.C_scsp li:first-child{ position:relative;}
+.C_scsp ul li>button{ margin-left:80px; background:#58a210; padding:0 20px; line-height:40px; border:none; color:#fff; border-radius:4px; }
+.C_scsp li:first-child{ position:relative; z-index:999; overflow:inherit}
 .C_scsp li:first-child dl{ position:absolute; top:40px; left:80px; background:#ededed; width:80%; display:none; }
 .C_scsp li:first-child dl dd{ line-height:24px; cursor:pointer; padding-left:5px;}
 .C_scsp li:first-child dl dd:hover{ background:#58a210; color:#fff;}
 .C_about_us{ margin-top:30px;}
 .C_about_us p{ line-height:30px; text-indent:2em;}
+.C_scsp li:nth-child(7) div ,.C_scsp li:nth-child(5) div{width:80%; margin-left:80px;}
+.C_scsp li:nth-child(7) div dd{  line-height:35px;  }
+.C_scsp li:nth-child(7) div span{ line-height:35px;}
+.C_scsp li:nth-child(7) div dl dd b{ font-weight:normal; margin-right:100px;}
+.C_scsp li:nth-child(7) div dl dd a{  margin-right:10px;}
+.C_scsp li:nth-child(7) div dl dd a:hover{ color:#58a210; text-decoration:underline;}
+.C_scsp  ul li:nth-child(5) div span{ line-height:35px; margin-right:10px; }
+.C_scsp  ul li:nth-child(5) div input{ width:14px; height:14px; vertical-align:sub;}
+.C_box2{ background:rgba(0,0,0,0.4);  position:fixed; z-index:100000; top:0px; left:0px; width:100%; height:100%; display:none;}
+.C_box{ width:500px; background:#fff;  position:fixed; top:0; left:50%; margin-left:-250px; border:3px solid #ddd; }
+.C_box h3{ line-height:40px; background:#58a210; color:#fff; margin-top:0px; padding:0 10px; font-size:20px;}
+.C_box ul{ padding:10px 20px 30px 20px;}
+.C_box ul li{ margin-bottom:20px; line-height:35px; overflow:hidden;}
+.C_box ul li span{ width:90px;}
+.C_box ul li input{width:70%; border:1px solid #ddd; line-height:30px;}
+.C_box button{ line-height:35px; height:35px; background:#ddd; border-radius:4px; border:none; padding:0 20px; color:#666;}
+.C_box button:first-child{ margin-left:90px;}
+.C_box button:last-child{ background:#58a210; color:#fff;}
