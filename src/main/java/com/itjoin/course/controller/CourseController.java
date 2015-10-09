@@ -238,7 +238,7 @@ public class CourseController {
 	query.limit(PageConstant.PAGE_SIZE);
 	query.skip(pageNo * PageConstant.PAGE_SIZE);
 	Direction direction = Direction.DESC;
-	Sort sort = new Sort(direction, "CreateTime");
+	Sort sort = new Sort(direction, "createTime");
 	query.with(sort);
 	return courseRepos.find(query);
     }
@@ -270,7 +270,7 @@ public class CourseController {
 	query.limit(PageConstant.PAGE_SIZE);
 	query.skip(pageNo * PageConstant.PAGE_SIZE);
 	Direction direction = Direction.DESC;
-	Sort sort = new Sort(direction, "CreateTime");
+	Sort sort = new Sort(direction, "createTime");
 	query.with(sort);
 	List<Course> course = courseRepos.find(query);
 	return course;
@@ -298,10 +298,10 @@ public class CourseController {
 	Query query = new Query();
 	Criteria criteria =new Criteria();
 	query.addCriteria(criteria);
-	query.limit(PageConstant.PAGE_SIZE);
-	query.skip(page * PageConstant.PAGE_SIZE);
+	query.limit(rows);
+	query.skip(page * rows);
 	Direction direction = Direction.DESC;
-	Sort sort = new Sort(direction, "CreateTime");
+	Sort sort = new Sort(direction, "createTime");
 	query.with(sort);
 	List<Course> course = courseRepos.find(query);
 	return course;
