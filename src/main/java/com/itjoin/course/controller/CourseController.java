@@ -17,10 +17,12 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.beanutils.PropertyUtils;
+import org.bson.types.ObjectId;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -130,11 +132,19 @@ public class CourseController {
      * @version
      */
     @RequestMapping("/updateVerifyStatus")
-    public @ResponseBody
-    void updateVerifyStatus(@PathVariable("id") String id, int verifyStatus) {
-	Course course = courseRepos.findById(id);
-	course.setVerifyStatus(verifyStatus);
-	courseRepos.updateById(course.getId(), course);
+    public @ResponseBody  Object updateVerifyStatus(String id, Integer verifyStatus) {
+	try {
+	    Query query = new Query();
+	    ObjectId convertedId = new ObjectId(id);
+	    query.addCriteria(Criteria.where("_id").is(convertedId));
+	    Update update = new Update();
+	    update.set("verifyStatus", verifyStatus);
+	    courseRepos.update(query, update);
+	    return 1;
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    return 0;
+	}
     }
 
     /**

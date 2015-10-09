@@ -42,7 +42,15 @@
 	}
 	
 	function editrow(index, id, verifyStatus) {
-
+        $("#courseId").val(id);
+        if(verifyStatus !=''){
+        	$("input[name='verifyStatus']").each(function(index,domEle){
+        		if($(this).val()==verifyStatus){
+        			$(this).attr("checked", 'true');
+        		}
+        	});
+        }
+        
 		$('#win').window('open');
 		$("#adminid").val(id);
 	
@@ -270,10 +278,16 @@
 	}
 
 	function submitForm() {
+		var verifyStatus = $("input[name='verifyStatus']:checked").val();
+		var courseId = $("#courseId").val();
 		$('#ff').ajaxSubmit({
 			url : spath + '/course/updateVerifyStatus',
-			type : "POST",
+			type : "GET",
 			dataType : "json",
+			data:{
+				'verifyStatus':verifyStatus,
+				'id':courseId
+				},
 			success : function(data) {
 				if (data == '1') {
 					alert("操作成功");
@@ -298,17 +312,11 @@
 					style="width: 100%; height: 100%">
 					<div style="padding: 10px 60px 20px 60px">
 						<form id="ff" method="post">
+						    <input type="hidden" id="courseId">
 							<table cellpadding="5">
 								<tr>
-									<td>审核状态:</td>
-									<td><span class="textbox easyui-fluid"
-										style="width: 171px; height: 30px;"> <input
-											class="textbox-text validatebox-text textbox-prompt"
-											autocomplete="off" placeholder=""
-											style="margin-left: 0px; margin-right: 0px; padding-top: 8px; padding-bottom: 8px; width: 163px;"
-											style="width: 100%; height: 32px" name="verifyStatus"
-											id="verifyStatus">
-									</span></td>
+									<td>审核通过:<input type="radio" name="verifyStatus" value="1"  checked="checked"></td>
+									<td>审核未通过:<input type="radio" name="verifyStatus" value="0"></td>
 								</tr>
 							</table>
 						</form>
