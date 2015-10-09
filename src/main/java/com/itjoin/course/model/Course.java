@@ -10,6 +10,7 @@
 package com.itjoin.course.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -46,6 +47,27 @@ public class Course {
     private Date createTime;
 
     private Date updateTime;
+   
+    private List<CourseSub>subs;
+    
+    
+    
+    
+    
+    public List<CourseSub> getSubs() {
+        return subs;
+    }
+
+
+
+
+    
+    public void setSubs(List<CourseSub> subs) {
+        this.subs = subs;
+    }
+
+
+
 
     public int getVerifyStatus() {
         return verifyStatus;

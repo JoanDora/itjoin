@@ -23,12 +23,26 @@ public class Video {
     private String id;
     private String url;
     private String name;
+    private Integer order;
+    
+    
+    
+    
+    
+    
+    
+    
+    public Integer getOrder() {
+        return order;
+    }
+
 
     
-    
-    
-    
-    
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+
+
     public String getName() {
         return name;
     }

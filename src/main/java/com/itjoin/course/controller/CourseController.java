@@ -21,6 +21,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -80,38 +81,44 @@ public class CourseController {
      * @date 2015-10-4 上午10:44:14
      * @version
      */
+//    @RequestMapping("/save")
+//    @ResponseBody
+//    public   void save(CourseDetailInputParam courseDetailParam) {
+//	Course c = null;
+//	if (courseDetailParam.getCourse() != null) {
+//	    String courseName = courseDetailParam.getCourse().getName();
+//	    String teacherId = courseDetailParam.getCourse().getTeacherId();
+//	    Query query = new Query();
+//	    Criteria criteria = Criteria.where("name").is(courseName).where("teacherId").is(teacherId);
+//	    query.addCriteria(criteria);
+//	    c = courseRepos.findOne(query);
+//	    if (c == null) {
+//		c = courseRepos.save(courseDetailParam.getCourse());
+//	    } else {
+//		courseRepos.updateById(c.getId(), courseDetailParam.getCourse());
+//	    }
+//	}
+//	if (courseDetailParam.getCourseSub() != null) {
+//	    Query query = new Query();
+//	    Criteria criteria = Criteria.where("name").is(courseDetailParam.getCourseSub().getName()).where("courseId").is(c.getId());
+//	    query.addCriteria(criteria);
+//	    CourseSub sub = courseSubRepos.findOne(query);
+//	    CourseSub courseSub = courseDetailParam.getCourseSub();
+//	    courseSub.setCourseId(c.getId());
+//	    if (sub == null) {
+//		courseSubRepos.save(courseSub);
+//	    } else {
+//		courseSubRepos.updateById(sub.getId(), courseSub);
+//	    }
+//	}
+//    }
+
     @RequestMapping("/save")
     @ResponseBody
-    public   void save(CourseDetailInputParam courseDetailParam) {
-	Course c = null;
-	if (courseDetailParam.getCourse() != null) {
-	    String courseName = courseDetailParam.getCourse().getName();
-	    String teacherId = courseDetailParam.getCourse().getTeacherId();
-	    Query query = new Query();
-	    Criteria criteria = Criteria.where("name").is(courseName).where("teacherId").is(teacherId);
-	    query.addCriteria(criteria);
-	    c = courseRepos.findOne(query);
-	    if (c == null) {
-		c = courseRepos.save(courseDetailParam.getCourse());
-	    } else {
-		courseRepos.updateById(c.getId(), courseDetailParam.getCourse());
-	    }
-	}
-	if (courseDetailParam.getCourseSub() != null) {
-	    Query query = new Query();
-	    Criteria criteria = Criteria.where("name").is(courseDetailParam.getCourseSub().getName()).where("courseId").is(c.getId());
-	    query.addCriteria(criteria);
-	    CourseSub sub = courseSubRepos.findOne(query);
-	    CourseSub courseSub = courseDetailParam.getCourseSub();
-	    courseSub.setCourseId(c.getId());
-	    if (sub == null) {
-		courseSubRepos.save(courseSub);
-	    } else {
-		courseSubRepos.updateById(sub.getId(), courseSub);
-	    }
-	}
+    public   void save(@ModelAttribute Course course) {
+		courseRepos.save(course);
     }
-
+    
     /**
      * <p>
      * 
