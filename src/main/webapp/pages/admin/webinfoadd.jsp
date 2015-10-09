@@ -54,6 +54,19 @@
 
 	});
 
+	$(function(){
+		jQuery.ajax({
+			type : 'GET',
+			contentType : 'application/json',
+			url : '/webinfo/get',
+			dataType : 'json',
+			success : function(data) {
+				editor.setData(data.content);
+			}
+		});
+	})
+	
+	
 	function submitStategy() {
 		var content = editor.getData();
 		var title = $('#titile').val();

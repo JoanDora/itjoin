@@ -52,5 +52,10 @@ public class WebInfoController {
 	    model.addAttribute("webinfo", repos.findAll().get(0));
 	    return PAGE+"about";
     }
+    
+    @RequestMapping("/get")
+    public  @ResponseBody Object get (ModelMap model){
+	    return repos.findAll().get(0);
+    }
 }
  
