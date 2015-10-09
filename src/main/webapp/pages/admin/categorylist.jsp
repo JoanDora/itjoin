@@ -40,7 +40,7 @@
 	}
 	
 	function editrow( id, name) {
-        $("#id").val(name);
+        $("#id").val(id);
         $("#name").val(name)
 		$('#win').window('open');
 	}
