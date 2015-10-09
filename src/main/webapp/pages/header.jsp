@@ -21,7 +21,7 @@
                     </div>
                 </li>
                     <li><a href="<%=path %>/pages/uploadvideo.jsp">上传视频</a></li>
-                <li><a href="<%=path %>/pages/about.jsp">关于我们</a></li>
+                <li><a href="<%=path %>/webinfo/show">关于我们</a></li>
             </ul>
             <div class="C_top_right">
             	<div class="C_search">

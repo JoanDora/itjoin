@@ -12,6 +12,7 @@ package com.itjoin.webinfo.controller;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -32,11 +33,13 @@ import com.itjoin.webinfo.repositories.WebInfoRepository;
 @RequestMapping("/webinfo")
 public class WebInfoController {
     
+    private static final String PAGE = "pages/";
     @Resource
     private WebInfoRepository repos;
     @RequestMapping("/save")
     public @ResponseBody Object save(WebInfo webInfo){
 	try {
+	    webInfo.setId(repos.findAll().get(0).getId());
 	    repos.save(webInfo);
 	    return 1;
 	} catch (Exception e) {
@@ -44,6 +47,10 @@ public class WebInfoController {
 	    return 0;
 	}
     }
-
+    @RequestMapping("/show")
+    public  String show (ModelMap model){
+	    model.addAttribute("webinfo", repos.findAll().get(0));
+	    return PAGE+"about";
+    }
 }
  

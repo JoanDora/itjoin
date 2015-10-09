@@ -30,6 +30,10 @@
 			<input type="submit" onclick="javascript:submitStategy();" value="保存">
 		</p>
 	</form>
+	
+	   <p>
+			<a href="<%=path%>/webinfo/show"  target="_blank" >预览</a>
+		</p>
 	<script type="text/javascript">
 	var editor = CKEDITOR.replace('strategy', {
 		uiColor : '#14B8C4',
