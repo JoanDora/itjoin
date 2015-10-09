@@ -47,7 +47,7 @@
 					"menuid" : "411",
 					"menuname" : "编辑网站简介",
 					"icon" : "icon-nav",
-					"url" : "/admin/webinfolist?new=" + Math.random()
+					"url" : "/admin/webinfoadd?new=" + Math.random()
 				} ]
 			}
 			, {
