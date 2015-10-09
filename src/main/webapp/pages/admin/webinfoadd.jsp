@@ -20,6 +20,9 @@
 	   <div style="margin-top:20px;margin-left:40px;">
         <span >标题：</span><textarea cols="100" rows="2" id="titile"></textarea>
         </div>
+           <div style="margin-top:20px;margin-left:40px;">
+        </div>
+        
 		<p>
 			<textarea cols="80" name="strategy" rows="10" id="strategy"></textarea>
 		</p>
@@ -47,7 +50,6 @@
 
 	});
 
-
 	function submitStategy() {
 		var content = editor.getData();
 		var title = $('#titile').val();
@@ -65,25 +67,6 @@
 			}
 		});
 	}
-	
-	/* window.onload = function(){
-		 jQuery.ajax({  
-		        type : 'GET',  
-		        contentType : 'application/json',  
-		        url : '/strategy/show',
-		        dataType : 'json',  
-		        success : function(data) 
-		        { 
-		          if(data!=null && data.id!=null){
-		        	  var editor2 = CKEDITOR.instances.strategy;
-		        	 // editor2.insertText(data.value);
-		        	  editor2.setData(data.value);
-		          }
-		            
-		        }
-		   } );
-		
-	} */
 	</script>
 </body>
 </html>
