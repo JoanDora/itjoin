@@ -15,7 +15,7 @@
 
 <body>
 	<%@ include file="header.jsp" %> 
-		<div class=" C_content" >
+<div class=" C_content" >
 		<div class="C_layout C_scsp">
         	<ul>
             	<li><span>课程分类:</span><input  type="text"/>

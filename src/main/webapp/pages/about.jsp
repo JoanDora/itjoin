@@ -21,7 +21,6 @@ html, body {
 </head>
 
 <body>
-<div style="height: 100%; margin:0;padding;0;">
 	<%@ include file="header.jsp" %> 
 	<div class=" C_content" >
 		<div class=" C_layout C_about_us" style="overflow:hidden;">
@@ -31,7 +30,6 @@ html, body {
         </div>
     </div>
      <%@ include file="footer.jsp" %> 
-     </div>
     <script type="text/javascript" src="<%=path%>/resources/js/jquery.min.js"></script>
     <script type="text/javascript" src="<%=path%>/resources/js/jquery.jslides.js"></script>
 </body>
