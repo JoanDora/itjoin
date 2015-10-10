@@ -14,6 +14,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,26 +39,30 @@ public class FileController {
 	 * 上传文件
 	 */
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	public @ResponseBody Object upload(MultipartHttpServletRequest request, HttpServletResponse response) throws IOException{
+	public @ResponseBody Object upload(MultipartHttpServletRequest request, HttpServletResponse response ) throws IOException{
+	       response.setContentType("text/plain; charset=UTF-8");
 		Map<String, Object> result = new HashMap<String, Object>();
 	       try {
 		handler(request, response, result, CommonConstant.VIDEO_SRC);
 	       } catch (Exception e) {
 		e.printStackTrace();
-		return 0;
+		return result;
 	       }
-		return 1;
+		return result;
 	}
 	
 	/**
 	 * 处理文件上传
+	 * @param result2 
 	 */
-	public  Object handler(MultipartHttpServletRequest request, HttpServletResponse response, Map<String, Object> result, String folder) throws Exception{
+	public  void handler(MultipartHttpServletRequest request, HttpServletResponse response, Map<String, Object> result, String folder) throws Exception{
 		Date baseDate = new Date();
 		String fileName = DateTimeUtil.parseDate(baseDate, "yyyyMMddHHmmss");
 		MultipartFile file = request.getFile("file");
 		if (file == null) {// step-2 判断file
-			return false;
+		    result.put("status", "0");
+		    result.put("msg", "文件为空！");
+		    return ;
 		}
 		String orgFileName = file.getOriginalFilename();
 		orgFileName = (orgFileName == null) ? "" : orgFileName;
@@ -73,7 +78,8 @@ public class FileController {
 			File targetFile = new File(bigRealFilePath);
 			file.transferTo(targetFile);//写入目标文件
 		}
-		//保存user file
-		return true;
+		result.put("status", "1");
+		result.put("msg", "上传成功");
+		result.put("fileName", orgFileName);
 	}
 }

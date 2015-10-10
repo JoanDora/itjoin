@@ -11,8 +11,7 @@ import com.itjoin.upload.model.Progress;
 
 /**
  * 
- * 创建人：fantasy <br>
- * 创建时间：2013-12-6 <br>
+ * 创建人：liuyaolin <br>
  * 功能描述： 获取上传文件进度controller<br>
  *
  */
@@ -20,13 +19,9 @@ import com.itjoin.upload.model.Progress;
 @RequestMapping("/fileStatus")
 public class ProgressController{
 
-	@RequestMapping(value = "/upload/progress", method = RequestMethod.POST )
-	@ResponseBody
-	public String initCreateInfo(HttpServletRequest request) {
+	@RequestMapping(value = "/upload/progress", method = RequestMethod.GET )
+	public @ResponseBody Object initCreateInfo(HttpServletRequest request) {
 		Progress status = (Progress) request.getSession().getAttribute("upload_ps");
-		if(status==null){
-			return "{}";
-		}
-		return status.toString();
+		return status;
 	}
 }

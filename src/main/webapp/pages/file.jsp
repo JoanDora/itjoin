@@ -29,28 +29,32 @@ $(document).ready(function(){
 
 function getProgress() {
 	var now = new Date();
-    $.ajax({
-        type: "post",
-        dataType: "json",
-        url: PATH + "/fileStatus/progress",
-        data: now.getTime(),
-        success: function(data) {
+	$.ajax({
+		type : "GET",
+		dataType : "json",
+		url : spath + "/fileStatus/upload/progress?new="+ Math.random(),
+		success : function(data) {
         	$("#progress_percent").text(data.percent);
             $("#progress_bar").width(data.percent);
             $("#has_upload").text(data.mbRead);
             $("#upload_speed").text(data.speed);
-        },
-        error: function(err) {
-        	$("#progress_percent").text("Error");
-        }
-    });
+            if(data.percent=="100%"){
+            	console.log("已经上传完毕")
+            	clearInterval(oTimer)
+            }
+		},
+		error : function(err) {
+			$("#progress_percent").text("Error");
+			clearInterval(oTimer)
+		}
+	});
+    
 }
 
 /**
  * 提交上传文件
  */
 function fSubmit() {
-	alert("hhh")
 	$("#process").show();
 	$("#cancel").show();
 	$("#info").show();
@@ -79,23 +83,23 @@ function search(){
  * 上传文件
  */
 function ajaxFileUpload() {
-	alert("jj")
     $.ajaxFileUpload({
         url: spath + '/file/upload',
-        secureuri: false,
         fileElementId: 'fileToUpload',
-        dataType: 'json',
-        data: {
-            name: 'file',
-            id: 'id'
-        },
+        dataType: 'text',
         success: function(data, status) {
-            if (typeof(data.status) != 'undefined') {
+        	 data = data.replace(/<pre.*">/, '');
+             data = data.replace("<PRE>", ''); //ajaxFileUpload会对服务器响应回来的text内容加上<pre>text</pre>前后缀
+             data = data.replace("</PRE>", '');
+             data = data.replace("<pre>", '');
+             data = data.replace("</pre>", '');
+             var result = eval("(" +data+ ")");
+            if (typeof(result.status) != 'undefined') {
             	window.clearInterval(oTimer);
-                if (data.status == 'success') {
+                if (result.status== '1') {
                 	$("#info").hide();
                 	$("#success_info").show();
-                	$("#success_info").text(fileName + "\t" +data.message);
+                	$("#success_info").text(fileName + "\t" +result.msg);
                 	$("#process").hide();
                 	$("#cancel").hide();
                 	$("#fileToUpload").val("");
@@ -108,9 +112,9 @@ function ajaxFileUpload() {
                 } else{
                 	$("#progress_all").hide();
                 	$("#fileToUpload").val("");
-                	if (typeof(data.message) != 'undefined') {
-                		alert(data.message);
-                	}
+                	if (typeof(result.msg) != 'undefined') {
+                		alert(result.msg);
+               	   }
                 	alert("上传错误！");
                 }
             }
