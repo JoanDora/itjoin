@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="<%=path%>/resources/css/upload/style.css" type="text/css" >
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>/resources/css/easyui/easyui.css">
+	<link rel="stylesheet" type="text/css"
+	href="<%=path%>/resources/css/easydialog/easydialog.css">
 <script type="text/javascript"
 	src="<%=path%>/resources/js/jquery/jquery-1.10.2.js"></script>
 	<script type="text/javascript" src="<%=path%>/resources/js/jquery/jquery-form.js"></script>
@@ -18,7 +20,16 @@
 <script type="text/javascript" src="<%=path%>/resources/js/easyui-lang-zh_CN.js"></script>
 <script src="<%=path%>/resources/js/ajaxfileupload.js" type="text/javascript"></script>
 <basePath value ="<%=path%>"  id ="basePath"></basePath>
+<script type="text/javascript" src="<%=path%>/resources/js/easydialog/easydialog.min.js"></script>
 <script>
+function openDialog(){
+	easyDialog.open({
+		  container : 'imgBox',
+		  fixed : false
+		});
+	alert("")
+}
+
 var spath =$('#basePath').attr("value");
 var fileName = "";
 var oTimer = null;
@@ -39,7 +50,7 @@ function getProgress() {
             $("#has_upload").text(data.mbRead);
             $("#upload_speed").text(data.speed);
             if(data.percent=="100%"){
-            	console.log("已经上传完毕")
+            	//openDialog();
             	clearInterval(oTimer)
             }
 		},
@@ -73,13 +84,6 @@ function fSubmit() {
 }
 
 /**
- * 查询文件列表
- */
-function search(){
-	document.getElementById("search_form").submit();
-}
-
-/**
  * 上传文件
  */
 function ajaxFileUpload() {
@@ -95,7 +99,11 @@ function ajaxFileUpload() {
              data = data.replace("</pre>", '');
              var result = eval("(" +data+ ")");
             if (typeof(result.status) != 'undefined') {
+            	/* if(easyDialog!=null){
+            		 easyDialog.close();
+            	} */
             	window.clearInterval(oTimer);
+            	//easyDialog.close();
                 if (result.status== '1') {
                 	$("#info").hide();
                 	$("#success_info").show();
@@ -131,30 +139,7 @@ function ajaxFileUpload() {
 <body>
 <div class="right">
         	<div class=""><a href="#" onclick="showCont()" class="update"  id="upload_button">上传</a></div>
-            <div class="pd15">
-        <div class="pagerBar">
-    	<div class="pageBarbox clearfix">
-    		<ul class="otherInfo">
-                <li><label>共&nbsp;${lst_file.records}&nbsp;条&nbsp;&nbsp;每页&nbsp;${lst_file.rows}&nbsp;条&nbsp;&nbsp;当前第&nbsp;${lst_file.page}&nbsp;页</label></li>
-            </ul>
-            <!-- epages -->
-            <div class="epages clearfix">
-            	<c:if test="${lst_file.page == 1 || lst_file.total == 0}"><span>首页</span><span>上一页</span></c:if>
-            	<c:if test="${lst_file.page != 1 && lst_file.total > 1}">
-            	<a href="#" onclick="javascript:window.location.href='${pageContext.request.contextPath}/userFile/indexPage?page=1&uploadType=${uploadType}&fileName=${fileName}'">首页</a>
-            	<a href="#" onclick="javascript:window.location.href='${pageContext.request.contextPath}/userFile/indexPage?page=${lst_file.page-1}&uploadType=${uploadType}&fileName=${fileName}'">上一页</a>
-            	</c:if>
-            	<c:if test="${lst_file.page == lst_file.total || lst_file.total == 0}"><span>下一页</span><span>尾页</span></c:if>
-            	<c:if test="${lst_file.page != lst_file.total && lst_file.total != 0}">
-            	<a href="#" onclick="javascript:window.location.href='${pageContext.request.contextPath}/userFile/indexPage?page=${lst_file.page+1}&uploadType=${uploadType}&fileName=${fileName}'">下一页</a>
-            	<a href="#" onclick="javascript:window.location.href='${pageContext.request.contextPath}/userFile/indexPage?page=${lst_file.total}&uploadType=${uploadType}&fileName=${fileName}'">尾页</a>
-            	</c:if>
-            </div>
-            <!-- epages -->
-        </div>
-    </div>
-            </div>
-        </div>
+   </div>
         
 
 <div class="yxbox">
@@ -180,7 +165,12 @@ function ajaxFileUpload() {
     </div>
 </div>
 <div id="TB_overlayBG">&nbsp;</div>
+
+<div id="imgBox" style="display: none">
+	<img src="<%=path %>/resources/images/loading.gif" alt="" />
+</div>
 <script type="text/javascript">
+
 //显示弹框 
 function showCont(){
 	$("#TB_overlayBG").css({
