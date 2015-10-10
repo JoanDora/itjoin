@@ -31,7 +31,7 @@ import com.itjoin.admin.model.Admin;
 import com.itjoin.user.model.User;
 import com.itjoin.user.repositories.UserCurd;
 import com.itjoin.user.repositories.UserRepository;
-import com.itjoin.util.DateUtil;
+import com.itjoin.util.DateTimeUtil;
 import com.itjoin.util.ImageUtil;
 import com.itjoin.util.Pagination;
 
@@ -190,9 +190,9 @@ public class UserController {
 				}
 				
 				if(StringUtils.isNotBlank(startTime) ){
-					start=DateUtil.parseDate(startTime);
+					start=DateTimeUtil.parseDate(startTime);
 					if(StringUtils.isNotBlank(endTime)){
-						end = DateUtil.parseDate(endTime);
+						end = DateTimeUtil.parseDate(endTime);
 						timeCriteria = Criteria.where("createTime").gt(start).lt(end);
 					}else{
 						timeCriteria=Criteria.where("createTime").gt(start);
@@ -200,7 +200,7 @@ public class UserController {
 					
 				}else{
 					if(StringUtils.isNotBlank(endTime)){
-						end = DateUtil.parseDate(endTime);
+						end = DateTimeUtil.parseDate(endTime);
 						timeCriteria = Criteria.where("createTime").lt(end);
 					}
 				}
