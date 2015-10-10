@@ -7,3 +7,5 @@ target/*
 logback.xml
 logs/*
 logs
+file
+file/*
