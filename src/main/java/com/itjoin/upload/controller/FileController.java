@@ -37,7 +37,7 @@ public class FileController {
 	/**
 	 * 上传文件
 	 */
-	@RequestMapping(value = "upload", method = RequestMethod.POST)
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public @ResponseBody Object upload(MultipartHttpServletRequest request, HttpServletResponse response) throws IOException{
 		Map<String, Object> result = new HashMap<String, Object>();
 	       try {

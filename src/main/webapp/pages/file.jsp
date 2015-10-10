@@ -16,8 +16,10 @@
 	<script type="text/javascript" src="<%=path%>/resources/js/jquery/jquery-form.js"></script>
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="<%=path%>/resources/js/easyui-lang-zh_CN.js"></script>
-<script src="${pageContext.request.contextPath}/js/ajaxfileupload.js" type="text/javascript"></script>
-<script type="text/javascript">
+<script src="<%=path%>/resources/js/ajaxfileupload.js" type="text/javascript"></script>
+<basePath value ="<%=path%>"  id ="basePath"></basePath>
+<script>
+var spath =$('#basePath').attr("value");
 var fileName = "";
 var oTimer = null;
 
@@ -48,10 +50,12 @@ function getProgress() {
  * 提交上传文件
  */
 function fSubmit() {
+	alert("hhh")
 	$("#process").show();
 	$("#cancel").show();
 	$("#info").show();
 	$("#success_info").hide();
+
     //文件名
    	fileName = $("#fileToUpload").val().split('/').pop().split('\\').pop();
     //进度和百分比
@@ -75,8 +79,9 @@ function search(){
  * 上传文件
  */
 function ajaxFileUpload() {
+	alert("jj")
     $.ajaxFileUpload({
-        url: PATH + '/file/upload',
+        url: spath + '/file/upload',
         secureuri: false,
         fileElementId: 'fileToUpload',
         dataType: 'json',
@@ -117,79 +122,13 @@ function ajaxFileUpload() {
     return false;
 }
 
-/**下载文件**/
-function downloadFile(fileId){
-	if(fileId == undefined || fileId == "" || fileId == null){
-		alert("文件下载错误");
-		return false;
-	}
-	var isSynchronized = false;
-	 $.ajax({
-	        type: "post",
-	        dataType: "json",
-	        async:false,
-	        url: PATH + "/userFile/getfilesize",
-	        data: {"fileId":fileId},
-	        success: function(data) {
-	        	if(data != 0){
-	        		isSynchronized = true;
-	        	}
-	        }
-	 });
-	 if(isSynchronized){
-		 document.getElementById("ifile").src = PATH + "/file/download?fileId="+fileId; 
-	 }else{
-		 alert("文件还未同步完成！");
-	 }
-}
 </script>
 </head>
 <body>
 <div class="right">
-        	<div class="rtop"><a href="#" onclick="showCont()" class="update"  id="upload_button">上传</a></div>
+        	<div class=""><a href="#" onclick="showCont()" class="update"  id="upload_button">上传</a></div>
             <div class="pd15">
-            	<div class="rsearch">
-            	<form name="searchForm" id="search_form"  action="${pageContext.request.contextPath}/userFile/indexPage" method="post">
-                	<h2><span>上传类型：</span>
-                    <select name="uploadType" id="uploadType" class="sitese1">
-                	  <option value="">--请选择--</option>
-                	  <option value="1" <c:if test="${uploadType == 1}">selected="selected"</c:if>>内网上传</option>
-                	  <option value="2" <c:if test="${uploadType == 2}">selected="selected"</c:if>>外网上传</option>
-                	</select>
-                    <span>文件名：</span>
-                    <input name="fileName" type="text" id="fileName" value="${fileName}" class="inputxt3"/>
-                    <input name="btn" type="button" value="查询"  onclick="search();"/>
-                    </h2>
-                   </form>
-                </div>
-<table width="100%" border="0" cellspacing="0" cellpadding="0" class="uptab">
-<thead>
-  <tr>
-    <td>&nbsp;</td>
-    <td>文件名</td>
-     <td>文件大小(M)</td>
-    <td>下载</td>
-    <td>上传时间</td>
-    <td>上传类型</td>
-  </tr>
-</thead>
-<tbody>
-<c:forEach items="${lst_file.dataRows}"  var = "ite">
-  <tr>
-    <td align="center" width="5%"><input name="" type="checkbox" value="" /></td>
-    <td width="30%">${ite.fileName}</td>
-    <td width="10%">${ite.fileSize}</td>
-    <td  width="10%"><a href="#" onclick="javascripy:downloadFile('${ite.id}');" title="下载文件[${ite.fileName}]"><img src="${pageContext.request.contextPath}/images/icon.gif" width="12" height="15" /></a></td>
-    <td width="20%"><fmt:formatDate value="${ite.operateTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-    <td width="30%">
-    	<c:if test="${ite.uploadType == 1}">内网上传文件,ip为${ite.ipAddress}</c:if>
-    	<c:if test="${ite.uploadType == 2}">外网上传文件,ip为${ite.ipAddress}</c:if>
-    </td>
-  </tr>
-</c:forEach>
-</tbody>
-</table>
-<div class="pagerBar">
+        <div class="pagerBar">
     	<div class="pageBarbox clearfix">
     		<ul class="otherInfo">
                 <li><label>共&nbsp;${lst_file.records}&nbsp;条&nbsp;&nbsp;每页&nbsp;${lst_file.rows}&nbsp;条&nbsp;&nbsp;当前第&nbsp;${lst_file.page}&nbsp;页</label></li>
