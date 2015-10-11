@@ -34,13 +34,14 @@ var spath =$('#basePath').attr("value");
 	<%@ include file="header.jsp"%>
 	<div class=" C_content" >
 		<div class="C_layout C_kclist  C_kslist">
-        	<h2><span>课时列表</span> <button class="C_bj">添加课时</button></h2>
+        	<h2><span>课时列表</span> <button class="add_bj"  >添加课时</button></h2>
         	<ul>
         	 <c:forEach var="video" items="${videos}" varStatus="status"> 
             	<li>
                 	<div class="C_div" >
-                   <p> <b><i class="glyphicon glyphicon-film"></i></b>
-                   ${video.name }
+                   <p> 
+                   <span>免费</span>
+                   <b><i class="glyphicon glyphicon-film"></i>${video.name }</b>
                    <small>${video.timeLen }</small></br>
                     </div>
                     <div class="C_div2">
@@ -76,6 +77,7 @@ var spath =$('#basePath').attr("value");
                 </li> -->
                 <li ><span>视频：</span>
                    <input type="file"   name="file"  id="fileToUpload"   style=" width:70%; margin-left:120px; border:none;  " onchange="fSubmit();" />
+                   <span id="orgFileName"></span>
                 </li>
               <div class="br"  style="display:none;" id="progress_all"  style="height:100px">
             	<h1><a href="javascript:closeCont();" class="fr" id="cancel"  >取消</a></h1>
@@ -146,15 +148,25 @@ var spath =$('#basePath').attr("value");
 			  
 			  },function(){$(this).children(".C_div2").hide();});
 			   
-/* 			   $(".C_bj").click(function(){
+ 			   $(".add_bj").click(function(){
 			    $(".C_box2").show();
 				 var height=$(".C_box").outerHeight(true);
 			    var height_pm=$(window).height();
 				$(".C_box").animate({top:(height_pm-height)/2+"px"},0);	
 			    
-			   }); */
+			   }); 
 			});	
 		
+		/* 	function addVideo(){
+				 $(".C_bj").click(function(){
+					    $(".C_box2").show();
+						 var height=$(".C_box").outerHeight(true);
+					    var height_pm=$(window).height();
+						$(".C_box").animate({top:(height_pm-height)/2+"px"},0);	
+					    
+					   }); 
+			} */
+			
 			function cancel(){
 				$(".C_box2").hide();
 			}
@@ -174,6 +186,8 @@ var spath =$('#basePath').attr("value");
 						$("#id").val(data.id);
 						$("#courseId").val(data.courseId);
 						$("#description").text(data.description);
+						$("#orgFileName").html(data.fileName);
+						console.log(data)
 					}
 				});
 				

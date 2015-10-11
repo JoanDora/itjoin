@@ -33,6 +33,8 @@ public class Video {
 
 	    private String url;//视频文件的url
 	    
+	    private String fileName;//视频文件的名称
+	    
         private String timeLen;//时长
 	    private Date createTime;
 
@@ -43,7 +45,17 @@ public class Video {
     
     
     
-    public String getDescription() {
+    public String getFileName() {
+			return fileName;
+		}
+
+
+		public void setFileName(String fileName) {
+			this.fileName = fileName;
+		}
+
+
+	public String getDescription() {
 			return description;
 		}
 

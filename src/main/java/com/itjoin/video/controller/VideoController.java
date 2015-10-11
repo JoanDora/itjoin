@@ -72,6 +72,8 @@ public class VideoController {
      if(StringUtils.isBlank(video.getId())){
     	 video.setId(null);
      }
+     String fileName = (String) session.getAttribute("fileName");
+     video.setFileName(fileName);
 	videoRepos.save(video);
 	return "redirect:list/"+video.getCourseId();
     }
