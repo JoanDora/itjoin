@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -93,6 +94,9 @@ public class CourseController {
 		uploadImages(course,file);
 		 User user = (User) session.getAttribute("user");
 //		 course.setTeacherId(user.getId());
+		 if(StringUtils.isBlank(course.getId())){
+			 course.setId(null);
+		 }
 		 course.setTeacherId("12");
 		  courseRepository.save(course);
 	} catch (Exception e) {
