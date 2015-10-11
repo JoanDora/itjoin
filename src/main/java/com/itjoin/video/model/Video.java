@@ -9,6 +9,8 @@
  */   
 package com.itjoin.video.model; 
 
+import java.util.Date;
+
 /**
  * <p>
  * 
@@ -20,16 +22,88 @@ package com.itjoin.video.model;
  * @version      
  */
 public class Video {
-    private String id;
-    private String url;
-    private String name;
+	   private String id;
+
+	    private String courseId;
+	  
+	    private String name;
+	    private String description;
+
+	    private Integer serial; //序号，第几节
+
+	    private String url;//视频文件的url
+	    
+        private String timeLen;//时长
+	    private Date createTime;
+
+	    private Date updateTime;
 
     
     
     
     
     
-    public String getName() {
+    public String getDescription() {
+			return description;
+		}
+
+
+		public void setDescription(String description) {
+			this.description = description;
+		}
+
+
+	public String getTimeLen() {
+			return timeLen;
+		}
+
+
+		public void setTimeLen(String timeLen) {
+			this.timeLen = timeLen;
+		}
+
+
+	public String getCourseId() {
+			return courseId;
+		}
+
+
+		public void setCourseId(String courseId) {
+			this.courseId = courseId;
+		}
+
+
+		public Integer getSerial() {
+			return serial;
+		}
+
+
+		public void setSerial(Integer serial) {
+			this.serial = serial;
+		}
+
+
+		public Date getCreateTime() {
+			return createTime;
+		}
+
+
+		public void setCreateTime(Date createTime) {
+			this.createTime = createTime;
+		}
+
+
+		public Date getUpdateTime() {
+			return updateTime;
+		}
+
+
+		public void setUpdateTime(Date updateTime) {
+			this.updateTime = updateTime;
+		}
+
+
+	public String getName() {
         return name;
     }
 

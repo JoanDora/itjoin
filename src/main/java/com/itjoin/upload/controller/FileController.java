@@ -78,6 +78,7 @@ public class FileController {
 			File targetFile = new File(bigRealFilePath);
 			file.transferTo(targetFile);//写入目标文件
 		}
+		request.getSession().setAttribute("videoPath", bigRealFilePath);
 		result.put("status", "1");
 		result.put("msg", "上传成功");
 		result.put("fileName", orgFileName);

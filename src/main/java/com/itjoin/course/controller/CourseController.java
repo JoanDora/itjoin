@@ -127,7 +127,7 @@ public class CourseController {
 		query.limit(intPageSize);
 		query.skip(page * intPageSize);
 		Direction direction = Direction.DESC;
-		Sort sort = new Sort(direction, "createTime");
+		Sort sort = new Sort(direction, "updateTime");
 		query.with(sort);
 		List<Course> courses = courseRepos.find(query);
 		long count = courseRepos.count(new Query(Criteria.where("teacherId").is(user.getId())) );
@@ -147,6 +147,12 @@ public class CourseController {
   public @ResponseBody Object show(@PathVariable("id")String id){
 	return courseRepository.findOne(id);
   }
+  
+  
+  
+  
+  
+  
     /**
      * <p>
      * 

@@ -149,7 +149,7 @@ function ajaxFileUpload() {
     	<p class="mb20"><input type="file"  name="file" id="fileToUpload" title="请选择要上传的文件" onchange="fSubmit();"></p>
         <div class="br"  style="display:none;" id="progress_all">
         	<ul>
-            	<li><h1><a href="#" class="fr" id="cancel">取消</a></h1>
+            	<li><h1><a href="javascript:closeCont();" class="fr"  id="cancel">取消</a></h1>
                 	<div class="process clearfix" id="process">
 						<span class="progress-box">
 							<span class="progress-bar" style="width: 0%;" id="progress_bar"></span>
@@ -184,9 +184,9 @@ function showCont(){
 }
 // 关闭弹框 
 function closeCont(){
-	$("#TB_overlayBG").hide();
-	$(".yxbox").hide();
-	window.location.reload();
+	/* $("#TB_overlayBG").hide();
+	$(".yxbox").hide(); */
+	window.location.reload(true);
 }
 function resetNavHeight() {
     var documentHeight;

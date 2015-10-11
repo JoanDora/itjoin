@@ -20,7 +20,7 @@
                         <a href="#">安卓</a>
                     </div>
                 </li>
-                    <li><a href="<%=path %>/pages/course.jsp">我的课程</a></li>
+                    <li><a href="<%=path %>/course/list">我的课程</a></li>
                 <li><a href="<%=path %>/webinfo/show">关于我们</a></li>
             </ul>
             <div class="C_top_right">

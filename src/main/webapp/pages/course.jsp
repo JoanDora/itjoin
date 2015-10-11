@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -39,16 +40,18 @@ var spath =$('#basePath').attr("value");
                     </div>
                     <div class="C_div2">
                      <a href="JavaScript:updateCourse('${course.id}');" ><i class="glyphicon glyphicon-search"></i>修改</a>
-                     <a href="video.jsp"><i class="glyphicon glyphicon-pencil"></i>课时管理</a>
-                     <a href="#" class="C_qc"><i class="glyphicon glyphicon-trash"></i>删除</a></div>
+                     <a href="<%=path%>/video/list/${course.id}"><i class="glyphicon glyphicon-pencil"></i>课时管理</a>
+                     <!-- <a href="#" class="C_qc"><i class="glyphicon glyphicon-trash"></i>删除</a></div> -->
                 </li>
                 </c:forEach>
             </ul>
+            <c:if test="${courses!= null || fn:length(courses) > 0}">
             <div class="C_fy"  style="margin-top:30px;">
              <dl id="paginationId">
                 </dl>
              </div>  
         </div>
+        </c:if>
     </div>
       <%@ include file="footer.jsp" %> 
     <!-- 弹出框-->

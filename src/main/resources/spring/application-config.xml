@@ -30,13 +30,13 @@
 
 
 	
-	<!-- <bean  class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	<bean  class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 	      <property name="exceptionMappings">
 	            <props>
-	                  <prop key="org.hzins.exception.UserException">error</prop>
+	                  <prop key="com.itjoin.exception.CommonException">error</prop>
 	            </props>
 	      </property>
-	</bean> -->
+	</bean>
 	
 	<import resource="spring-mongodb.xml"/>	
 </beans>

@@ -63,7 +63,7 @@ iframe { border:none 0;}
 .process em { position:absolute; left:1px; top:1px; background-color:#2661af; height:10px; overflow:hidden }
 .process span { float:left; width:30px; text-align:right; }
 .info { color:#969799; }
-.info span { display:inline-block; padding-right:5px; }
+.info span { padding-right:5px; }
 #TB_overlayBG { background:#000;   left: 0; opacity: 0.6; position: fixed; _position: absolute; top: 0; z-index: 199; display: none; width:100%; opacity: 0.6; filter : Alpha(Opacity=60) }
 /*-------------------  start main -------------------*/
 .main { width:100%; position:relative; }
