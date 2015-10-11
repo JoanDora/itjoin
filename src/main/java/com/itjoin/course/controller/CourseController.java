@@ -99,8 +99,10 @@ public class CourseController {
 //		 course.setTeacherId(user.getId());
 		 if(StringUtils.isBlank(course.getId())){
 			 course.setId(null);
+			 course.setCreateTime(new Date());
 		 }
 		 course.setTeacherId("12");
+		 course.setUpdateTime(new Date());
 		  courseRepository.save(course);
 	} catch (Exception e) {
 		e.printStackTrace();
