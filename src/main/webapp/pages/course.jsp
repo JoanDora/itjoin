@@ -44,8 +44,8 @@ var spath =$('#basePath').attr("value");
                 </li>
                 </c:forEach>
             </ul>
-            <div class="C_fy" >
-             <dl id="pagination">
+            <div class="C_fy"  style="margin-top:30px;">
+             <dl id="paginationId">
                 </dl>
              </div>  
         </div>
@@ -75,7 +75,7 @@ var spath =$('#basePath').attr("value");
                 <li ><span>课程封面：</span>
                    <input type="file" id="mainImag" style="width:70%; margin-left:90px; border:none;" name="image"    onchange="javascript:setImagePreview('mainImag','preview','300','100');"/>
 							<div id="localImag">
-								<img id="preview" width=-1 height=-1 style="diplay: none" />
+								<img id="preview" style="diplay: none;width:300px;height:100px;"/>
 							</div>
                 </li>
                  <li> <input type="button" onclick="cancel();" class="btn-sm"  style="width: 15%;margin-right:30px" value="取消"> <input type="submit" class="btn-sm"  style="width: 15%;margin-right:30px" value="确定"></li>
@@ -110,7 +110,7 @@ var spath =$('#basePath').attr("value");
 	}else{
 		paginationSrc.push('  <dt ><a href="javascript:void(0)"> 下一页> </a></dt>')
 	}
-	$("#pagination").append(paginationSrc.join(''));
+	$("#paginationId").append(paginationSrc.join(''));
                   
 	function getData(page){
 		location.href=spath+"/course/list?page="+page

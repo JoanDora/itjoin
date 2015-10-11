@@ -90,6 +90,9 @@ public class CourseController {
   @RequestMapping("/save")
   public   String save(Course course,MultipartHttpServletRequest request,HttpSession session){
 	  try {
+		  if(StringUtils.isBlank(course.getName())){
+			  throw new Exception("课程名字为空");
+		  }
 		  MultipartFile file = request.getFile("image");
 		uploadImages(course,file);
 		 User user = (User) session.getAttribute("user");
