@@ -9,14 +9,19 @@
  */
 package com.itjoin.course.controller;
 
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.io.FileUtils;
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -24,15 +29,18 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.itjoin.constant.CommonConstant;
 import com.itjoin.constant.PageConstant;
 import com.itjoin.course.model.Course;
 import com.itjoin.course.model.CourseDatailOutputParam;
-import com.itjoin.course.model.CourseDetailInputParam;
 import com.itjoin.course.model.CourseExt;
 import com.itjoin.course.model.CourseParam;
 import com.itjoin.course.model.CourseSub;
@@ -40,8 +48,10 @@ import com.itjoin.course.model.CourseSubExt;
 import com.itjoin.course.model.CourseSubParam;
 import com.itjoin.course.repositories.CourseExtRepos;
 import com.itjoin.course.repositories.CourseRepos;
+import com.itjoin.course.repositories.CourseRepository;
 import com.itjoin.course.repositories.CourseSubExtRepos;
 import com.itjoin.course.repositories.CourseSubRepos;
+import com.itjoin.user.model.User;
 import com.itjoin.util.Pagination;
 
 /**
@@ -71,54 +81,66 @@ public class CourseController {
 
     @Resource
     private CourseSubExtRepos courseSubExtRepos;
+    
+    @Resource
+    private CourseRepository courseRepository;
 
-    /**
-     * <p>
-     * 
-     * 上传保存课程基本信息(目前只允许一节课一个个上传,不允许多个同时上传)
-     * 
-     * </p>
-     * 
-     * @param course
-     * 
-     * @author hz14121005
-     * @date 2015-10-4 上午10:44:14
-     * @version
-     */
-    @RequestMapping("/save")
-    @ResponseBody
-    public   void save(CourseDetailInputParam courseDetailParam) {
-	 
-	Course c = null;
-	if (courseDetailParam.getCourse() != null) {
-	    String courseName = courseDetailParam.getCourse().getName();
-	    String teacherId = courseDetailParam.getCourse().getTeacherId();
-	    Query query = new Query();
-	    Criteria criteria = Criteria.where("name").is(courseName);
-	    criteria.andOperator(Criteria.where("teacherId").is(teacherId));
-	    query.addCriteria(criteria);
-	    c = courseRepos.findOne(query);
-	    if (c == null) {
-		c = courseRepos.save(courseDetailParam.getCourse());
-	    } else {
-		courseRepos.updateById(c.getId(), courseDetailParam.getCourse());
-	    }
+	private static final String PAGE =  "pages/";
+  @RequestMapping("/save")
+  public   String save(Course course,MultipartHttpServletRequest request,HttpSession session){
+	  try {
+		  MultipartFile file = request.getFile("image");
+		uploadImages(course,file);
+		 User user = (User) session.getAttribute("user");
+//		 course.setTeacherId(user.getId());
+		 course.setTeacherId("12");
+		  courseRepository.save(course);
+	} catch (Exception e) {
+		e.printStackTrace();
 	}
-	if (courseDetailParam.getCourseSub() != null) {
-	    Query query = new Query();
-	    Criteria criteria = Criteria.where("name").is(courseDetailParam.getCourseSub().getName()).where("courseId").is(c.getId());
-	    query.addCriteria(criteria);
-	    CourseSub sub = courseSubRepos.findOne(query);
-	    CourseSub courseSub = courseDetailParam.getCourseSub();
-	    courseSub.setCourseId(c.getId());
-	    if (sub == null) {
-		courseSubRepos.save(courseSub);
-	    } else {
-		courseSubRepos.updateById(sub.getId(), courseSub);
-	    }
+	  return "redirect:list";
+  }
+  
+  
+  @RequestMapping("/list")
+  public String list(Integer page, Integer rows,HttpSession session,HttpServletRequest request,ModelMap model) throws Exception {
+	  try {
+		if(page==null){
+			  page=0;
+		  }
+		int intPageSize = rows == null || rows <= 0 ? PageConstant.PAGE_SIZE : rows;
+		if (page > 0) {
+		    page--;
+		}
+		User user = (User) session.getAttribute("user");
+		user = new User();
+		user.setId("12");
+		Query query = new Query();
+		Criteria criteria =  Criteria.where("teacherId").is(user.getId());
+		query.addCriteria(criteria);
+		query.limit(intPageSize);
+		query.skip(page * intPageSize);
+		Direction direction = Direction.DESC;
+		Sort sort = new Sort(direction, "createTime");
+		query.with(sort);
+		List<Course> courses = courseRepos.find(query);
+		long count = courseRepos.count(new Query(Criteria.where("teacherId").is(user.getId())) );
+		model.put("courses", courses);
+		model.put("count", count);
+		int totalPage = (int) ((count%intPageSize==0) ?(count/intPageSize) : (count/intPageSize+1));
+		model.put("totalPage", totalPage);
+		model.put("pageNum", page);
+	} catch (Exception e) {
+		e.printStackTrace();
 	}
-    }
-
+	return request.getContextPath()+PAGE+"course";
+  }
+    
+  
+  @RequestMapping("/get/{id}")
+  public @ResponseBody Object show(@PathVariable("id")String id){
+	return courseRepository.findOne(id);
+  }
     /**
      * <p>
      * 
@@ -148,6 +170,9 @@ public class CourseController {
 	    return 0;
 	}
     }
+    
+    
+    
     
     
     @RequestMapping(value = "/deleteByCourseId/{id}", method = RequestMethod.GET)
@@ -352,4 +377,28 @@ public class CourseController {
 	return pagination;
     }
 
+    
+    
+    private String uploadImages(Course course, MultipartFile image) {
+				if (image.getSize() <= 0) {
+					return null;
+				}
+				String imageName = image.getOriginalFilename();
+				int imgType = imageName.lastIndexOf(".");
+				String imgTypeStr = imageName.substring(imgType);
+				SimpleDateFormat sdf2 = new SimpleDateFormat(
+						"yyyyMMddhhmmssSSS");// 其中yyyyMMddkkmmss是命名格式
+				String str2 = sdf2.format(new Date().getTime());
+				// 从数据库字典中获取上传文件路径
+				 String uploadPath = CommonConstant.COURSE_IMAGE_SRC;
+				 String fileName = uploadPath + str2 + imgTypeStr;
+				 File f = new File(fileName);
+				try {
+					FileUtils.copyInputStreamToFile(image.getInputStream(), f);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		course.setImageUrl(fileName);
+		return fileName;
+	}
 }

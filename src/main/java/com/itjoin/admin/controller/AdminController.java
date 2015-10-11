@@ -276,14 +276,14 @@ public class AdminController {
 			DateFormat df = new SimpleDateFormat("yyyyMMddhhmmss");
 			fileName = df.format(new Date())+expandedName;
 			try {
-				file.transferTo(new File(CommonConstant.IMAGE_SRC+fileName));
+				file.transferTo(new File(CommonConstant.WEBINFO_IMAGE_SRC+fileName));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 	        // 返回"图像"选项卡并显示图片  request.getContextPath()为web项目名   
 	        out.println("<script type=\"text/javascript\">");  
 	        out.println("window.parent.CKEDITOR.tools.callFunction(" + CKEditorFuncNum  
-	                + ",'" +request.getContextPath()+CommonConstant.IMAGE_URL+CommonConstant.IMAGE_SRC + fileName + "','')");  
+	                + ",'" +request.getContextPath()+CommonConstant.IMAGE_URL+CommonConstant.WEBINFO_IMAGE_SRC + fileName + "','')");  
 	        out.println("</script>");  
 	        return ;  
 		}
