@@ -75,7 +75,7 @@ var spath =$('#basePath').attr("value");
                 <li ><span>课程封面：</span>
                    <input type="file" id="mainImag" style="width:70%; margin-left:90px; border:none;" name="image"    onchange="javascript:setImagePreview('mainImag','preview','300','100');"/>
 							<div id="localImag">
-								<img id="preview" style="diplay: none;width:300px;height:100px;"/>
+								<img id="preview" style="diplay: none; " width=-1 height=-1 />
 							</div>
                 </li>
                  <li> <input type="button" onclick="cancel();" class="btn-sm"  style="width: 15%;margin-right:30px" value="取消"> <input type="submit" class="btn-sm"  style="width: 15%;margin-right:30px" value="确定"></li>
@@ -142,6 +142,8 @@ var spath =$('#basePath').attr("value");
 					$("#price").val(data.price);
 					$("#description").text(data.description);
 					$("#preview").attr("src",spath+"/image/show?fileName="+data.imageUrl)
+					$("#preview").attr("width","300px;");
+					$("#preview").attr("height","100px;");
 					$("input[name='statusSelect']").each(function(index,domEle){
 		        		if($(this).val()==data.status){
 		        			$(this).attr("checked", 'true');

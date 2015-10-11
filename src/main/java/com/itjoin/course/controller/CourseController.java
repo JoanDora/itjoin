@@ -118,9 +118,6 @@ public class CourseController {
 			  page=0;
 		  }
 		int intPageSize = rows == null || rows <= 0 ? PageConstant.PAGE_SIZE : rows;
-		if (page > 0) {
-		    page--;
-		}
 		User user = (User) session.getAttribute("user");
 		user = new User();
 		user.setId("12");
