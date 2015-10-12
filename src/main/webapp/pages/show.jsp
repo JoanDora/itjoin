@@ -22,14 +22,14 @@
 		<div class=" C_layout C_sp" style="overflow:hidden;">
             <h2>${video.name } </h2>
             <div class="C_sp_nr">
-               <video src="<%=path %>{video.url}" width="915" height="649" controls preload></video>
+               <video src="<%=path %>/file/getByName?fileName=${video.url}" width="915" height="649" controls preload></video>
                 <div class="C_sp_nr2">
                	  <div class="C_sp_nr2a">
                     	<ul>
                     	 <c:forEach var="item" items="${videos}" varStatus="status"> 
                         	<li>
                             <a href="#">
-                            	<img src="<%=path%>/resources/images/C_img2.jpg" />
+                            	<img src="<%=path%>/image/show?fileName=${course.imageUrl}" />
                                 <p><span>第${item.serial }集：</span>${item.name }</p>
                             </a>
                             </li>

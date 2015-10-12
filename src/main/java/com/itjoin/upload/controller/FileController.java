@@ -2,6 +2,8 @@ package com.itjoin.upload.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,13 +12,16 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -84,4 +89,49 @@ public class FileController {
 		result.put("msg", "上传成功");
 		result.put("fileName", orgFileName);
 	}
+	
+	@RequestMapping(value = "/getByName")
+	@ResponseBody
+	public void show(@RequestParam("fileName") String fileName,
+			HttpServletResponse response) {
+		
+		long start = System.currentTimeMillis();
+		InputStream fis = null;
+		response.setContentType("application/octet-stream; charset=utf-8");  
+		if(StringUtils.isBlank(fileName)){
+			return ;
+		}
+		OutputStream os = null;
+		try {
+			File file = FileUtils.getFile(fileName);
+			os = response.getOutputStream();
+			os.write( FileUtils.readFileToByteArray(file));
+//			int count = 0;
+//			byte[] buffer = new byte[1024 * 8];
+//			while ((count = fis.read(buffer)) != -1) {
+//				os.write(buffer, 0, count);
+//				os.flush();
+//			}
+			os.flush();
+		} catch (IllegalStateException e) {
+
+		} catch (IOException e) {
+			// e.printStackTrace();
+		} finally {
+			try {
+				if (fis != null) {
+					fis.close();
+				}
+				if (os != null) {
+					os.close();
+				}
+
+			} catch (IOException e) {
+				// e.printStackTrace();
+			}
+		}
+		long end = System.currentTimeMillis();
+		System.out.println("=====视频观看时间总共耗时===="+(end-start)+"ms");
+	}
+
 }

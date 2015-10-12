@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itjoin.constant.PageConstant;
+import com.itjoin.course.repositories.CourseRepository;
 import com.itjoin.exception.CommonException;
 import com.itjoin.video.model.Video;
 import com.itjoin.video.repositories.VideoRepos;
@@ -54,6 +55,9 @@ public class VideoController {
     @Resource
     private VideoRepository videoRepository;
     
+    @Resource
+    private CourseRepository courseRepository;
+    
     @RequestMapping(value="/save",method=RequestMethod.POST)
     public String save(Video video,HttpSession session) throws CommonException{
     	String url =null;
@@ -77,6 +81,7 @@ public class VideoController {
      video.setFileName(fileName);
      Query query = new Query();
    Criteria criteria =  Criteria.where("courseId").is(video.getCourseId());
+   query.addCriteria(criteria);
    List<Video> videos = videoRepos.find(query);
    if(videos==null || videos.size()==0){
 	   video.setSerial(1);
@@ -160,6 +165,7 @@ public class VideoController {
   			}
   		}
   		model.put("video", v);
+  		model.put("course", courseRepository.findOne(courseId));
   	} catch (Exception e) {
   		e.printStackTrace();
   	}
