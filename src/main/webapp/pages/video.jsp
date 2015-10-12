@@ -51,7 +51,7 @@ var spath =$('#basePath').attr("value");
                 </li>
                 </c:forEach>
             </ul>
-             <c:if test="${videos!= null || fn:length(videos) > 0}">
+             <c:if test="${videos!= null && fn:length(videos) > 0}">
             <div class="C_fy"  style="margin-top:30px;">
              <dl id="paginationId">
                 </dl>

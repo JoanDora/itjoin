@@ -35,7 +35,7 @@ var spath =$('#basePath').attr("value");
                     	<img src="<%=path%>/image/show?fileName=${course.imageUrl}" />
                         <div>
                         	<b>${course.name }</b></br>
-                            <p>${description }</p>
+                            <p>${course.description }</p>
                             </div>
                     </div>
                     <div class="C_div2">
@@ -45,7 +45,7 @@ var spath =$('#basePath').attr("value");
                 </li>
                 </c:forEach>
             </ul>
-            <c:if test="${courses!= null || fn:length(courses) > 0}">
+            <c:if test="${courses!= null && fn:length(courses) > 0}">
             <div class="C_fy"  style="margin-top:30px;">
              <dl id="paginationId">
                 </dl>
@@ -61,10 +61,10 @@ var spath =$('#basePath').attr("value");
       		<h3>课程编辑</h3>
             <ul>
             	<li><span>课程分类：</span>
-            	   <select id="categorySelectId"></select>
+            	   <select id="categorySelectId"  onchange="javascript:categorySelect();"></select>
             	</li>
             	<li><span>课程标题：</span><input type="text"  name="name"  id="name"/></li>
-                 <li><span>课程价格：</span><input type="text"  name="price"  id="price"/></li>
+                 <li><span>讲师名字：</span><input type="text"  name="teacherName"  id="teacherName"/></li>
                 <li><span>简介：</span><textarea  name="description"  id="description"></textarea></li>
                 <li><span>连载状态：</span>
                 	 <div>
@@ -73,6 +73,8 @@ var spath =$('#basePath').attr("value");
                     <input type="hidden" name="id" id="id">
                     <input type="hidden" name="status" id="status">
                     <input type="hidden" name="verifyStatus" value="0"/>
+                      <input type="hidden" name="imageUrl"  id="imageUrl"/>
+                      <input type="hidden" name="categoryId" id="categoryId">
                      </div>
                 </li>
                 <li ><span>课程封面：</span>
@@ -87,6 +89,11 @@ var spath =$('#basePath').attr("value");
       </form>
      </div> 
 	<script >
+	function categorySelect(){
+		var categorySelectId=$("#categorySelectId").val(); 
+		$("#categoryId").val(categorySelectId);
+	}
+	
 	var totalPage = '${totalPage}';
 	var pageNum =parseInt('${pageNum}')+1;
 	var paginationSrc = [];
@@ -142,8 +149,11 @@ var spath =$('#basePath').attr("value");
 				success : function(data) {
 					$("#name").val(data.name);
 					$("#id").val(data.id);
-					$("#price").val(data.price);
+					$("#teacherName").val(data.teacherName);
 					$("#description").text(data.description);
+					$("#verifyStatus").text(data.verifyStatus);
+					$("#status").text(data.status);
+					$("#imageUrl").val(data.imageUrl);
 					$("#preview").attr("src",spath+"/image/show?fileName="+data.imageUrl)
 					$("#preview").attr("width","300px;");
 					$("#preview").attr("height","100px;");
@@ -184,6 +194,7 @@ var spath =$('#basePath').attr("value");
 						htmlSrc.push('<option value='+data[i].id+'>'+data[i].name+'</option>')
 					}
 					$("#categorySelectId").append(htmlSrc.join(''));
+					categorySelect();
 				}
 			});
 		

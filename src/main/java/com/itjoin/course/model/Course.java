@@ -40,8 +40,11 @@ public class Course {
 
     private String imageUrl;
 
-    private Integer price;
+    private String  teacherName;
     
+    private Float price=0f;
+    
+    private Integer browseCount=0;//浏览次数
 
     private Date createTime;
 
@@ -49,6 +52,14 @@ public class Course {
     
     
     
+	public Integer getBrowseCount() {
+		return browseCount;
+	}
+
+	public void setBrowseCount(Integer browseCount) {
+		this.browseCount = browseCount;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -113,11 +124,22 @@ public class Course {
 		this.imageUrl = imageUrl;
 	}
 
-	public Integer getPrice() {
+
+
+
+	public String getTeacherName() {
+		return teacherName;
+	}
+
+	public void setTeacherName(String teacherName) {
+		this.teacherName = teacherName;
+	}
+
+	public Float getPrice() {
 		return price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(Float price) {
 		this.price = price;
 	}
 

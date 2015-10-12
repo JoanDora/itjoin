@@ -7,7 +7,7 @@
         	<a href="#"><img src="<%=path%>/resources/images/C_logo.jpg" /></a>
             <ul class="C_nav">
             	<li><a href="<%=path %>/pages/index.jsp">首页</a></li>
-                <li><a href="<%=path %>/pages/list.jsp">课程<i class="glyphicon glyphicon-triangle-bottom"></i></a>
+                <li><a href="<%=path %>/course/find">课程<i class="glyphicon glyphicon-triangle-bottom"></i></a>
                 	<div class="C_nav2">
                     	<a href="#">DIV+CSS</a>
                         <a href="#">ET</a>

@@ -9,6 +9,7 @@
  */   
 package com.itjoin.video.controller; 
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -74,6 +75,15 @@ public class VideoController {
      }
      String fileName = (String) session.getAttribute("fileName");
      video.setFileName(fileName);
+     Query query = new Query();
+   Criteria criteria =  Criteria.where("courseId").is(video.getCourseId());
+   List<Video> videos = videoRepos.find(query);
+   if(videos==null || videos.size()==0){
+	   video.setSerial(1);
+   }else{
+	   Collections.sort(videos);
+	   video.setSerial(videos.get(videos.size()-1).getSerial()+1);
+   }
 	videoRepos.save(video);
 	return "redirect:list/"+video.getCourseId();
     }
@@ -110,6 +120,50 @@ public class VideoController {
   		e.printStackTrace();
   	}
   	return request.getContextPath()+PAGE+"video";
+    }
+    
+    @RequestMapping("/find/{courseId}")
+    public String findVideos(@PathVariable("courseId")String courseId,Integer page, Integer rows,HttpServletRequest request,ModelMap model) {
+  	  try {
+  		if(page==null){
+  			  page=0;
+  		  }
+  		int intPageSize = rows == null || rows <= 0 ? PageConstant.PAGE_SIZE : rows;
+  		Query query = new Query();
+  		Criteria criteria =  Criteria.where("courseId").is(courseId);
+  		query.addCriteria(criteria);
+  		query.limit(intPageSize);
+  		query.skip(page * intPageSize);
+  		Direction direction = Direction.DESC;
+  		Sort sort = new Sort(direction, "updateTime");
+  		query.with(sort);
+  		List<Video> videos = videoRepos.find(query);
+  		Collections.sort(videos);
+  		long count = videoRepos.count(new Query(Criteria.where("courseId").is(courseId)) );
+  		model.put("videos", videos);
+  		model.put("count", count);
+  		int totalPage = (int) ((count%intPageSize==0) ?(count/intPageSize) : (count/intPageSize+1));
+  		model.put("totalPage", totalPage);
+  		model.put("pageNum", page);
+  		model.put("courseId", courseId);
+  		
+  		String serial = request.getParameter("serial");
+  		Video v = null;
+  		if(StringUtils.isBlank(serial)){
+  			serial="1";
+  		}
+  		Collections.sort(videos);
+  		for(Video video : videos){
+  			if(video.getSerial().intValue()==Integer.valueOf(serial).intValue()){
+  				v= video;
+  				break;
+  			}
+  		}
+  		model.put("video", v);
+  	} catch (Exception e) {
+  		e.printStackTrace();
+  	}
+  	return request.getContextPath()+PAGE+"show";
     }
     
     @RequestMapping("/get/{id}")

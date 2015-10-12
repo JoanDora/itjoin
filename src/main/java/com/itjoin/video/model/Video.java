@@ -21,7 +21,7 @@ import java.util.Date;
  * @date	2015年9月30日 上午9:51:04
  * @version      
  */
-public class Video {
+public class Video implements Comparable<Video>{
 	   private String id;
 
 	    private String courseId;
@@ -29,7 +29,7 @@ public class Video {
 	    private String name;
 	    private String description;
 
-	    private Integer serial; //序号，第几节
+	    private Integer serial=1; //序号，第几节
 
 	    private String url;//视频文件的url
 	    
@@ -142,6 +142,16 @@ public class Video {
     public void setUrl(String url) {
         this.url = url;
     }
+
+
+	@Override
+	public int compareTo(Video o) {
+		if (serial<o.serial) //这里比较的是什么 sort方法实现的就是按照此比较的东西从小到大排列
+			return - 1 ;  
+			if (serial>o.serial)  
+			return 1 ;  
+			return 0 ;  
+	}
     
     
     

@@ -39,6 +39,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.itjoin.constant.CommonConstant;
+import com.itjoin.constant.CourseConstant;
 import com.itjoin.constant.PageConstant;
 import com.itjoin.course.model.Course;
 import com.itjoin.course.model.CourseDatailOutputParam;
@@ -142,6 +143,45 @@ public class CourseController {
 	return request.getContextPath()+PAGE+"course";
   }
     
+  
+  @RequestMapping("/find")
+  public String find(Integer page, Integer rows,HttpServletRequest request,ModelMap model) throws Exception {
+	  try {
+		if(page==null){
+			  page=0;
+		  }
+		int intPageSize = rows == null || rows <= 0 ? PageConstant.PAGE_SIZE : rows;
+		String categoryId = null;
+		Query query = new Query();
+		Criteria criteria =  Criteria.where("verifyStatus").is(CourseConstant.AUDIT_SUCCESS_STATUS);
+		if(request.getParameter("categoryId")!=null && StringUtils.isNotBlank((String)request.getParameter("categoryId"))){
+			categoryId = (String)request.getParameter("categoryId");
+			model.put("categoryId", categoryId);
+		}
+		Criteria cc = Criteria.where("verifyStatus").is(CourseConstant.AUDIT_SUCCESS_STATUS);
+		if(StringUtils.isNotBlank(categoryId)){
+			criteria.andOperator(Criteria.where("categoryId").is(categoryId));
+			cc.andOperator(Criteria.where("categoryId").is(categoryId));
+		}
+	
+		query.addCriteria(criteria);
+		query.limit(intPageSize);
+		query.skip(page * intPageSize);
+		Direction direction = Direction.DESC;
+		Sort sort = new Sort(direction, "updateTime");
+		query.with(sort);
+		List<Course> courses = courseRepos.find(query);
+		long count = courseRepos.count(new Query(cc) );
+		model.put("courses", courses);
+		model.put("count", count);
+		int totalPage = (int) ((count%intPageSize==0) ?(count/intPageSize) : (count/intPageSize+1));
+		model.put("totalPage", totalPage);
+		model.put("pageNum", page);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return request.getContextPath()+PAGE+"courselist";
+  }
   
   @RequestMapping("/get/{id}")
   public @ResponseBody Object show(@PathVariable("id")String id){
