@@ -11,6 +11,7 @@
 <title>视频播放</title>
 <link rel="stylesheet" href="<%=path%>/resources/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="<%=path%>/resources/css/style.css" type="text/css" >
+<script type="text/javascript" src="<%=path%>/resources/js/html5media.min.js"></script>
 </head>
 
 <body>
@@ -19,53 +20,11 @@
 		<div class=" C_layout C_sp" style="overflow:hidden;">
             <h2>Zookeeper+Spring跨机房容灾系统以及灰度发布 </h2>
             <div class="C_sp_nr">
-            	<video src="/i/movie.ogg"  width="915" height="649" controls="controls"></video>
+               <video src="<%=path %>{url}" width="915" height="649" controls preload></video>
                 <div class="C_sp_nr2">
                	  <div class="C_sp_nr2a">
                     	<ul>
                         	<li>
-                            <a href="#">
-                            	<img src="<%=path%>/resources/images/C_img2.jpg" />
-                                <p><span>第1集：</span>高保真原型移动客户端的设计与制作</p>
-                            </a>
-                            </li>
-                            <li>
-                            <a href="#">
-                            	<img src="<%=path%>/resources/images/C_img2.jpg" />
-                                <p><span>第2集：</span>高保真原型移动客户端的设计与制作</p>
-                            </a>
-                            </li>
-                            <li>
-                            <a href="#">
-                            	<img src="<%=path%>/resources/images/C_img2.jpg" />
-                                <p><span>第3集：</span>高保真原型移动客户端的设计与制作</p>
-                            </a>
-                            </li>
-                            <li>
-                            <a href="#">
-                            	<img src="<%=path%>/resources/images/C_img2.jpg" />
-                                <p><span>第4集：</span>高保真原型移动客户端的设计与制作</p>
-                            </a>
-                            </li>
-                            <li>
-                            <a href="#">
-                            	<img src="<%=path%>/resources/images/C_img2.jpg" />
-                                <p><span>第5集：</span>高保真原型移动客户端的设计与制作</p>
-                            </a>
-                            </li>
-                            <li>
-                            <a href="#">
-                            	<img src="<%=path%>/resources/images/C_img2.jpg" />
-                                <p><span>第6集：</span>高保真原型移动客户端的设计与制作</p>
-                            </a>
-                            </li>
-                            <li>
-                            <a href="#">
-                            	<img src="<%=path%>/resources/images/C_img2.jpg" />
-                                <p><span>第7集：</span>高保真原型移动客户端的设计与制作</p>
-                            </a>
-                            </li>
-                            <li>
                             <a href="#">
                             	<img src="<%=path%>/resources/images/C_img2.jpg" />
                                 <p><span>第1集：</span>高保真原型移动客户端的设计与制作</p>
@@ -91,22 +50,6 @@
                     	<h2> 全部评论</h2>
                         <ul>
                         	<li>
-                            	<span>2015.12.10</span>	
-                                <p>Zookeeper+Spring跨机房容灾系统以及灰度发布</p>
-                            </li>
-                            <li>
-                            	<span>2015.12.10</span>	
-                                <p>Zookeeper+Spring跨机房容灾系统以及灰度发布</p>
-                            </li>
-                            <li>
-                            	<span>2015.12.10</span>	
-                                <p>Zookeeper+Spring跨机房容灾系统以及灰度发布</p>
-                            </li>
-                            <li>
-                            	<span>2015.12.10</span>	
-                                <p>Zookeeper+Spring跨机房容灾系统以及灰度发布</p>
-                            </li>
-                            <li>
                             	<span>2015.12.10</span>	
                                 <p>Zookeeper+Spring跨机房容灾系统以及灰度发布</p>
                             </li>
