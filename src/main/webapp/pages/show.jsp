@@ -24,6 +24,9 @@
 float:left;
 } */
 </style>
+<script>
+  alert('${video.url}');
+</script>
 </head>
 
 <body>

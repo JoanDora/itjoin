@@ -174,12 +174,14 @@ public class VideoController {
   		}
   		Collections.sort(videos);
   		for(Video video : videos){
+  		 
   			if(video.getSerial().intValue()==Integer.valueOf(serial).intValue()){
   				v= video;
   				String url=XXTeaUtil.Encrypt(v.getUrl(), CommonConstant.XXTEA_KEY);
   				v.setUrl(url);
   				break;
   			}
+//  		    video.setUrl(url);
   		}
   		model.put("video", v);
   		model.put("course", courseRepository.findOne(courseId));
