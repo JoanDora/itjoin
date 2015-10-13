@@ -28,9 +28,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itjoin.constant.CommonConstant;
 import com.itjoin.constant.PageConstant;
 import com.itjoin.course.repositories.CourseRepository;
 import com.itjoin.exception.CommonException;
+import com.itjoin.util.XXTeaUtil;
 import com.itjoin.video.model.Video;
 import com.itjoin.video.repositories.VideoRepos;
 import com.itjoin.video.repositories.VideoRepository;
@@ -74,6 +76,9 @@ public class VideoController {
      if(StringUtils.isBlank(video.getName())){
     	 throw new CommonException("上传失败，课程名称不能为空");
      }
+     
+     //加密
+     
      video.setUrl(url);
      Video oldVideo = null;
      if(StringUtils.isBlank(video.getId())){
@@ -171,6 +176,8 @@ public class VideoController {
   		for(Video video : videos){
   			if(video.getSerial().intValue()==Integer.valueOf(serial).intValue()){
   				v= video;
+  				String url=XXTeaUtil.Encrypt(v.getUrl(), CommonConstant.XXTEA_KEY);
+  				v.setUrl(url);
   				break;
   			}
   		}

@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.itjoin.constant.CommonConstant;
 import com.itjoin.util.DateTimeUtil;
+import com.itjoin.util.XXTeaUtil;
 
 /**
  * 
@@ -94,7 +95,7 @@ public class FileController {
 	@ResponseBody
 	public void show(@RequestParam("fileName") String fileName,
 			HttpServletResponse response) {
-		
+	        fileName=XXTeaUtil.Decrypt(fileName, CommonConstant.XXTEA_KEY);
 		long start = System.currentTimeMillis();
 		InputStream fis = null;
 		response.setContentType("application/octet-stream; charset=utf-8");  
