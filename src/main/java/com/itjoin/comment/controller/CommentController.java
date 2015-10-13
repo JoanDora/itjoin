@@ -93,14 +93,15 @@ public class CommentController {
      * @date 2015-10-4 上午10:47:07
      * @version
      */
-    @RequestMapping("/saveComment")
+    @RequestMapping("/save")
     public @ResponseBody
     Object saveComment(Comment comment) {
 	if (StringUtils.isBlank(comment.getContent())) {
-	    return null;
+	    return 0;
 	}
 	comment.setCreateTime(new Date());
-	return commentRepos.save(comment);
+	 commentRepos.save(comment);
+	return 1;
     }
 
     /**

@@ -17,7 +17,7 @@
 	<script type="text/javascript" src="<%=path%>/resources/js/jquery/jquery-form.js"></script>
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="<%=path%>/resources/js/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="<%=path%>/resources/js/escar/datefmt.js"></script>
+<script type="text/javascript" src="<%=path%>/resources/js/datefmt.js"></script>
 
 <script>
 function formatDatebox(value) {

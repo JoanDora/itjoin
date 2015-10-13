@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%-- <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" % --%>>
 <%
 	String path = request.getContextPath();
 %>
@@ -12,11 +13,11 @@
 <link rel="stylesheet" href="<%=path%>/resources/css/bootstrap.min.css" type="text/css">
 
 <%-- <script type="text/javascript" src="<%=path%>/resources/js/html5media.min.js"></script> --%>
-<link href="<%=path%>/resources/css/video/video-js.css" rel="stylesheet">
+<%-- <link href="<%=path%>/resources/css/video/video-js.css" rel="stylesheet"> --%>
 <link rel="stylesheet" href="<%=path%>/resources/css/style.css" type="text/css" >
   <!-- If you'd like to support IE8 -->
-  <script src="<%=path%>/resources/js/video/videojs-ie8.min.js"></script>
-  <script src="<%=path%>/resources/js/video/video.js"></script>
+<%--   <script src="<%=path%>/resources/js/video/videojs-ie8.min.js"></script>
+  <script src="<%=path%>/resources/js/video/video.js"></script> --%>
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.jslides.js"></script>
 <style type="text/css">
@@ -33,8 +34,8 @@ float:left;
             <h2>${video.name } </h2>
             <div class="C_sp_nr">
             <div >
-              <video id="my-video" class="video-js" controls preload="auto" width="915"  height="649"  data-setup="{}">
-                 <source src="<%=path %>/file/getByName?fileName=${video.url}" type='video/mp4'   controls preload loop="loop">
+              <video id="my-video" class="video-js" width="915"  height="649"   controls preload loop="loop" data-setup="{}">
+                 <source src="<%=path %>/file/getByName?fileName=${video.url}"  type='video/mp4'  >
                </video>
            </div>
                 <div class="C_sp_nr2">
@@ -61,15 +62,15 @@ float:left;
             <div class="C_ly">
             	<div class="C_ly_l">
                 	<div class="C_lyq">
-                	<textarea id="comment"></textarea>
+                	<textarea id="comment"  ></textarea>
                     <button onclick="submitComment('${video.id}')"> 提交评论</button>
                    </div>
                    <div class="C_lyq_nr">
                     	<h2> 全部评论</h2>
-                        <ul>
+                        <ul  id="comments" >
                          <c:forEach var="comment" items="${comments}" varStatus="status"> 
                         	<li>
-                            	<span>${comment.createTime}</span>	
+                            	<span><fmt:formatDate value="${comment.createTime}"  pattern="yyyy-MM-dd HH:mm:ss"/></span>	
                                 <p>${comment.content }</p>
                             </li>
                             </c:forEach>
@@ -88,6 +89,7 @@ float:left;
 	     <img src="<%=path%>/resources/image/loading.gif" alt="" />
 	</div>
 	<script type='text/javascript' src=' <%=path%>/resources/js/easydialog/easydialog.min.js'></script>
+	<script type="text/javascript" src="<%=path%>/resources/js/datefmt.js"></script>
     <script type="text/javascript">
     	$(function(){
 		  var len=$(".C_sp_nr2a li").length;/*判断li的个数*/
@@ -119,8 +121,10 @@ float:left;
 			});
 		}
     	
+    	
+    	
     	function submitComment(id){
-    		var comment = $("#comment").text();
+    		var content = $("#comment").val();
     		openDialog();
     		jQuery.ajax({
 				type : 'GET',
@@ -128,18 +132,37 @@ float:left;
 				url : '/comment/save',
 				dataType : 'json',
 				data:{
-				  "comment":comment,
+				  "content":content,
 				   "videoId":id
 				},
 				success : function(data) {
-					 if (data.flag == '1') {
+					 if (data == '1') {
 						alert("保存成功");
 					}else{
 						alert("保存失败");
 					}
+					 var htmlSrc=[];
+					 htmlSrc.push('<li><span>'+formatDatebox(new Date())+'</span>	');
+					htmlSrc.push('<p>'+content+'</p></li>');
+					$("#comments").append(htmlSrc.join(''));
 					easyDialog.close();
 				}
 			});
+    	}
+    	
+    	function formatDatebox(value) {
+    	    if (value == null || value == '') {
+    	        return '';
+    	    }
+    	    var dt;
+    	    if (value instanceof Date) {
+    	        dt = value;
+    	    } else {
+
+    	        dt = new Date(value);
+
+    	    }
+    	    return dt.format("yyyy-MM-dd hh:mm:ss"); //扩展的Date的format方法(上述插件实现)
     	}
     </script>
    
