@@ -35,7 +35,7 @@ public class Video implements Comparable<Video>{
 	    
 	    private String fileName;//视频文件的名称
 	    
-        private String timeLen;//时长
+            private String timeLen;//时长
 	    private Date createTime;
 
 	    private Date updateTime;

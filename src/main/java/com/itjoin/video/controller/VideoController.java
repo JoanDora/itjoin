@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itjoin.comment.model.Comment;
+import com.itjoin.comment.repostories.CommentRepos;
 import com.itjoin.constant.CommonConstant;
 import com.itjoin.constant.PageConstant;
 import com.itjoin.course.model.Course;
@@ -60,6 +62,9 @@ public class VideoController {
     
     @Resource
     private CourseRepository courseRepository;
+    
+    @Resource
+    private CommentRepos commentRepos;
     
     @SuppressWarnings("null")
     @RequestMapping(value="/save",method=RequestMethod.POST)
@@ -175,7 +180,6 @@ public class VideoController {
   		}
   		Collections.sort(videos);
   		for(Video video : videos){
-  		 
   			if(video.getSerial().intValue()==Integer.valueOf(serial).intValue()){
   				v= video;
   				String url=XXTeaUtil.Encrypt(v.getUrl(), CommonConstant.XXTEA_KEY);
@@ -185,8 +189,13 @@ public class VideoController {
 //  		    video.setUrl(url);
   		}
   		model.put("video", v);
+  		Query queryComment = new Query();
+  		queryComment.with(sort);
+  		List<Comment>comments = commentRepos.find(queryComment);
   		Course course = courseRepository.findOne(courseId);
   		model.put("course", course);
+  		model.put("comments", comments);
+  		
   		course.setBrowseCount(course.getBrowseCount()+1);
   		courseRepository.save(course);
   		

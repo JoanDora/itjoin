@@ -34,7 +34,7 @@ float:left;
             <div class="C_sp_nr">
             <div >
               <video id="my-video" class="video-js" controls preload="auto" width="915"  height="649"  data-setup="{}">
-                 <source src="<%=path %>/file/getByName?fileName=${video.url}" type='video/mp4'>
+                 <source src="<%=path %>/file/getByName?fileName=${video.url}" type='video/mp4'   controls preload loop="loop">
                </video>
            </div>
                 <div class="C_sp_nr2">
@@ -61,16 +61,18 @@ float:left;
             <div class="C_ly">
             	<div class="C_ly_l">
                 	<div class="C_lyq">
-                	<textarea></textarea>
-                    <button> 提交评论</button>
+                	<textarea id="comment"></textarea>
+                    <button onclick="submitComment('${video.id}')"> 提交评论</button>
                    </div>
                    <div class="C_lyq_nr">
                     	<h2> 全部评论</h2>
                         <ul>
+                         <c:forEach var="comment" items="${comments}" varStatus="status"> 
                         	<li>
-                            	<span>2015.12.10</span>	
-                                <p>Zookeeper+Spring跨机房容灾系统以及灰度发布</p>
+                            	<span>${comment.createTime}</span>	
+                                <p>${comment.content }</p>
                             </li>
+                            </c:forEach>
                         </ul>
                         
                    </div>
@@ -82,7 +84,10 @@ float:left;
         </div>
     </div>
      <%@ include file="footer.jsp" %> 
-
+	<div id="imgBox" style="display: none">
+	     <img src="<%=path%>/resources/image/loading.gif" alt="" />
+	</div>
+	<script type='text/javascript' src=' <%=path%>/resources/js/easydialog/easydialog.min.js'></script>
     <script type="text/javascript">
     	$(function(){
 		  var len=$(".C_sp_nr2a li").length;/*判断li的个数*/
@@ -106,6 +111,36 @@ float:left;
 		
 		
 		});
+    	
+    	function openDialog() {
+			easyDialog.open({
+				container : 'imgBox',
+				fixed : false
+			});
+		}
+    	
+    	function submitComment(id){
+    		var comment = $("#comment").text();
+    		openDialog();
+    		jQuery.ajax({
+				type : 'GET',
+				contentType : 'application/json',
+				url : '/comment/save',
+				dataType : 'json',
+				data:{
+				  "comment":comment,
+				   "videoId":id
+				},
+				success : function(data) {
+					 if (data.flag == '1') {
+						alert("保存成功");
+					}else{
+						alert("保存失败");
+					}
+					easyDialog.close();
+				}
+			});
+    	}
     </script>
    
 </body>

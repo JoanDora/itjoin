@@ -11,6 +11,8 @@ package com.itjoin.comment.model;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * <p>
  * 
@@ -26,16 +28,17 @@ public class Comment {
 
     private String id;
 
-    private int level;// 级别:0好1中2差
+    private int level=0;// 级别:0好1中2差
 
     private String content;
 
     private String userId;
 
-    private String courseId;
+    private String videoId;
 
     private String userName;
 
+    @JSONField (format="yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     public String getId() {
@@ -62,12 +65,16 @@ public class Comment {
 	this.userId = userId;
     }
 
-    public String getCourseId() {
-	return courseId;
+  
+
+    
+    public String getVideoId() {
+        return videoId;
     }
 
-    public void setCourseId(String courseId) {
-	this.courseId = courseId;
+    
+    public void setVideoId(String videoId) {
+        this.videoId = videoId;
     }
 
     public String getUserName() {
