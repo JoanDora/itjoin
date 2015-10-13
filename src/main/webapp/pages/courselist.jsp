@@ -25,7 +25,7 @@ var spath =$('#basePath').attr("value");
 	<%@ include file="header.jsp" %> 
 	<div class=" C_content" >
 		<div class=" C_layout" style="overflow:hidden;">
-        	<div class="C_wz">您当前所在位置：<a href="#">首页</a>&gt;<a href="#">课程列表</a>&gt;<a href="#">手机开发</a></div>
+        	<div class="C_wz">您当前所在位置：<a href="<%=path %>/course/findLatest">首页</a>&gt;<a href="<%=path %>/course/find">课程列表</a></div>
             <div class="C_content_l">
             	<div class="C_content_l_a">
                 	<h2><i class="glyphicon glyphicon-menu-hamburger"></i>课程分类</h2>

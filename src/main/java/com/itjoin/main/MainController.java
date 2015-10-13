@@ -31,7 +31,7 @@ public class MainController {
 
     @RequestMapping("/")
    public String main(HttpServletRequest request){
-	return PAGE+"/index";
+	return "redirect:course/findLatest";
     }
 }
  

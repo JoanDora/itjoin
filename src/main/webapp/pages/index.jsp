@@ -32,76 +32,46 @@
                     </i>最新课程<span class="glyphicon glyphicon-triangle-bottom"></span></li>
                     
                 </ul>
-                <a href="#">MORE>></a> 
+                <a href="<%=path %>/course/find">MORE>></a> 
             </div>
            
       </div>    	
         <div class="C_layout C_content_a" >
         	<ul>
+        	  <c:forEach var="course" items="${courses}" varStatus="status"> 
             	<li>
-                	<a href="#">
-                    	<img src="<%=path%>/resources/images/C_img2.jpg" />
+                  <a href="<%=path%>/video/find/${course.id}">
+                    	<img src="<%=path%>/image/show?fileName=${course.imageUrl}"  width=175px height:=114px;/>
                         <div>
-                        	<h2>Zookeeper+Spring跨机房容</h2>
-                            <p>C语言作为一门经典的编程语言，是很多软件的基础，在计算机领</p>
-                            <span>主讲: 夜行侠</span>
+                        	<b>${course.name }</b></br>
+                            <p>${course.description }</p>
+                             <span>主讲: ${course.teacherName }</span>
                         </div>
                     </a>
                 </li>
+                </c:forEach>
             </ul>
         </div>
 		<div class="C_link C_layout">
         	<span>友情链接: </span>
             <div>
-            	<a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
-                <a href="#">资源下载</a>
+            	<a href="http://www.xuetuwuyou.com/course/15">学途无忧</a>
+            <a href="http://www.xuetuwuyou.com/course/15">学途无忧</a>
+               <a href="http://www.xuetuwuyou.com/course/15">学途无忧</a>
+              <a href="http://www.xuetuwuyou.com/course/15">学途无忧</a>
+               <a href="http://www.xuetuwuyou.com/course/15">学途无忧</a>
+       <a href="http://www.xuetuwuyou.com/course/15">学途无忧</a>
+              <a href="http://www.xuetuwuyou.com/course/15">学途无忧</a>
+        <a href="http://www.xuetuwuyou.com/course/15">学途无忧</a>
+                <a href="http://www.xuetuwuyou.com/course/15">学途无忧</a>
+              <a href="http://www.xuetuwuyou.com/course/15">学途无忧</a>
+                <a href="http://www.xuetuwuyou.com/course/15">学途无忧</a>
+                <a href="http://www.xuetuwuyou.com/course/15">学途无忧</a>
+                <a href="http://www.xuetuwuyou.com/course/15">学途无忧</a>
             </div>
         </div>
     </div>
      <%@ include file="footer.jsp" %> 
-    
-    <script type="text/javascript" src="<%=path%>/resources/js/jquery.min.js"></script>
     <script type="text/javascript" src="<%=path%>/resources/js/jquery.jslides.js"></script>
-   
 </body>
 </html>

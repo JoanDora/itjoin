@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itjoin.constant.CommonConstant;
 import com.itjoin.constant.PageConstant;
+import com.itjoin.course.model.Course;
 import com.itjoin.course.repositories.CourseRepository;
 import com.itjoin.exception.CommonException;
 import com.itjoin.util.XXTeaUtil;
@@ -184,7 +185,11 @@ public class VideoController {
 //  		    video.setUrl(url);
   		}
   		model.put("video", v);
-  		model.put("course", courseRepository.findOne(courseId));
+  		Course course = courseRepository.findOne(courseId);
+  		model.put("course", course);
+  		course.setBrowseCount(course.getBrowseCount()+1);
+  		courseRepository.save(course);
+  		
   	} catch (Exception e) {
   		e.printStackTrace();
   	}

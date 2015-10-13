@@ -24,6 +24,7 @@ import org.apache.commons.io.filefilter.FalseFileFilter;
 public class PageConstant {
     
     public static final int PAGE_SIZE=5;
+    public static final int INDEX_SIZE=10;
 
     
 }

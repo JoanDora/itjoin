@@ -177,11 +177,33 @@ public class CourseController {
 		int totalPage = (int) ((count%intPageSize==0) ?(count/intPageSize) : (count/intPageSize+1));
 		model.put("totalPage", totalPage);
 		model.put("pageNum", page);
+		
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
 	return request.getContextPath()+PAGE+"courselist";
   }
+  
+  
+   
+  @RequestMapping("/findLatest")
+  public String findLatest(HttpServletRequest request,ModelMap model) throws Exception {
+	  try {
+		Query query = new Query();
+		Criteria criteria =  Criteria.where("verifyStatus").is(CourseConstant.AUDIT_SUCCESS_STATUS);
+		query.addCriteria(criteria);
+		query.limit(PageConstant.INDEX_SIZE);
+		Direction direction = Direction.DESC;
+		Sort sort = new Sort(direction, "updateTime");
+		query.with(sort);
+		List<Course> courses = courseRepos.find(query);
+		model.put("courses", courses);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return request.getContextPath()+PAGE+"index";
+  }
+  
   
   @RequestMapping("/get/{id}")
   public @ResponseBody Object show(@PathVariable("id")String id){

@@ -56,7 +56,7 @@ body{ font-family:"微软雅黑"; font-size:16px;}
 .C_tab .C_layout a:hover{ color:#58a210;}
 .C_content_a{ overflow:hidden;}
 .C_content_a ul{ float:left; margin-left:-20px; }
-.C_content_a li{ width:25%;  float:left; margin-top:30px;}
+.C_content_a li{  float:left; margin-top:30px;}
 .C_content_a li a{border:1px solid #ddd; display:inline-block;  overflow:hidden; margin-left:20px; font-size:14px; padding-bottom:20px; background:#fff; }
 .C_content_a li a div{ padding:0 20px;}
 .C_content_a li a div h2{ font-size:18px; margin-top:10px; }
