@@ -17,9 +17,10 @@
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.jslides.js"></script>
 <script type="text/javascript" src="<%=path%>/resources/js/image.js"></script>
-<basePath value ="<%=path%>"  id ="basePath"></basePath>
 <script type="text/javascript">
-var spath =$('#basePath').attr("value");
+function skip(id){
+	location.href=spath+"/video/find/"+id; 
+}
 </script>
 </head>
 
@@ -31,8 +32,8 @@ var spath =$('#basePath').attr("value");
         	<ul>
         	  <c:forEach var="course" items="${courses}" varStatus="status"> 
             	<li>
-                	<div class="C_div">
-                    	<img src="<%=path%>/image/show?fileName=${course.imageUrl}" />
+                	<div class="C_div"  onclick="skip('${course.id}')"  style="cursor:pointer;">
+                    	<img   src="<%=path%>/image/show?fileName=${course.imageUrl}"   />
                         <div>
                         	<b>${course.name }</b></br>
                             <p>${course.description }</p>

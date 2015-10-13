@@ -24,10 +24,6 @@
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.jslides.js"></script>
 <script src="<%=path%>/resources/js/ajaxfileupload.js" type="text/javascript"></script>
-<basePath value ="<%=path%>"  id ="basePath"></basePath>
-<script type="text/javascript">
-var spath =$('#basePath').attr("value");
-</script
 </head>
 
 <body>

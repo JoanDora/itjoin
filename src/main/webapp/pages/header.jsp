@@ -3,6 +3,10 @@
 <html>
 <head>
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.min.js"></script>
+<basePath value ="<%=path%>"  id ="basePath"></basePath>
+<script type="text/javascript">
+var spath =$('#basePath').attr("value");
+</script>
 </head>
 <body>
 <header  class="C_header">

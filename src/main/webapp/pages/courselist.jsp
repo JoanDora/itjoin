@@ -14,10 +14,6 @@
 <link rel="stylesheet" href="<%=path%>/resources/css/style.css" type="text/css" >
  <script type="text/javascript" src="<%=path%>/resources/js/jquery.min.js"></script>
   <script type="text/javascript" src="<%=path%>/resources/js/jquery.jslides.js"></script>
-<basePath value ="<%=path%>"  id ="basePath"></basePath>
-<script type="text/javascript">
-var spath =$('#basePath').attr("value");
-</script>
 </head>
 
 <body>
