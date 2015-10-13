@@ -4,16 +4,26 @@
 <%
 	String path = request.getContextPath();
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>视频播放</title>
 <link rel="stylesheet" href="<%=path%>/resources/css/bootstrap.min.css" type="text/css">
+
+<%-- <script type="text/javascript" src="<%=path%>/resources/js/html5media.min.js"></script> --%>
+<link href="<%=path%>/resources/css/video/video-js.css" rel="stylesheet">
 <link rel="stylesheet" href="<%=path%>/resources/css/style.css" type="text/css" >
-<script type="text/javascript" src="<%=path%>/resources/js/html5media.min.js"></script>
+  <!-- If you'd like to support IE8 -->
+  <script src="<%=path%>/resources/js/video/videojs-ie8.min.js"></script>
+  <script src="<%=path%>/resources/js/video/video.js"></script>
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.jslides.js"></script>
+<style type="text/css">
+/* .C_sp_nr2{
+float:left;
+} */
+</style>
 </head>
 
 <body>
@@ -22,13 +32,17 @@
 		<div class=" C_layout C_sp" style="overflow:hidden;">
             <h2>${video.name } </h2>
             <div class="C_sp_nr">
-               <video src="<%=path %>/file/getByName?fileName=${video.url}" width="915" height="649" controls preload></video>
+            <div >
+              <video id="my-video" class="video-js" controls preload="auto" width="915"  height="649"  data-setup="{}">
+                 <source src="<%=path %>/file/getByName?fileName=${video.url}" type='video/mp4'>
+               </video>
+           </div>
                 <div class="C_sp_nr2">
                	  <div class="C_sp_nr2a">
                     	<ul>
                     	 <c:forEach var="item" items="${videos}" varStatus="status"> 
                         	<li>
-                            <a href="#">
+                            <a href="<%=path%>/video/find/${course.id}?serial=${item.serial}">
                             	<img src="<%=path%>/image/show?fileName=${course.imageUrl}" />
                                 <p><span>第${item.serial }集：</span>${item.name }</p>
                             </a>

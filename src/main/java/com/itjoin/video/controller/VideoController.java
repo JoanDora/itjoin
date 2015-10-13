@@ -58,6 +58,7 @@ public class VideoController {
     @Resource
     private CourseRepository courseRepository;
     
+    @SuppressWarnings("null")
     @RequestMapping(value="/save",method=RequestMethod.POST)
     public String save(Video video,HttpSession session) throws CommonException{
     	String url =null;
@@ -74,21 +75,30 @@ public class VideoController {
     	 throw new CommonException("上传失败，课程名称不能为空");
      }
      video.setUrl(url);
+     Video oldVideo = null;
      if(StringUtils.isBlank(video.getId())){
     	 video.setId(null);
+     }else{
+	 oldVideo = videoRepos.findById(video.getId());
      }
      String fileName = (String) session.getAttribute("fileName");
      video.setFileName(fileName);
      Query query = new Query();
    Criteria criteria =  Criteria.where("courseId").is(video.getCourseId());
    query.addCriteria(criteria);
-   List<Video> videos = videoRepos.find(query);
-   if(videos==null || videos.size()==0){
-	   video.setSerial(1);
+   
+   if(oldVideo!=null){
+       List<Video> videos = videoRepos.find(query);
+       if(videos==null || videos.size()==0){
+    	   video.setSerial(1);
+       }else{
+    	   Collections.sort(videos);
+    	   video.setSerial(videos.get(videos.size()-1).getSerial()+1);
+       }
    }else{
-	   Collections.sort(videos);
-	   video.setSerial(videos.get(videos.size()-1).getSerial()+1);
+       video.setSerial(oldVideo.getSerial());
    }
+   
 	videoRepos.save(video);
 	return "redirect:list/"+video.getCourseId();
     }

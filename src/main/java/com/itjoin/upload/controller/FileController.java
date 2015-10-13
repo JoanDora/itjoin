@@ -105,18 +105,19 @@ public class FileController {
 		try {
 			File file = FileUtils.getFile(fileName);
 			os = response.getOutputStream();
-			os.write( FileUtils.readFileToByteArray(file));
-//			int count = 0;
-//			byte[] buffer = new byte[1024 * 8];
-//			while ((count = fis.read(buffer)) != -1) {
-//				os.write(buffer, 0, count);
-//				os.flush();
-//			}
+//			os.write( FileUtils.readFileToByteArray(file));
+			fis = FileUtils.openInputStream(file);
+			int count = 0;
+			byte[] buffer = new byte[1024 * 8];
+			while ((count = fis.read(buffer)) != -1) {
+				os.write(buffer, 0, count);
+				os.flush();
+			}
 			os.flush();
 		} catch (IllegalStateException e) {
 
 		} catch (IOException e) {
-			// e.printStackTrace();
+			 e.printStackTrace();
 		} finally {
 			try {
 				if (fis != null) {
@@ -127,7 +128,7 @@ public class FileController {
 				}
 
 			} catch (IOException e) {
-				// e.printStackTrace();
+				 e.printStackTrace();
 			}
 		}
 		long end = System.currentTimeMillis();
