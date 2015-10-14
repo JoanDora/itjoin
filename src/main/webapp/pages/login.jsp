@@ -11,8 +11,8 @@
 <!--<fk:base-styles>-->
 <link rel="stylesheet"  href="<%=path%>/resources/css/itjoin/logincox.css">
 <link rel="stylesheet" href="<%=path%>/resources/css/itjoin/loginbase.css">
-<link rel="stylesheet" href="<%=path%><%=path%>/resources/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="<%=path%><%=path%>/resources/css/style.css" type="text/css" >
+<link rel="stylesheet" href="<%=path%>/resources/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="<%=path%>/resources/css/style.css" type="text/css" >
 
 <style>
 .sidebar-nav {
@@ -120,7 +120,7 @@ var btnFn = function(){
 function onSubmit() {
 	$('#loginPwd').val(hex_md5(  $('#loginPwd').val()));
      $('#login_form').ajaxSubmit({
-									url : '/user/login',
+									url : spath+'/user/login',
 									type : "POST",
 									dataType : "json",
 									beforeSubmit : function() {
@@ -131,7 +131,7 @@ function onSubmit() {
 										if(data!=null && data.phone!=null){
 											alert("登陆成功");
 											easyDialog.close();
-											window.location.href ="/car/main"
+											window.location.href =spath+"/"
 										}else{
 											easyDialog.close();
 											alert("登陆失败");
@@ -145,7 +145,7 @@ function onSubmit() {
 
 function sendEmail(){
 	   $('#emailForm').ajaxSubmit({
-			url : '/email/send',
+			url : spath+'/email/send',
 			type : "POST",
 			dataType : "json",
 			beforeSubmit : function() {

@@ -1,31 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+%>
 <!DOCTYPE html>
-
-
 <html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <link rel="stylesheet" href="/resources/css/ack/index_yc.min.css" />
-    <link rel="shortcut icon" href="/resources/image/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/resources/image/favicon.ico"
-    type="image/x-icon">
-    <!--<fk:base-styles>-->
-<link rel="stylesheet"  href="/resources/css/ack/logincox.css">
-<link rel="stylesheet" href="/resources/css/ack/loginbase.css">
-<link rel="stylesheet" href="/resources/css/ack/index.css?v=0.6.6" />
-<link rel="stylesheet" href="/resources/css/ack/Cox.css?v=0.6.6" />
-<link rel="stylesheet" href="/resources/css/ack/base.css?v=0.6.6" />
-<!--</fk:base-styles>-->
     <style>
         .sidebar-nav{
             display:none!important;
         }
     </style>
     
-<title>会员注册 - 一起咔名车广场</title>
+<title>会员注册 - it分享联盟</title>
 <!--<fk:styles>-->
-<link rel="stylesheet" href="/resources/css/ack/user-page.css">
-<link rel="stylesheet" href="/resources/css/ack/register.css" />
-<link rel="stylesheet"  href="/resources/css/ack/register2.css">
+<link rel="stylesheet" href="<%=path%>/resources/css/itjoin/user-page.css">
+<link rel="stylesheet" href="<%=path%>/resources/css/itjoin/register.css" />
+<link rel="stylesheet"  href="<%=path%>/resources/css/itjoin/register2.css">
+<link rel="stylesheet"  href="<%=path%>/resources/css/itjoin/logincox.css">
+<link rel="stylesheet" href="<%=path%>/resources/css/itjoin/loginbase.css">
+<link rel="stylesheet" href="<%=path%>/resources/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="<%=path%>/resources/css/style.css" type="text/css" >
 <!--</fk:styles>-->
 
     
@@ -35,133 +30,9 @@
 
 </head>
 <body>
-    <!--登录页头部-->
-
-	<!--顶部工具条{-->
-	<div id="akd_toolbar">
-		<div class="grid-c1 clearfix">
-			<div class="grid-c-l">
-				<span>潮汕二手车经营</span> <span class="split"></span> <span>在线汽车交易电商平台</span>
-			</div>
-			<div class="grid-c-r">
-				<span>欢迎您</span> <span class="userName" id="car_userName"></span> <span
-					class="split"></span> <a href="javascript:logout();" class="logout">退出</a>
-				<span class="login" id="car_login"> <a
-					class="login-page-entry" href="/user/skip/login">请登录</a> <span
-					class="split"></span> <a class="register-page-entry"
-					href="/user/skip/register">免费注册</a>
-				</span> <span class="split"></span>
-				
-			</div>
-		</div>
-	</div>
-	<!--}顶部工具条-->
-
-	<!--头部{-->
-	<div id="akd_header" style="background:url(/resources/image/logo.jpg)")>
-		<div class="mask"></div>
-		<div class="header-wrap"   >
-			<div class="grid-c1 clearfix"    style="float:left; padding-left:330px">
-				<div class="grid-c-r-y clearfix" >
-					<div class="grid-c-l search-bar"  >
-						<div id="keywordForm"
-							style="position: relative; z-index: 1000; display: block; padding: 3px; background-color: #404040; height: 30px;">
-							<input type="text" autocomplete="off" name="word"
-								id="keywordsValue" placeholder="输入您要查找车的关键字"
-								x-webkit-grammar="builtin:search" x-webkit-speech />
-							<button class="submit-btn" style="cursor: pointer"
-								onclick="javascript:searchKeyWord('0');">
-								搜&nbsp;&nbsp;&nbsp;索
-							</button>
-							<button class="all-btn" style="cursor: pointer"
-								onclick="javascript:searchKeyWord('1');">全部车型</button>
-							<div class="dropdown">
-								<div class="wrap">
-									<ul class="list unstyled">
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="top-keywords"></div>
-					</div>
-
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--}头部-->
-
-	<!--导航条{-->
-	<div id="akd_nav">
-		<div class="grid-c1">
-			<div class="clearfix nav-wrap">
-				<div class="grid-c-l category-nav">
-					<a href="javascript:;" class="dropdown-btn">按照分类快速选车<i></i></a>
-				</div>
-
-				<div class="grid-c-l nav-bar-wrap">
-					<ul class="nav-bar clearfix unstyled">
-						<li class="first-item"></li>
-						<li class="item"><a href="/car/main" title="首页">首 页</a></li>
-						<li class="split"></li>
-						<li class="item"><a href="/car/main" target="_blank"
-							title="选车中心">选车中心</a></li>
-						<li class="split"></li>
-						<li class="item"><a href="javascript:void(0)" target="_blank"
-							title="售后质保">售后质保</a></li>
-						<li class="split"></li>
-
-						<li class="item"><a href="javascript:void(0)" target="_blank"
-							title="汽车保险">汽车保险</a></li>
-						<li class="split"></li>
-						<li class="last-item"></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--}导航条-->
-<!--顶部工具条{-->
-
-
-<!--头部{-->
-
-<!--}头部-->
-
-<!--脚部{-->
-<div id="akd_footer">
-    <div class="footer-a">
-        <div class="grid-c1 clearfix">
-            <div class="grid-c-l links clearfix">
-              <div class="grid-c-l category">
-             
-  
-              </div>
-                <div class="grid-c-l category">
-                 
-              </div>
-
-            </div>
-            <div class="contact grid-c-r clearfix">
-                <div class="grid-c-l weixin">
-                    <!--<fk:weixinqrcode>-->
-                    <img  style="height:65PX; width:65px;"   src="/resources/image/together.jpg" ><!--</fk:weixinqrcode>--> 
-                    <strong>关注一起咔微信账号</strong>
-                    <p>
-                        第一时间看车源！<br>
-                        赶紧扫一下
-                  </p>
-                    <div><a href="http://weibo.com/u/5472956244" target="_blank" class="weibo-entry" rel="nofollow"><i></i>一起咔新浪微博</a></div>
-              </div>
-                <div class="grid-c-l tel">
-                    <strong>购车热线</strong>
-                    <em><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18029784887</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0768-6530230</p></em>
-                    <span>营业时间: 08:30-21:30</span>
-                </div>
-            </div>
-        </div>
-      <div class="grid-c1 container">
-          <div class="content">
+<%@ include file="header.jsp" %> 
+      <div class="grid-c1 container  C_content">
+          <div class="content " >
             <div class="content-wrap">
               <div class="register-form grid-c2">
                 <h2>&nbsp;</h2>
@@ -242,7 +113,7 @@
                 <p class="highlight">恭喜您，账户注册成功</p>
                 <p>您的注册账号是: <strong class="account"></strong></p>
                 <p class="jump-tip">系统将在 <span class="count-down">5</span> 秒后返回到登录页, 如果没有请 <a href="http://www.17car.cc/member/?md=ModifyInfo">点击手动跳转</a></p>
-              </div>
+              </div> 
               <!--邮件消息-->
               <div class="register-success grid-c2 email">
                 <p class="highlight">还差一步，请激活您的账户</p>
@@ -288,48 +159,7 @@
   </div>
 </div>
  <!--脚部{-->
-<div id="akd_footer">
- 
-      <div class="contact grid-c-r clearfix">
-        <div class="grid-c-l weixin"> 
-          <!--<fk:weixinqrcode>--> 
-          <img src="/resources/image/together.jpg"><!--</fk:weixinqrcode>--> 
-          <strong>关注一起咔微信账号</strong>
-          <p> 第一时间看车源！<br>
-            赶紧扫一下 </p>
-          <div><a href="http://weibo.com/5472956244" target="_blank" class="weibo-entry" rel="nofollow"><i></i>一起咔新浪微博</a></div>
-        </div>
-        <div class="grid-c-l tel"> 
-          <p>&nbsp;</p>
-          <p><strong>购车热线</strong> <em><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18029784887</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0768-6530230</p></em> <span>营业时间:9：00-21:00</span></p>
-        </div>
-        
-      </div>
-</div>
-  </div>
-</div> 
-<div class="car_foot">
-<div class="footer-a">
-  
-    <div class="grid-c1 clearfix">
-    
-    
-     
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>一起咔名车广场成立于2014年， 潮汕地区二手车行业第一家O2O电商平台！</p>
-      <p>© 2014-2015 all right reserved <a href="http://www.17car.cc/">一起咔名车广场</a>(www.17car.cc) 版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank" rel="nofollow">粤ICP备15012141号</a></p>
-</div>
-<div class="footer-b">
-  <div class="grid-c1">
-    <div class="website-links">
-      <div class="copyright"> </div>
-
-    </div>
-  </div>
-</div>
-</div>
-
+  <%@ include file="footer.jsp" %> 
 <div id="imgBox" style="display: none">
 						<img src="/resources/image/loading.gif" alt="" />
 					</div>
@@ -342,7 +172,7 @@
 <!--}脚部--> 
 <script type="text/javascript">
 function nextImageCode() {
-	$("#imageCode").attr("src", "/user/validataCode?time=" + new Date());
+	$("#imageCode").attr("src", spath+"/user/validataCode?time=" + new Date());
 }
 					var tag1 = false;
 					 var tag2 = false;
@@ -362,7 +192,7 @@ function nextImageCode() {
 						    	
 						    	  $('#loginPwd').val(hex_md5(  $('#loginPwd').val()));
 						    	  $('#user_register').ajaxSubmit({
-										url : '/user/register',
+										url : spath+'/user/register',
 										type : "POST",
 										dataType : "json",
 										beforeSubmit : function() {
@@ -372,7 +202,7 @@ function nextImageCode() {
 											if(data==1){
 												alert("保存成功");
 												easyDialog.close();
-												window.location.href ="/car/main"
+												window.location.href =spath+"/"
 											}else{
 												alert("保存失败，手机号码已经被占用");
 											}
@@ -433,7 +263,7 @@ function nextImageCode() {
 									 jQuery.ajax({
 											type : 'GET',
 											contentType : 'application/json',
-											url : '/user/check/phone/'+phone,
+											url :spath+ '/user/check/phone/'+phone,
 											dataType : 'json',
 											success : function(data) {
 												
@@ -486,7 +316,7 @@ function nextImageCode() {
 								 jQuery.ajax({
 										type : 'GET',
 										contentType : 'application/json',
-										url : '/user/check/email',
+										url :spath+ '/user/check/email',
 										data:{
 											email : email
 										},
@@ -533,7 +363,7 @@ function nextImageCode() {
 							 jQuery.ajax({  
 							        type : 'GET',  
 							        contentType : 'application/json',  
-							        url : '/user/check/checkValidateCode?code='+authCode,
+							        url :spath+ '/user/check/checkValidateCode?code='+authCode,
 							        dataType : 'json',  
 							        success : function(data) 
 							        { 
