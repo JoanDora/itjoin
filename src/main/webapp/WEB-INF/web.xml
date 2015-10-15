@@ -11,6 +11,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	<listener>
 		<listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
 	</listener>
+	<listener>
+  <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+<context-param>
+  <param-name>contextConfigLocation</param-name>
+  <param-value>
+     classpath:spring/application-config.xml
+  </param-value> 
+</context-param>
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -23,6 +32,24 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>  
+		<servlet>
+    <servlet-name>dwr-invoker</servlet-name>
+ <servlet-class>org.directwebremoting.spring.DwrSpringServlet</servlet-class>
+   <init-param>
+    <param-name>debug</param-name>
+    <param-value>true</param-value>
+  </init-param>
+   <!-- <init-param>
+            <param-name>config</param-name>
+            <param-value>
+                /WEB-INF/dwr.xml                
+            </param-value>
+        </init-param> -->
+   </servlet>
+<servlet-mapping>
+  <servlet-name>dwr-invoker</servlet-name>
+  <url-pattern>/dwr/*</url-pattern>
+</servlet-mapping>
 	<servlet>
 		<display-name>contextConfig</display-name>
 		<servlet-name>contextConfig</servlet-name>
@@ -37,4 +64,5 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>contextConfig</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
 </web-app>
