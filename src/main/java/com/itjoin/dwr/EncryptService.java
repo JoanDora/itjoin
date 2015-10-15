@@ -9,6 +9,13 @@
  */   
 package com.itjoin.dwr; 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+
+import javax.servlet.http.HttpSession;
+
+import org.directwebremoting.WebContextFactory;
 import org.springframework.stereotype.Service;
 
 import com.itjoin.constant.CommonConstant;
@@ -28,8 +35,19 @@ import com.itjoin.util.XXTeaUtil;
 public class EncryptService {
 
     public String encrypt(String url){
-	 url=XXTeaUtil.Encrypt(url, CommonConstant.XXTEA_KEY);
+	HttpSession session = WebContextFactory.get().getSession();
+	String encryptValue = getRandom();
+	session.setAttribute(CommonConstant.ENCRYPT_KEY, encryptValue);
+	 url=XXTeaUtil.Encrypt(url, encryptValue);
 	return url;
+    }
+    
+    private String getRandom(){
+	StringBuffer sbf = new StringBuffer("SP");
+	sbf.append(new SimpleDateFormat("yyMMddHHmmssSSS").format(new Date()));
+	Random random = new Random();
+	sbf.append(100 + random.nextInt(899));
+	return sbf.toString();
     }
 }
  

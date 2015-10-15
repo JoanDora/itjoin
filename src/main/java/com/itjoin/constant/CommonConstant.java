@@ -8,4 +8,6 @@ public class CommonConstant {
 	public static final String WEBINFO_IMAGE_SRC = "file/image/webinfo";
 	
 	public  static final String XXTEA_KEY="it_join_123456+";
+	
+	public static final String ENCRYPT_KEY="it_join_key";
 }

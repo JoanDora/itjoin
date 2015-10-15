@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%
 	String path = request.getContextPath();
@@ -21,9 +20,6 @@
   /* width: 10%; */
 }
 </style>
-<script type="text/javascript" src="<%=path%>/resources/js/jquery.min.js"></script>
-<script type="text/javascript" src="<%=path%>/resources/js/jquery.jslides.js"></script>
-<script src="<%=path%>/resources/js/ajaxfileupload.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -99,6 +95,8 @@
       </form>
      </div> 
        <%@ include file="footer.jsp" %> 
+   <script type="text/javascript" src="<%=path%>/resources/js/jquery.jslides.js"></script>
+<script src="<%=path%>/resources/js/ajaxfileupload.js" type="text/javascript"></script>
 	<script >
 	var totalPage = '${totalPage}';
 	var courseId = '${courseId}';
@@ -183,7 +181,6 @@
 						$("#courseId").val(data.courseId);
 						$("#description").text(data.description);
 						$("#orgFileName").html(data.fileName);
-						console.log(data)
 					}
 				});
 				
@@ -279,11 +276,7 @@
 			             data = data.replace("</pre>", '');
 			             var result = eval("(" +data+ ")");
 			            if (typeof(result.status) != 'undefined') {
-			            	/* if(easyDialog!=null){
-			            		 easyDialog.close();
-			            	} */
 			            	window.clearInterval(oTimer);
-			            	//easyDialog.close();
 			                if (result.status== '1') {
 			                	$("#info").hide();
 			                	$("#success_info").show();

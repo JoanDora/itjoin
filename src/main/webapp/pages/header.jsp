@@ -48,7 +48,6 @@ var spath =$('#basePath').attr("value");
 					htmlSrc.push('<a href="'+realPath+'">'+data[i].name+'</a>');
 				}
 				$("#headCategorys").append(htmlSrc.join(''));
-				console.log(htmlSrc)
 			},
 			error : function(err) {
 			}
