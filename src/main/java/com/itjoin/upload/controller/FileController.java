@@ -77,7 +77,7 @@ public class FileController {
 	Pattern p = Pattern.compile("\\s|\t|\r|\n");
 	Matcher m = p.matcher(orgFileName);
 	orgFileName = m.replaceAll("_");
-	String realFilePath = folder + File.separator + "admin" + File.separator;
+	String realFilePath = folder;
 	if (!(new File(realFilePath).exists())) {
 	    new File(realFilePath).mkdirs();
 	}
@@ -91,6 +91,9 @@ public class FileController {
 	result.put("status", "1");
 	result.put("msg", "上传成功");
 	result.put("fileName", orgFileName);
+//	   File file2 = FileUtils.getFile(bigRealFilePath);
+//	     FileUtils.openInputStream(file2);
+//	     System.out.println("is ok");
     }
 
     @RequestMapping(value = "/getByName")
@@ -111,7 +114,6 @@ public class FileController {
 	try {
 	    File file = FileUtils.getFile(fileName);
 	    os = response.getOutputStream();
-	    os.write( FileUtils.readFileToByteArray(file));
 	    fis = FileUtils.openInputStream(file);
 	    int count = 0;
 	    byte[] buffer = new byte[1024 * 8];
