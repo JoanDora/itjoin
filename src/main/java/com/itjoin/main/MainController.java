@@ -27,11 +27,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainController {
     
-    private static final String PAGE="pages";
+    private static final String PAGE="pages/";
 
     @RequestMapping("/")
    public String main(HttpServletRequest request){
 	return "redirect:course/findLatest";
+    }
+    @RequestMapping("/login")
+    public String login(){
+    	return  PAGE+"login";
+    }
+    @RequestMapping("/register")
+    public String register(){
+    	return  PAGE+"register";
     }
 }
  

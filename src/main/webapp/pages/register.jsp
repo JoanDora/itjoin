@@ -98,62 +98,17 @@
 								<i class="state-icon " id="authCodeInfo"></i>
 								</span></label>
 								<div class="btn-wrap">
-									<button type="submit"  id="submit" style="cursor:pointer">同意协议并注册</button>
-									<a href="#">《用户协议》</a>
+									<button type="submit"  id="submit" style="cursor:pointer">注册</button>
+								<!-- 	<a href="#">《用户协议》</a> -->
 								</div>
 							</form>
-                  <div class="grid-c-l other">
-                    <div class="old-user-entry"> <span>已有一起咔账号？ </span> <a href="/user/skip/login" class="login-page-entry">立即登录</a> </div>
-                    <div class="sns-user-entry"> <span>使用合作网站账号登录</span> <a href="http://www.17car.cc/register/?ReturnUrl=http%3A%2F%2Fwww.17car.cc%2F#" class="qq-user-entry"><i></i>QQ</a> <a href="http://www.17car.cc/register/?ReturnUrl=http%3A%2F%2Fwww.17car.cc%2F#" class="weibo-user-entry"><i></i>新浪微博</a> </div>
+                     <div class="grid-c-l other">
+                    <div class="old-user-entry"> <span>已有it分享联盟账号？ </span> <a href="/login" class="login-page-entry">立即登录</a> </div>
+                    <div class="sns-user-entry"> <span>使用合作网站账号登录</span></div>
                   </div>
                 </div>
               </div>
-              <!--成功消息-->
-              <div class="register-success grid-c2 default">
-                <p class="highlight">恭喜您，账户注册成功</p>
-                <p>您的注册账号是: <strong class="account"></strong></p>
-                <p class="jump-tip">系统将在 <span class="count-down">5</span> 秒后返回到登录页, 如果没有请 <a href="http://www.17car.cc/member/?md=ModifyInfo">点击手动跳转</a></p>
-              </div> 
-              <!--邮件消息-->
-              <div class="register-success grid-c2 email">
-                <p class="highlight">还差一步，请激活您的账户</p>
-                <p class="state-tip">系统已发送了一封邮件到您的邮箱</p>
-                <p>请访问您的邮箱<a href="javascript:;" class="open-mailbox-btn user-name">maolion.j@gmail.com</a>, 点击邮件中的链接便可激活您的账户</p>
-                <div class="tip">
-                  <div class="wrap">
-                    <p>如果没有收到激活邮件</p>
-                    <ul>
-                      <li>也许邮件被您的邮箱误认为是垃圾邮件而放到垃圾箱中，请检查一下</li>
-                      <li>或者, 您可以<a class="resend-btn" href="javascript:;">点此重新发送激活邮件</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <!--短信消息-->
-              <div class="register-success grid-c2 mobile">
-                <p class="highlight">还差一步，请激活您的账户</p>
-                <p>系统已发送了一条验证短信到您的手机，请输入您收到的验证码，XX秒内有效</p>
-                <p>验证码：
-                  <input type="text" name="AuthCode" class="input-text">
-                </p>
-                <p>
-                  <button>确认提交</button>
-                </p>
-                <div class="tip">
-                  <div class="wrap">
-                    <p>如果没有收到激活短信</p>
-                    <ul>
-                      <li>也许信息被您的手机误认为是垃圾短信而放到垃圾箱中，请检查一下</li>
-                      <li>或者, 您可以<a class="resend-btn" href="http://www.17car.cc/register/?ReturnUrl=http%3A%2F%2Fwww.17car.cc%2F#">点此重新发送激活信息</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-    </div>
-        
+           
 
 </div>
   </div>
@@ -161,13 +116,13 @@
  <!--脚部{-->
   <%@ include file="footer.jsp" %> 
 <div id="imgBox" style="display: none">
-						<img src="/resources/image/loading.gif" alt="" />
+						<img src="<%=path %><%=path%>/resources/images/loading.gif" alt="" />
 					</div>
 <script type="text/javascript"
-	src="/resources/js/jquery/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="/resources/js/md5.js"></script>
-	<script type="text/javascript" src="/resources/js/jquery/jquery-form.js"></script>
-<script type='text/javascript' src=' /resources/js/easydialog/easydialog.min.js'></script>
+	src="<%=path%>/resources/js/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="<%=path%>/resources/js/md5.js"></script>
+	<script type="text/javascript" src="<%=path%>/resources/js/jquery/jquery-form.js"></script>
+<script type='text/javascript' src=' <%=path%>/resources/js/easydialog/easydialog.min.js'></script>
 </div>
 <!--}脚部--> 
 <script type="text/javascript">

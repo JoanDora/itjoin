@@ -44,7 +44,7 @@ margin: 0 auto;
       <div class="login-form">
         <div class="head">
           <h2>登录it分享联盟</h2>
-          <span>还没有一起it分享联盟账号？<a href="javascript:;" class="register-page-entry">30秒注册</a></span> </div>
+          <span>还没有一起it分享联盟账号？<a href="/register" class="register-page-entry">30秒注册</a></span> </div>
         <form id="login_form"  method="post" onsubmit="return false">
           <div class="tip error"></div>
           <div class="input-text left user"> <span><i></i></span>

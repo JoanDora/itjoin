@@ -27,8 +27,8 @@ var spath =$('#basePath').attr("value");
                     <i class="glyphicon glyphicon-search"></i>
                 </div>
                 <div class="C_dl">
-                	<a href="#">登录</a><span>|</span>
-                    <a href="#">注册</a>
+                	<a href="/login">登录</a><span>|</span>
+                    <a href="/register">注册</a>
                 </div>
             </div>
         </div>
