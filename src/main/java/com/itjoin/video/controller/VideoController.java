@@ -99,7 +99,7 @@ public class VideoController {
    Criteria criteria =  Criteria.where("courseId").is(video.getCourseId());
    query.addCriteria(criteria);
    
-   if(oldVideo!=null){
+   if(oldVideo==null){
        List<Video> videos = videoRepos.find(query);
        if(videos==null || videos.size()==0){
     	   video.setSerial(1);
