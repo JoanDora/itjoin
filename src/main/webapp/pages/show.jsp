@@ -20,8 +20,8 @@
   <script src="<%=path%>/resources/js/video/video.js"></script> --%>
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.jslides.js"></script>
-<script type="text/javascript"   src="<%=path %>/dwr/engine.js"> </script>
-  <script type="text/javascript"  src="<%=path %>/dwr/interface/encryptService.js"> </script>
+<script type="text/javascript"   src="<%=path %>/highjs/engine.js"> </script>
+  <script type="text/javascript"  src="<%=path %>/highjs/interface/encryptService.js"> </script>
 <style type="text/css">
 /* .C_sp_nr2{
 float:left;

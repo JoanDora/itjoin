@@ -48,7 +48,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
    </servlet>
 <servlet-mapping>
   <servlet-name>dwr-invoker</servlet-name>
-  <url-pattern>/dwr/*</url-pattern>
+  <url-pattern>/highjs/*</url-pattern>
 </servlet-mapping>
 	<servlet>
 		<display-name>contextConfig</display-name>
