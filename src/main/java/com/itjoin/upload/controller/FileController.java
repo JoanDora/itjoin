@@ -100,7 +100,6 @@ public class FileController {
 	    return;
 	}
 	String key = (String) session.getAttribute(CommonConstant.ENCRYPT_KEY);
-//	CommonConstant.VIDEO_SRC+"//"+
 	fileName = XXTeaUtil.Decrypt(fileName, key).trim();
 	long start = System.currentTimeMillis();
 	InputStream fis = null;

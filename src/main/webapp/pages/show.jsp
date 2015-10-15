@@ -166,7 +166,6 @@ float:left;
     	
     	
     	   url =' ${video.url}';
-    	   console.log(url)
     	    encryptService.encrypt(url, {
     	    	  callback:function(url) { 
     	    		  var videoSrc = [];
