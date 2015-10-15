@@ -20,6 +20,8 @@
   <script src="<%=path%>/resources/js/video/video.js"></script> --%>
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=path%>/resources/js/jquery.jslides.js"></script>
+<script type="text/javascript"   src="<%=path %>/dwr/engine.js"> </script>
+  <script type="text/javascript"  src="<%=path %>/dwr/interface/encryptService.js"> </script>
 <style type="text/css">
 /* .C_sp_nr2{
 float:left;
@@ -33,10 +35,7 @@ float:left;
 		<div class=" C_layout C_sp" style="overflow:hidden;">
             <h2>${video.name } </h2>
             <div class="C_sp_nr">
-            <div >
-              <video id="my-video" class="video-js" width="915"  height="649"   controls preload loop="loop" data-setup="{}">
-                 <source src="<%=path %>/file/getByName?fileName=${video.url}"  type='video/mp4'  >
-               </video>
+            <div  id="videoSrcId">
            </div>
                 <div class="C_sp_nr2">
                	  <div class="C_sp_nr2a">
@@ -164,6 +163,18 @@ float:left;
     	    }
     	    return dt.format("yyyy-MM-dd hh:mm:ss"); //扩展的Date的format方法(上述插件实现)
     	}
+    	
+    	
+    	   url =' ${video.url}';
+    	    encryptService.encrypt(url, {
+    	    	  callback:function(url) { 
+    	    		  var videoSrc = [];
+    	    		  videoSrc.push('<video id="my-video" class="video-js" width="915"  height="649"   controls preload loop="loop" data-setup="{}">');
+    	    		  videoSrc.push('<source src='+spath+'/file/getByName?fileName='+url+'  id="videoSrcId"  type="video/mp4"  >');
+    	    		  videoSrc.push('</video>');
+    	    		  $("#videoSrcId").append(videoSrc.join(''));
+    	    	  }
+    	    	});
     </script>
    
 </body>

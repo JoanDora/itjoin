@@ -182,8 +182,8 @@ public class VideoController {
   		for(Video video : videos){
   			if(video.getSerial().intValue()==Integer.valueOf(serial).intValue()){
   				v= video;
-  				String url=XXTeaUtil.Encrypt(v.getUrl(), CommonConstant.XXTEA_KEY);
-  				v.setUrl(url);
+//  				String url=XXTeaUtil.Encrypt(v.getUrl(), CommonConstant.XXTEA_KEY);
+//  				v.setUrl(url);
   				break;
   			}
 //  		    video.setUrl(url);
