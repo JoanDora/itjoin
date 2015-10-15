@@ -20,8 +20,6 @@
 }
 </style>
 
-<script type="text/javascript" src="<%=path%>/resources/js/jquery/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="<%=path%>/resources/js/jquery/jquery-form.js"></script>
 <!--</fk:jquery-script>-->
 
 <title>会员登录 - 登录it分享联盟</title>
@@ -81,7 +79,7 @@ margin: 0 auto;
   <button type="submit" class="btn"  onclick="sendEmail();">提交</button>
 </form>
  </div>
-     
+  <script type="text/javascript" src="<%=path%>/resources/js/jquery/jquery-form.js"></script>
 <script type="text/javascript" src="<%=path%>/resources/js/md5.js"></script>
 <script type='text/javascript' src=' <%=path%>/resources/js/easydialog/easydialog.min.js'></script>
 <script type="text/javascript">

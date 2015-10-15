@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,12 +25,20 @@ var spath =$('#basePath').attr("value");
             <div class="C_top_right">
             	<div class="C_search">
                 	<input type="text" class="C_text" value="关键字查找"/>
-                    <i class="glyphicon glyphicon-search"></i>
+                    <i class="glyphicon glyphicon-search"  style="cursor:pointer;"  onclick="javascript:searchByKey();"></i>
                 </div>
+                
+                <c:if test="${sessionScope.user == null}">
                 <div class="C_dl">
                 	<a href="/login">登录</a><span>|</span>
                     <a href="/register">注册</a>
                 </div>
+                </c:if>
+                 <c:if test="${sessionScope.user !=null}">
+                <div class="C_dl">
+                	<a href="javascript:void(0)">${sessionScope.user.userName }</a>
+                </div>
+                </c:if>
             </div>
         </div>
     </header>
