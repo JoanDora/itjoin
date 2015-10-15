@@ -85,7 +85,7 @@ float:left;
     </div>
      <%@ include file="footer.jsp" %> 
 	<div id="imgBox" style="display: none">
-	     <img src="<%=path%>/resources/image/loading.gif" alt="" />
+	     <img src="<%=path%>/resources/images/loading.gif" alt="" />
 	</div>
 	<script type='text/javascript' src=' <%=path%>/resources/js/easydialog/easydialog.min.js'></script>
 	<script type="text/javascript" src="<%=path%>/resources/js/datefmt.js"></script>
@@ -166,6 +166,7 @@ float:left;
     	
     	
     	   url =' ${video.url}';
+    	   console.log(url)
     	    encryptService.encrypt(url, {
     	    	  callback:function(url) { 
     	    		  var videoSrc = [];

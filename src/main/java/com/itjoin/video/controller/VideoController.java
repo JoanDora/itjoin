@@ -9,13 +9,17 @@
  */   
 package com.itjoin.video.controller; 
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -30,12 +34,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itjoin.comment.model.Comment;
 import com.itjoin.comment.repostories.CommentRepos;
-import com.itjoin.constant.CommonConstant;
 import com.itjoin.constant.PageConstant;
 import com.itjoin.course.model.Course;
 import com.itjoin.course.repositories.CourseRepository;
 import com.itjoin.exception.CommonException;
-import com.itjoin.util.XXTeaUtil;
 import com.itjoin.video.model.Video;
 import com.itjoin.video.repositories.VideoRepos;
 import com.itjoin.video.repositories.VideoRepository;
@@ -83,12 +85,11 @@ public class VideoController {
     	 throw new CommonException("上传失败，课程名称不能为空");
      }
      
-     //加密
-     
      video.setUrl(url);
      Video oldVideo = null;
      if(StringUtils.isBlank(video.getId())){
     	 video.setId(null);
+    	video.setCreateTime(new Date());
      }else{
 	 oldVideo = videoRepos.findById(video.getId());
      }
@@ -109,7 +110,7 @@ public class VideoController {
    }else{
        video.setSerial(oldVideo.getSerial());
    }
-   
+   video.setUpdateTime(new Date());
 	videoRepos.save(video);
 	return "redirect:list/"+video.getCourseId();
     }

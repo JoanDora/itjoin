@@ -81,7 +81,7 @@ public class FileController {
 	if (!(new File(realFilePath).exists())) {
 	    new File(realFilePath).mkdirs();
 	}
-	String bigRealFilePath = realFilePath + File.separator + FilenameUtils.getBaseName(orgFileName).concat(".") + fileName.concat(".").concat(FilenameUtils.getExtension(orgFileName).toLowerCase());
+	String bigRealFilePath =realFilePath+ FilenameUtils.getBaseName(orgFileName).concat(".") + fileName.concat(".").concat(FilenameUtils.getExtension(orgFileName).toLowerCase());
 	if (file.getSize() > 0) {
 	    File targetFile = new File(bigRealFilePath);
 	    file.transferTo(targetFile);// 写入目标文件
@@ -91,9 +91,6 @@ public class FileController {
 	result.put("status", "1");
 	result.put("msg", "上传成功");
 	result.put("fileName", orgFileName);
-//	   File file2 = FileUtils.getFile(bigRealFilePath);
-//	     FileUtils.openInputStream(file2);
-//	     System.out.println("is ok");
     }
 
     @RequestMapping(value = "/getByName")
@@ -103,7 +100,8 @@ public class FileController {
 	    return;
 	}
 	String key = (String) session.getAttribute(CommonConstant.ENCRYPT_KEY);
-	fileName = XXTeaUtil.Decrypt(fileName, key);
+//	CommonConstant.VIDEO_SRC+"//"+
+	fileName = XXTeaUtil.Decrypt(fileName, key).trim();
 	long start = System.currentTimeMillis();
 	InputStream fis = null;
 	response.setContentType("application/octet-stream; charset=utf-8");

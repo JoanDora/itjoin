@@ -73,7 +73,7 @@ function skip(id){
                     <span><input type="radio"  name="statusSelect"  onclick="getStatus();" value="1" />更新完毕</span>
                     <input type="hidden" name="id" id="id">
                     <input type="hidden" name="status" id="status">
-                    <input type="hidden" name="verifyStatus" value="0"/>
+                    <input type="hidden" name="verifyStatus"  id="verifyStatus"  value="0"/>
                       <input type="hidden" name="imageUrl"  id="imageUrl"/>
                       <input type="hidden" name="categoryId" id="categoryId">
                      </div>
