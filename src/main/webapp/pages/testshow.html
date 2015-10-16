@@ -1,17 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%
-	String path = request.getContextPath();
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<%=path%>/resources/css/style.css" type="text/css" />
-<link rel="stylesheet"  href="<%=path %>/resources/flowplayer/skin/functional.css" />
-<script type="text/javascript" src="<%=path%>/resources/js/jquery.min.js"></script>
-  <script  src="<%=path %>/resources/flowplayer/flowplayer.min.js" ></script>
+<link rel="stylesheet" href="../resources/css/style.css" type="text/css" />
+<link rel="stylesheet"  href="../resources/flowplayer/skin/functional.css" />
+<script type="text/javascript" src="../resources/js/jquery.min.js"></script>
+  <script  src="../resources/flowplayer/flowplayer.min.js" ></script>
   <script type="text/javascript">
 window.onload = function () {
 	  var feature = {
@@ -19,7 +14,7 @@ window.onload = function () {
 	        title: "feature",
 	        sources: [
 /*   { type: "video/webm",  src: "//stream.flowplayer.org/bauhaus.webm"}, */
-	          { type: "video/mp4",   src: "/resources/video/1.mp4" },
+	          { type: "video/mp4",   src: "../resources/video/1.mp4" },
 	          { type: "video/flash", src: "mp4:bauhaus" }
 	        ]
 	      },
@@ -28,7 +23,7 @@ window.onload = function () {
 	        title: "mid-roll",
 	        sources: [
 	    /*       { type: "video/webm",  src: "//stream.flowplayer.org/functional.webm"}, */
-	          { type: "video/mp4",   src: "/resources/video/1.mp4" },
+	          { type: "video/mp4",   src: "../resources/video/1.mp4" },
 	          { type: "video/flash", src: "mp4:functional" }
 	        ]
 	      },
@@ -84,7 +79,7 @@ window.onload = function () {
 <body>
  	<div class=" C_content">
 		<div class=" C_layout C_sp" style="overflow: hidden;">
-			<h2>${video.name }</h2>
+			<h2></h2>
 			<div class="C_sp_nr">
 				<div id="videoSrcId " class="videoDiv">
 					<div id="player" class="fixed-controls  videoDiv"  style="width: 700px; height: 400px;"></div>
