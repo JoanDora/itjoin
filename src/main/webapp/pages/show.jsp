@@ -10,9 +10,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>视频播放</title>
 <link rel="stylesheet" href="<%=path%>/resources/css/bootstrap.min.css" type="text/css">
-
-<%-- <script type="text/javascript" src="<%=path%>/resources/js/html5media.min.js"></script> --%>
-<%-- <link href="<%=path%>/resources/css/video/video-js.css" rel="stylesheet"> --%>
 <link rel="stylesheet" href="<%=path%>/resources/css/style.css" type="text/css" >
 <link rel="stylesheet"  href="<%=path %>/resources/flowplayer/skin/functional.css">
 
@@ -132,7 +129,7 @@ float:left;
     		jQuery.ajax({
 				type : 'GET',
 				contentType : 'application/json',
-				url : '/comment/save',
+				url : spath+'/comment/save',
 				dataType : 'json',
 				data:{
 				  "content":content,
@@ -168,17 +165,6 @@ float:left;
     	    return dt.format("yyyy-MM-dd hh:mm:ss"); //扩展的Date的format方法(上述插件实现)
     	}
     	
-    	
-    	/*    url =' ${video.url}';
-    	    encryptService.encrypt(url, {
-    	    	  callback:function(url) { 
-    	    		  var videoSrc = [];
-    	    		  videoSrc.push('<video id="my-video" class="video-js" width="915"  height="649"   controls preload loop="loop" data-setup="{}">');
-    	    		  videoSrc.push('<source src='+spath+'/file/getByName?fileName='+url+'  id="videoSrcId"  type="video/mp4"  >');
-    	    		  videoSrc.push('</video>');
-    	    		  $("#videoSrcId").append(videoSrc.join(''));
-    	    	  }
-    	    	}); */
     </script>
      <script type="text/javascript">
 window.onload = function () {
@@ -186,13 +172,11 @@ window.onload = function () {
 	    encryptService.encrypt(url, {
 	    	  callback:function(url) { 
 	    		  url = spath+'/file/getByName?fileName='+url;
-	    		  console.log(url);
 	    		  var feature = {
 	    			        cuepoints: [4],
 	    			        title: "it分享联盟",
 	    			        sources: [
 	    			          { type: "video/mp4",   src: url+"&v="+Math.random()}
-	    			      /*     { type: "video/flash", src: "mp4:bauhaus" } */
 	    			        ]
 	    			      },
 	    			      midroll = {
@@ -200,7 +184,6 @@ window.onload = function () {
 	    			        title: "it分享联盟广告",
 	    			        sources: [
 	    			          { type: "video/mp4",   src:url+"&v="+Math.random() }
-	    			       /*    { type: "video/flash", src: "mp4:functional" } */
 	    			        ]
 	    			      },
 	    			      container = document.getElementById("player"),
