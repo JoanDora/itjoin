@@ -41,7 +41,7 @@
         	  <c:forEach var="course" items="${courses}" varStatus="status"> 
             	<li>
                   <a href="<%=path%>/video/find/${course.id}">
-                    	<img src="<%=path%>/image/show?fileName=${course.imageUrl}"  width=175px height:=114px;/>
+                    	<img src="<%=path%>/image/show?fileName=${course.imageUrl}"  style="width:175px;height:114px; "/>
                         <div>
                         	<b>${course.name }</b></br>
                             <p>${course.description }</p>
