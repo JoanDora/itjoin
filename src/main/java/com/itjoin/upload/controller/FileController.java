@@ -4,12 +4,19 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URLDecoder;
+import java.nio.ByteBuffer;
+import java.nio.channels.SeekableByteChannel;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -29,7 +36,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.itjoin.constant.CommonConstant;
 import com.itjoin.util.DateTimeUtil;
 import com.itjoin.util.XXTeaUtil;
-
+import static java.nio.file.StandardOpenOption.READ;
 /**
  * 
  * 创建人：fantasy <br>
@@ -41,6 +48,12 @@ import com.itjoin.util.XXTeaUtil;
 public class FileController {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
+
+    private static final int BUFFER_LENGTH = 1024 * 16;
+
+    private static final long EXPIRE_TIME = 1000 * 60 * 60 * 24;
+
+    private static final Pattern RANGE_PATTERN = Pattern.compile("bytes=(?<start>\\d*)-(?<end>\\d*)");
 
     /**
      * 上传文件
@@ -81,7 +94,7 @@ public class FileController {
 	if (!(new File(realFilePath).exists())) {
 	    new File(realFilePath).mkdirs();
 	}
-	String bigRealFilePath =realFilePath+ FilenameUtils.getBaseName(orgFileName).concat(".") + fileName.concat(".").concat(FilenameUtils.getExtension(orgFileName).toLowerCase());
+	String bigRealFilePath = realFilePath + FilenameUtils.getBaseName(orgFileName).concat(".") + fileName.concat(".").concat(FilenameUtils.getExtension(orgFileName).toLowerCase());
 	if (file.getSize() > 0) {
 	    File targetFile = new File(bigRealFilePath);
 	    file.transferTo(targetFile);// 写入目标文件
@@ -93,7 +106,7 @@ public class FileController {
 	result.put("fileName", orgFileName);
     }
 
-    @RequestMapping(value = "/getByName")
+/*    @RequestMapping(value = "/getByName")
     @ResponseBody
     public void show(@RequestParam("fileName") String fileName, HttpServletResponse response, HttpSession session) {
 	if (session.getAttribute(CommonConstant.ENCRYPT_KEY) == null) {
@@ -138,6 +151,57 @@ public class FileController {
 	}
 	long end = System.currentTimeMillis();
 	System.out.println("=====视频观看时间总共耗时====" + (end - start) + "ms");
-    }
+    }*/
 
+    
+
+    @RequestMapping(value = "/getByName")
+    private void processRequest(@RequestParam("fileName") String fileName,final HttpServletRequest request, final HttpServletResponse response,HttpSession session) throws IOException {
+//	       String videoFilename = URLDecoder.decode(request.getParameter("video"), "UTF-8");
+	       if (session.getAttribute(CommonConstant.ENCRYPT_KEY) == null) {
+		    return;
+		}
+		String key = (String) session.getAttribute(CommonConstant.ENCRYPT_KEY);
+		fileName = XXTeaUtil.Decrypt(fileName, key).trim();
+	       Path video = Paths.get(fileName);
+	        int length = (int) Files.size(video);
+		int start = 0;
+		int end = length - 1;
+		String range = request.getHeader("Range");
+		Matcher matcher = RANGE_PATTERN.matcher(range);
+		
+		if (matcher.matches()) {
+		String startGroup = matcher.group("start");
+		start = startGroup.isEmpty()?start : Integer.valueOf(startGroup);
+		start = start < 0?  0 : start;
+		
+		String endGroup = matcher.group("end");
+		end = endGroup.isEmpty() ?end : Integer.valueOf(endGroup);
+		end = end > length - 1? length - 1 : end;
+		}
+		
+		int contentLength = end - start + 1;
+		response.reset();
+		response.setBufferSize(BUFFER_LENGTH);
+		response.setHeader("Content-Disposition", String.format("inline;filename=\"%s\"", fileName.substring(fileName.lastIndexOf("/"))));
+		response.setHeader("Accept-Ranges", "bytes");
+		response.setDateHeader("Last-Modified", Files.getLastModifiedTime(video).toMillis());
+		response.setDateHeader("Expires", System.currentTimeMillis() + EXPIRE_TIME);
+		response.setContentType(Files.probeContentType(video));
+		response.setHeader("Content-Range", String.format("bytes %s-%s/%s", start, end, length));
+		response.setHeader("Content-Length", String.format("%s", contentLength));
+		response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
+		int bytesRead;
+		int bytesLeft = contentLength;
+		ByteBuffer buffer = ByteBuffer.allocate(BUFFER_LENGTH);
+		try (SeekableByteChannel input = Files.newByteChannel(video, READ);
+		OutputStream output = response.getOutputStream()) {
+		input.position(start);
+		while ((bytesRead = input.read(buffer)) != -1 && bytesLeft > 0) {
+		buffer.clear();
+		output.write(buffer.array(), 0, bytesLeft < bytesRead ? bytesLeft : bytesRead);
+		bytesLeft -= bytesRead;
+		}
+		}
+		}
 }

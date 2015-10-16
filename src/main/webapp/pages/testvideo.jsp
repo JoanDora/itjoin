@@ -53,7 +53,7 @@ window.onload = function () {
 
 	  flowplayer(container, {
 	    ratio: 5/12,
-	    rtmp: "rtmp://s3b78u0kbtx79q.cloudfront.net/cfx/st",
+	  //  rtmp: "rtmp://s3b78u0kbtx79q.cloudfront.net/cfx/st",
 	    clip: feature
 	 
 	  }).on("cuepoint", function (e, api, cuepoint) {
@@ -82,7 +82,7 @@ window.onload = function () {
 </script>
 </head>
 <body>
- <div id="player" class="fixed-controls"></div>
+ <div id="player" class="fixed-controls"  style="width:700px;height:400px;" </div>
 <p id="info" class="info">&nbsp;</p>
 </body>
 </html>

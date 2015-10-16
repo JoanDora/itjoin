@@ -196,7 +196,7 @@ public class VideoController {
   		Course course = courseRepository.findOne(courseId);
   		model.put("course", course);
   		model.put("comments", comments);
-  		
+//  		if(course.getBrowseCount()==null)
   		course.setBrowseCount(course.getBrowseCount()+1);
   		courseRepository.save(course);
   		
