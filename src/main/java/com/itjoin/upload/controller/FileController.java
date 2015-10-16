@@ -134,8 +134,6 @@ public class FileController {
 
     @RequestMapping(value = "/getByName")
     private void processRequest(@RequestParam("fileName") String fileName, final HttpServletRequest request, final HttpServletResponse response, HttpSession session) throws IOException {
-	// String videoFilename =
-	// URLDecoder.decode(request.getParameter("video"), "UTF-8");
 	if (session.getAttribute(CommonConstant.ENCRYPT_KEY) == null) {
 	    return;
 	}
