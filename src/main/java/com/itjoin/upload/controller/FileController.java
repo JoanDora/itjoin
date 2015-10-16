@@ -145,7 +145,6 @@ public class FileController {
 	int end = length - 1;
 	String range = request.getHeader("Range");
 	Matcher matcher = RANGE_PATTERN.matcher(range);
-
 	if (matcher.matches()) {
 	    String startGroup = matcher.group("start");
 	    start = startGroup.isEmpty() ? start : Integer.valueOf(startGroup);
@@ -155,7 +154,6 @@ public class FileController {
 	    end = endGroup.isEmpty() ? end : Integer.valueOf(endGroup);
 	    end = end > length - 1 ? length - 1 : end;
 	}
-
 	int contentLength = end - start + 1;
 	response.reset();
 	response.setBufferSize(BUFFER_LENGTH);
