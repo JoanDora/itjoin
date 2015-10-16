@@ -37,6 +37,7 @@ import com.itjoin.constant.CommonConstant;
 import com.itjoin.util.DateTimeUtil;
 import com.itjoin.util.XXTeaUtil;
 import static java.nio.file.StandardOpenOption.READ;
+
 /**
  * 
  * 创建人：fantasy <br>
@@ -106,102 +107,79 @@ public class FileController {
 	result.put("fileName", orgFileName);
     }
 
-/*    @RequestMapping(value = "/getByName")
-    @ResponseBody
-    public void show(@RequestParam("fileName") String fileName, HttpServletResponse response, HttpSession session) {
+    /*
+     * @RequestMapping(value = "/getByName")
+     * 
+     * @ResponseBody public void show(@RequestParam("fileName") String fileName,
+     * HttpServletResponse response, HttpSession session) { if
+     * (session.getAttribute(CommonConstant.ENCRYPT_KEY) == null) { return; }
+     * String key = (String) session.getAttribute(CommonConstant.ENCRYPT_KEY);
+     * fileName = XXTeaUtil.Decrypt(fileName, key).trim(); long start =
+     * System.currentTimeMillis(); InputStream fis = null;
+     * response.setContentType("application/octet-stream; charset=utf-8"); if
+     * (StringUtils.isBlank(fileName)) { return; } OutputStream os = null; try {
+     * File file = FileUtils.getFile(fileName); os = response.getOutputStream();
+     * fis = FileUtils.openInputStream(file); int count = 0; byte[] buffer = new
+     * byte[1024 * 8]; while ((count = fis.read(buffer)) != -1) {
+     * os.write(buffer, 0, count); os.flush(); } os.flush(); } catch
+     * (IllegalStateException e) {
+     * 
+     * } catch (IOException e) { e.printStackTrace(); } finally { try { if (fis
+     * != null) { fis.close(); } if (os != null) { os.close(); }
+     * 
+     * } catch (IOException e) { e.printStackTrace(); } } long end =
+     * System.currentTimeMillis(); System.out.println("=====视频观看时间总共耗时====" +
+     * (end - start) + "ms"); }
+     */
+
+    @RequestMapping(value = "/getByName")
+    private void processRequest(@RequestParam("fileName") String fileName, final HttpServletRequest request, final HttpServletResponse response, HttpSession session) throws IOException {
+	// String videoFilename =
+	// URLDecoder.decode(request.getParameter("video"), "UTF-8");
 	if (session.getAttribute(CommonConstant.ENCRYPT_KEY) == null) {
 	    return;
 	}
 	String key = (String) session.getAttribute(CommonConstant.ENCRYPT_KEY);
 	fileName = XXTeaUtil.Decrypt(fileName, key).trim();
-	long start = System.currentTimeMillis();
-	InputStream fis = null;
-	response.setContentType("application/octet-stream; charset=utf-8");
-	if (StringUtils.isBlank(fileName)) {
-	    return;
+	Path video = Paths.get(fileName);
+	int length = (int) Files.size(video);
+	int start = 0;
+	int end = length - 1;
+	String range = request.getHeader("Range");
+	Matcher matcher = RANGE_PATTERN.matcher(range);
+
+	if (matcher.matches()) {
+	    String startGroup = matcher.group("start");
+	    start = startGroup.isEmpty() ? start : Integer.valueOf(startGroup);
+	    start = start < 0 ? 0 : start;
+
+	    String endGroup = matcher.group("end");
+	    end = endGroup.isEmpty() ? end : Integer.valueOf(endGroup);
+	    end = end > length - 1 ? length - 1 : end;
 	}
-	OutputStream os = null;
-	try {
-	    File file = FileUtils.getFile(fileName);
-	    os = response.getOutputStream();
-	    fis = FileUtils.openInputStream(file);
-	    int count = 0;
-	    byte[] buffer = new byte[1024 * 8];
-	    while ((count = fis.read(buffer)) != -1) {
-		os.write(buffer, 0, count);
-		os.flush();
-	    }
-	    os.flush();
-	} catch (IllegalStateException e) {
 
-	} catch (IOException e) {
-	    e.printStackTrace();
-	} finally {
-	    try {
-		if (fis != null) {
-		    fis.close();
-		}
-		if (os != null) {
-		    os.close();
-		}
-
-	    } catch (IOException e) {
-		e.printStackTrace();
-	    }
-	}
-	long end = System.currentTimeMillis();
-	System.out.println("=====视频观看时间总共耗时====" + (end - start) + "ms");
-    }*/
-
-    
-
-    @RequestMapping(value = "/getByName")
-    private void processRequest(@RequestParam("fileName") String fileName,final HttpServletRequest request, final HttpServletResponse response,HttpSession session) throws IOException {
-//	       String videoFilename = URLDecoder.decode(request.getParameter("video"), "UTF-8");
-	       if (session.getAttribute(CommonConstant.ENCRYPT_KEY) == null) {
-		    return;
-		}
-		String key = (String) session.getAttribute(CommonConstant.ENCRYPT_KEY);
-		fileName = XXTeaUtil.Decrypt(fileName, key).trim();
-	       Path video = Paths.get(fileName);
-	        int length = (int) Files.size(video);
-		int start = 0;
-		int end = length - 1;
-		String range = request.getHeader("Range");
-		Matcher matcher = RANGE_PATTERN.matcher(range);
-		
-		if (matcher.matches()) {
-		String startGroup = matcher.group("start");
-		start = startGroup.isEmpty()?start : Integer.valueOf(startGroup);
-		start = start < 0?  0 : start;
-		
-		String endGroup = matcher.group("end");
-		end = endGroup.isEmpty() ?end : Integer.valueOf(endGroup);
-		end = end > length - 1? length - 1 : end;
-		}
-		
-		int contentLength = end - start + 1;
-		response.reset();
-		response.setBufferSize(BUFFER_LENGTH);
-		response.setHeader("Content-Disposition", String.format("inline;filename=\"%s\"", fileName.substring(fileName.lastIndexOf("/"))));
-		response.setHeader("Accept-Ranges", "bytes");
-		response.setDateHeader("Last-Modified", Files.getLastModifiedTime(video).toMillis());
-		response.setDateHeader("Expires", System.currentTimeMillis() + EXPIRE_TIME);
-		response.setContentType(Files.probeContentType(video));
-		response.setHeader("Content-Range", String.format("bytes %s-%s/%s", start, end, length));
-		response.setHeader("Content-Length", String.format("%s", contentLength));
-		response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
-		int bytesRead;
-		int bytesLeft = contentLength;
-		ByteBuffer buffer = ByteBuffer.allocate(BUFFER_LENGTH);
-		try (SeekableByteChannel input = Files.newByteChannel(video, READ);
-		OutputStream output = response.getOutputStream()) {
-		input.position(start);
-		while ((bytesRead = input.read(buffer)) != -1 && bytesLeft > 0) {
+	int contentLength = end - start + 1;
+	response.reset();
+	response.setBufferSize(BUFFER_LENGTH);
+	response.setHeader("Content-Disposition", String.format("inline;filename=\"%s\"", fileName.substring(fileName.lastIndexOf("/"))));
+	response.setHeader("Accept-Ranges", "bytes");
+	response.setDateHeader("Last-Modified", Files.getLastModifiedTime(video).toMillis());
+	response.setDateHeader("Expires", System.currentTimeMillis() + EXPIRE_TIME);
+	response.setContentType(Files.probeContentType(video));
+	response.setHeader("Content-Range", String.format("bytes %s-%s/%s", start, end, length));
+	response.setHeader("Content-Length", String.format("%s", contentLength));
+	response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
+	int bytesRead;
+	int bytesLeft = contentLength;
+	ByteBuffer buffer = ByteBuffer.allocate(BUFFER_LENGTH);
+	try (SeekableByteChannel input = Files.newByteChannel(video, READ);
+	     OutputStream output = response.getOutputStream()) {
+	    input.position(start);
+	    while ((bytesRead = input.read(buffer)) != -1 && bytesLeft > 0) {
 		buffer.clear();
 		output.write(buffer.array(), 0, bytesLeft < bytesRead ? bytesLeft : bytesRead);
 		bytesLeft -= bytesRead;
-		}
-		}
-		}
+	    }
+	}
+    }
 }
