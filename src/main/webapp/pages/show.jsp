@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%-- <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" % --%>>
 <%
 	String path = request.getContextPath();
 %>
@@ -27,9 +26,9 @@
   <script type="text/javascript"  src="<%=path %>/highjs/interface/encryptService.js"> </script>
   <script  src="<%=path %>/resources/flowplayer/flowplayer.min.js" />
 <style type="text/css">
-/* .C_sp_nr2{
+.videoDiv{
 float:left;
-} */
+}
 </style>
 </head>
 
@@ -39,11 +38,10 @@ float:left;
 		<div class=" C_layout C_sp" style="overflow:hidden;">
             <h2>${video.name } </h2>
             <div class="C_sp_nr">
-            <div  id="videoSrcId">
-            <div id="player" class="fixed-controls"  style="width:700px;height:400px;" </div>
-       <!--      <video id="my-video" class="video-js" width="915"  height="649"   controls preload loop="loop" data-setup="{}"> -->
+            <div  id="videoSrcId "  class="videoDiv">
+            <div id="player" class="fixed-controls  videoDiv"  style="width:700px;height:400px;" ></div>
            </div>
-                <div class="C_sp_nr2">
+                <div class="C_sp_nr2 videoDiv">
                	  <div class="C_sp_nr2a">
                     	<ul>
                     	 <c:forEach var="item" items="${videos}" varStatus="status"> 

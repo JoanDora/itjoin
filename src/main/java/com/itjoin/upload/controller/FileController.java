@@ -157,6 +157,9 @@ public class FileController {
 	int contentLength = end - start + 1;
 	response.reset();
 	response.setBufferSize(BUFFER_LENGTH);
+	if(fileName.lastIndexOf("/")<0){
+	    return ;
+	}
 	response.setHeader("Content-Disposition", String.format("inline;filename=\"%s\"", fileName.substring(fileName.lastIndexOf("/"))));
 	response.setHeader("Accept-Ranges", "bytes");
 	response.setDateHeader("Last-Modified", Files.getLastModifiedTime(video).toMillis());
