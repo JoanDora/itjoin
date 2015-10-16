@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -162,6 +163,13 @@ public class CourseController {
 		if(StringUtils.isNotBlank(categoryId)){
 			criteria.andOperator(Criteria.where("categoryId").is(categoryId));
 			cc.andOperator(Criteria.where("categoryId").is(categoryId));
+		}
+		
+		String keyword = request.getParameter("keyword");
+		if(StringUtils.isNotBlank(keyword)){
+		    Pattern pattern = Pattern.compile("^.*" + keyword + ".*$");
+		    criteria.andOperator(Criteria.where("name").regex(pattern).orOperator(Criteria.where("description").regex(pattern)));
+		    cc.andOperator(Criteria.where("name").regex(pattern).orOperator(Criteria.where("description").regex(pattern)));
 		}
 	
 		query.addCriteria(criteria);

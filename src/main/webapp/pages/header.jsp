@@ -24,7 +24,7 @@ var spath =$('#basePath').attr("value");
             </ul>
             <div class="C_top_right">
             	<div class="C_search">
-                	<input type="text" class="C_text" value="关键字查找"/>
+                	<input type="text" class="C_text" id="keyword"  placeholder="关键字查找"/>
                     <i class="glyphicon glyphicon-search"  style="cursor:pointer;"  onclick="javascript:searchByKey();"></i>
                 </div>
                 
@@ -62,6 +62,12 @@ var spath =$('#basePath').attr("value");
 			}
 		});
 	})
+	
+	function searchByKey(){
+		var keyword = $("#keyword").val();
+		location.href=spath+"/course/find?keyword="+keyword;
+	}
+	
     </script>
 </body>
 </html>
