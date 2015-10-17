@@ -65,10 +65,10 @@
 		<div class=" C_layout C_sp" style="overflow:hidden;">
             <h2>${video.name } </h2>
             <div class="C_sp_nr">
-            <div  id="videoSrcId "  class="videoDiv">
-            <div id="player" class="fixed-controls  videoDiv"  style="width:700px;height:400px;" ></div>
+            <div  id="videoSrcId "  style="width: 915px; height: 400px; float:left;">
+            <div id="player" class="fixed-controls  videoDiv"  style=" height: 400px;"></div>
            </div>
-                <div class="C_sp_nr2 videoDiv">
+                <div class="C_sp_nr2 videoDiv"  style=" height: 400px;">
                	  <div class="C_sp_nr2a">
                     	<ul>
                     	 <c:forEach var="item" items="${videos}" varStatus="status"> 

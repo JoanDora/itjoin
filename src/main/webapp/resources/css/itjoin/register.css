@@ -82,12 +82,9 @@
  * }
  */
 .register-form {
-  background: url(/Template/styles/images/register/bg.jpg?v=0.6.6) no-repeat 800px 250px #ffffff;
+
 }
-.register-form form {
-  width: 720px;
-  margin-top: 20px;
-}
+
 .register-form label,
 .register-form .label {
   display: block;
@@ -116,13 +113,7 @@
 .register-form .state-tip,
 .register-form .state-icon {
   display: inline-block;
-  vertical-align: middle;
-}
-.register-form input {
-  float: left;
-  height: 30px;
-  line-height: 30px;
-  width: 280px;
+  vertical-align: middle;.register-form form
   font-size: 16px;
 }
 .register-form .auth-code-input {

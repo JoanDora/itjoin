@@ -31,11 +31,14 @@
 </head>
 <body>
 <%@ include file="header.jsp" %> 
-      <div class="grid-c1 container  C_content">
+       <div class="grid-c1 container  C_content C_content2" style="width:800px; padding:0px;">
+      	<div class="C_title">注册it分享联盟
+        	<div ><span>已有it分享联盟账号？ </span> <a href="/login">立即登录</a> </div>
+        </div>
           <div class="content " >
             <div class="content-wrap">
               <div class="register-form grid-c2">
-                <h2>&nbsp;</h2>
+                
                 <div class="clearfix">
                 	<form class="grid-c-l"  onsubmit="return onSubmit();"
 								id="user_register"  action="/user/register" method="post">
@@ -46,8 +49,7 @@
 									type="text" placeholder="张三" autocomplete="off"
 									name="userName" class="input-text"
 									onblur="javascript:checkName(this)" /> <span class="tip">
-										<span class="state-tip "> <i
-											class="state-icon "></i>
+										<span class="state-tip "> 
 									</span> 请填写您的姓名
 								</span>
 								</label> <label> <span class="title">手机号码</span> <input
@@ -55,35 +57,36 @@
 									name="phone" class="input-text"
 									onblur="javascript:checkPhone(this);" /> <span class="tip">
 										<span class="state-tip ">
-										 <i class="state-icon " id="phoneInfo"></i>
+										
 									</span> 请填写11位手机号码
 								</span>
 								</label> 
 								
 								<label> <span class="title">邮箱</span> <input
-									type="text" placeholder="xxxx@xxx.com" autocomplete="off" onblur="javascript:checkEmail(this);" 
+									type="text" placeholder="xxxx@xxx.com" autocomplete="off" onBlur="javascript:checkEmail(this);" 
 									name="email" class="input-text"/> <span class="tip">
 										<span class="state-tip ">
-										 <i class="state-icon " id="emailInfo"></i>
+										 
 									</span> 请填写正确的邮箱
 								</span>
 								</label>
 								
 								<label> <span class="title">密 码</span> <input
 									type="password" autocomplete="off" name="loginPwd" id="loginPwd"
-									class="input-text" onblur="javascript:checkPwd(this);"
+									class="input-text" onBlur="javascript:checkPwd(this);"
 									test="and(must, reg(/^(?!(.)\1+$)(?!\d+$)(?![a-zA-Z]+$).{6,20}$/))"
-									maxlength="20" /> <span class="tip"> <span
+									maxlength="20" /> <span class="tip"> 
+                                    <span
 										class="state-tip">
-										<i class="state-icon " id="pwdInfo"></i>
+										
 										</span> 长度6~20位，至少包含数字、字母、字符中的两种
 								</span>
 								</label> <label> <span class="title">确认密码</span> <input
 									type="password" autocomplete="off" name="confirmPwd"
-									class="input-text" onblur="javascript:checkRePwd(this);"
+									class="input-text" onBlur="javascript:checkRePwd(this);"
 									test="and(must, eq('Password'))" /> <span class="tip">
 										<span class="state-tip">
-										<i class="state-icon " id="comfirmPwdInfo"></i>
+										
 										</span> 请再次输入密码
 								</span>
 								</label> <label> <span class="title">验证码</span> <input
@@ -103,7 +106,7 @@
 								</div>
 							</form>
                      <div class="grid-c-l other">
-                    <div class="old-user-entry"> <span>已有it分享联盟账号？ </span> <a href="/login" class="login-page-entry">立即登录</a> </div>
+                    
                     <div class="sns-user-entry"> <span>使用合作网站账号登录</span></div>
                   </div>
                 </div>
@@ -118,10 +121,9 @@
 <div id="imgBox" style="display: none">
 						<img src="<%=path %><%=path%>/resources/images/loading.gif" alt="" />
 					</div>
-<script type="text/javascript"
-	src="<%=path%>/resources/js/jquery/jquery-1.10.2.js"></script>
+
 <script type="text/javascript" src="<%=path%>/resources/js/md5.js"></script>
-	<script type="text/javascript" src="<%=path%>/resources/js/jquery/jquery-form.js"></script>
+<script type="text/javascript" src="<%=path%>/resources/js/jquery/jquery-form.js"></script>
 <script type='text/javascript' src=' <%=path%>/resources/js/easydialog/easydialog.min.js'></script>
 </div>
 <!--}脚部--> 

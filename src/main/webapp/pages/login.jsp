@@ -35,20 +35,19 @@ margin: 0 auto;
 <body>
 <%@ include file="header.jsp" %> 
 <div id="akd_content" class="C_content">
-  <div class="grid-c1 welcome-slogan">欢迎您 <span>登录it分享联盟会员系统</span> </div>
+  
   <div class="login-container">
     <div class="grid-c1" >
-      <div class="banner"></div>
-      <div class="login-form">
+       <div class="login-form">
         <div class="head">
-          <h2>登录it分享联盟</h2>
-          <span>还没有一起it分享联盟账号？<a href="/register" class="register-page-entry">30秒注册</a></span> </div>
-        <form id="login_form"  method="post" onsubmit="return false">
+          登录it分享联盟
+          <span>还没有一起it分享联盟账号？<a href="/register" class="register-page-erynt" style="color:#fff; text-decoration:underline;">30秒注册</a></span> </div>
+        <form id="login_form"  method="post" onSubmit="return false" style="padding:0 50px;">
           <div class="tip error"></div>
-          <div class="input-text left user"> <span><i></i></span>
-            <input type="text" name="phone"  name="phone"  test="must" label="登录账号" placeholder="请输入您的注册手机">
-          </div>
-          <div class="input-text left pwd"> <span><i></i></span>
+          <div class="input-text left user"> 
+            <input type="text" name="phone"   test="must" label="登录账号" placeholder="请输入您的注册手机">
+          </div></br>
+          <div class="input-text left pwd"> 
             <input type="password" name="loginPwd"  id="loginPwd"  test="must" label="登录密码" maxlength="20" placeholder="请输入您的登录密码">
           </div>
           <div class="tools clearfix">
