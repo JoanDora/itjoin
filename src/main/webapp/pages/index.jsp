@@ -11,6 +11,9 @@
 <title>it分享联盟主页</title>
 <link rel="stylesheet" href="<%=path%>/resources/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="<%=path%>/resources/css/style.css" type="text/css" >
+<style>
+.C_content_a li a img{ width:283px; height:185px;}
+</style>
 </head>
 
 <body>
@@ -41,7 +44,7 @@
         	  <c:forEach var="course" items="${courses}" varStatus="status"> 
             	<li>
                   <a href="<%=path%>/video/find/${course.id}">
-                    	<img src="<%=path%>/image/show?fileName=${course.imageUrl}"  style="width:175px;height:114px; "/>
+                    	<img src="<%=path%>/image/show?fileName=${course.imageUrl}" />
                         <div>
                         	<b>${course.name }</b></br>
                             <p>${course.description }</p>

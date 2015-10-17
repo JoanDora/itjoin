@@ -21,6 +21,9 @@ html, body {
 <body>
 	<%@ include file="header.jsp" %> 
 	<div class=" C_content" >
+		<div class="C_layout" style="padding:40px 10px; border-bottom:1px dotted #ddd; overflow:hidden; ">
+        	<button style="background:#58a210; line-height:40px; color:#fff; padding:0 20px; border-radius:8px; border:none;">下载视频录制工具</button>
+        </div>
 		<div class=" C_layout C_about_us" style="overflow:hidden;">
 		     <span>
 		        ${webinfo.content }
