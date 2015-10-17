@@ -23,8 +23,38 @@
   <script type="text/javascript"  src="<%=path %>/highjs/interface/encryptService.js"> </script>
   <script  src="<%=path %>/resources/flowplayer/flowplayer.min.js" />
 <style type="text/css">
-.videoDiv{
-float:left;
+.flowplayer .fp-timeline {
+  margin-right: 270px; /* originally: 225px */
+}
+.no-volume.no-mute.flowplayer .fp-timeline {
+  margin-right: 165px; /* originally: 120px */
+}
+.flowplayer .fp-remaining, .flowplayer .fp-duration {
+  right: 225px; /* orginally: 180px */
+}
+.no-mute.no-volume.flowplayer .fp-remaining, .no-mute.no-volume.flowplayer .fp-duration {
+  right: 120px; /* originally: 75px */
+}
+.flowplayer .fp-brand {
+  right: 160px; /* originally 115px */
+}
+.no-volume.no-mute.flowplayer .fp-brand {
+  right: 55px; /* originally 10px */
+}
+ 
+.flowplayer .fp-volume {
+  right: 55px; /* originally 10px; */
+}
+.flowplayer .fp-embed {
+  right: 10px; /* originally 50px */
+}
+.flowplayer .fp-embed-code {
+  right: 47px; /* originally 67px */
+}
+ 
+/* position new fullscreen button */
+.flowplayer .fp-fullscreen {
+  top: 0;
 }
 </style>
 </head>
@@ -167,6 +197,33 @@ float:left;
     	
     </script>
      <script type="text/javascript">
+     flowplayer(function (api, root) {
+    	  var fsbutton = document.createElement("a"),
+    	      anchors = root.getElementsByTagName("a"),
+    	      divs = root.getElementsByTagName("div"),
+    	      i, elem;
+    	 
+    	  fsbutton.className = "fp-fullscreen";
+    	 
+    	  for (i = 0; i < anchors.length; i += 1) {
+    	      elem = anchors[i];
+    	      if (elem.className == "fp-fullscreen") {
+    	          elem.parentNode.removeChild(elem);
+    	          break;
+    	      }
+    	  }
+    	 
+    	  for (i = 0; i < divs.length; i += 1) {
+    	      elem = divs[i];
+    	      if (elem.className == "fp-controls") {
+    	          elem.appendChild(fsbutton);
+    	          break;
+    	      }
+    	  }
+    	});
+    	 
+     
+     
 window.onload = function () {
 	   var url =' ${video.url}';
 	    encryptService.encrypt(url, {

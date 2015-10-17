@@ -176,18 +176,16 @@ public class VideoController {
   		
   		String serial = request.getParameter("serial");
   		Video v = null;
-  		if(StringUtils.isBlank(serial)){
-  			serial="1";
-  		}
   		Collections.sort(videos);
-  		for(Video video : videos){
-  			if(video.getSerial().intValue()==Integer.valueOf(serial).intValue()){
-  				v= video;
-//  				String url=XXTeaUtil.Encrypt(v.getUrl(), CommonConstant.XXTEA_KEY);
-//  				v.setUrl(url);
-  				break;
-  			}
-//  		    video.setUrl(url);
+  		if(StringUtils.isBlank(serial)){
+  			v=videos.get(0);
+  		}else{
+  			for(Video video : videos){
+  	  			if(video.getSerial().intValue()==Integer.valueOf(serial).intValue()){
+  	  				v= video;
+  	  				break;
+  	  			}
+  	  		}
   		}
   		model.put("video", v);
   		Query queryComment = new Query();
