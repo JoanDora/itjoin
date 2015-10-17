@@ -30,13 +30,14 @@ var spath =$('#basePath').attr("value");
                 
                 <c:if test="${sessionScope.user == null}">
                 <div class="C_dl">
-                	<a href="/login">登录</a><span>|</span>
-                    <a href="/register">注册</a>
+                	<a href="<%=path %>/login">登录</a><span>|</span>
+                    <a href="<%=path %>/register">注册</a>
                 </div>
                 </c:if>
                  <c:if test="${sessionScope.user !=null}">
                 <div class="C_dl">
-                	<a href="javascript:void(0)">${sessionScope.user.userName }</a>
+                	<a href="javascript:void(0)">${sessionScope.user.userName }</a><span>|</span>
+                	 <a href="<%=path %>/exit">退出</a>
                 </div>
                 </c:if>
             </div>

@@ -35,7 +35,7 @@
             	 <c:forEach var="course" items="${courses}" varStatus="status"> 
                 	<li>
                     	<a href="<%=path%>/video/find/${course.id}">
-                        		<img src="<%=path%>/image/show?fileName=${course.imageUrl}" />
+                        		<img src="<%=path%>/image/show?fileName=${course.imageUrl}"   onerror="this.src='<%=path %>/resources/images/default_video.jpg'"/>
                             <div>
                             	<h2>${course.name }</h2>
                                 <p>${course.description }</p>

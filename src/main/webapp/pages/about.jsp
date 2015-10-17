@@ -22,7 +22,7 @@ html, body {
 	<%@ include file="header.jsp" %> 
 	<div class=" C_content" >
 		<div class="C_layout" style="padding:40px 10px; border-bottom:1px dotted #ddd; overflow:hidden; ">
-        	<button style="background:#58a210; line-height:40px; color:#fff; padding:0 20px; border-radius:8px; border:none;">下载视频录制工具</button>
+        	<a href="http://www.xp510.com/xiazai/Graphics/Animation/13870.html" target="_bank"  style="background:#58a210; height:40px; color:#fff; padding:0 20px; border-radius:8px; border:none;" >下载视频录制工具</a>
         </div>
 		<div class=" C_layout C_about_us" style="overflow:hidden;">
 		     <span>
@@ -36,5 +36,7 @@ html, body {
      <%@ include file="footer.jsp" %> 
     <script type="text/javascript" src="<%=path%>/resources/js/jquery.min.js"></script>
     <script type="text/javascript" src="<%=path%>/resources/js/jquery.jslides.js"></script>
+    <script type="text/javascript">
+    </script>
 </body>
 </html>

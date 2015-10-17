@@ -33,7 +33,7 @@ function skip(id){
         	  <c:forEach var="course" items="${courses}" varStatus="status"> 
             	<li>
                 	<div class="C_div"  onclick="skip('${course.id}')"  style="cursor:pointer;">
-                    	<img   src="<%=path%>/image/show?fileName=${course.imageUrl}"   />
+                    	<img   src="<%=path%>/image/show?fileName=${course.imageUrl}"  onerror="this.src='<%=path %>/resources/images/default_video.jpg'" />
                         <div>
                         	<b>${course.name }</b></br>
                             <p>${course.description }</p>

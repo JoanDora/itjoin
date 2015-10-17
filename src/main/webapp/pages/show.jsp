@@ -74,7 +74,7 @@
                     	 <c:forEach var="item" items="${videos}" varStatus="status"> 
                         	<li>
                             <a href="<%=path%>/video/find/${course.id}?serial=${item.serial}">
-                            	<img src="<%=path%>/image/show?fileName=${course.imageUrl}" />
+                            	<img src="<%=path%>/image/show?fileName=${course.imageUrl} "  onerror="this.src='<%=path %>/resources/images/default_video.jpg'"/>
                                 <p><span>第${item.serial }集：</span>${item.name }</p>
                             </a>
                             </li>

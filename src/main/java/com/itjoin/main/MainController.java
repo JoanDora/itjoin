@@ -10,6 +10,7 @@
 package com.itjoin.main; 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +41,11 @@ public class MainController {
     @RequestMapping("/register")
     public String register(){
     	return  PAGE+"register";
+    }
+    @RequestMapping("/exit")
+    public String exit(HttpSession session){
+    	session.removeAttribute("user");
+    	return  "redirect:course/findLatest";
     }
 }
  

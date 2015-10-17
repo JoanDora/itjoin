@@ -33,7 +33,7 @@
 <%@ include file="header.jsp" %> 
        <div class="grid-c1 container  C_content C_content2" style="width:800px; padding:0px;">
       	<div class="C_title">注册it分享联盟
-        	<div ><span>已有it分享联盟账号？ </span> <a href="/login">立即登录</a> </div>
+        	<div ><span>已有it分享联盟账号？ </span> <a href="<%=path%>/login">立即登录</a> </div>
         </div>
           <div class="content " >
             <div class="content-wrap">
@@ -92,7 +92,7 @@
 								</label> <label> <span class="title">验证码</span> <input
 									type="text" name="authCode" class="input-text auth-code-input" id="authCode"  onblur="javascript:checkCode(this);"
 									test="must" maxlength="4" /> <span class="auth-code-wrap">
-										<img src="/user/validataCode" id="imageCode"
+										<img src="<%=path%>/user/validataCode" id="imageCode"
 										style="display: inline" class="auth-code-img"
 										title="点击刷新验证码图片" /> <a href="javascript:nextImageCode();"
 										class="auth-code-refresh-btn" style="display: inline"
