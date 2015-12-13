@@ -8,7 +8,7 @@
 </head>
 <body>
     <footer >
-    	Copytright 2008-2013  课程内容版权均归学ii分享联盟网所有 桂ICP备15004246号
+    	Copyright © 2015 - 2016  深圳市大象在线分享科技有限公司 粤ICP备15101368号
     </footer>
 </body>
 </html>

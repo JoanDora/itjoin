@@ -20,7 +20,7 @@ var spath =$('#basePath').attr("value");
                     </div>
                 </li>
                     <li><a href="<%=path %>/course/list">我的课程</a></li>
-                <li><a href="<%=path %>/webinfo/show">关于我们</a></li>
+                <li><a href="<%=path %>/webinfo/show">公司简介</a></li>
             </ul>
             <div class="C_top_right">
             	<div class="C_search">
