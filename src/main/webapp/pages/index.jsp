@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -47,9 +47,18 @@
                     	<img src="<%=path%>/image/show?fileName=${course.imageUrl}"  onerror="this.src='<%=path %>/resources/images/default_video.jpg'"/>
                         <div>
                         	<b>${course.name }</b></br>
-                            <p>${course.description }</p>
-                            <p>${course.price }元</p>
-                             <span>主讲: ${course.teacherName }</span>
+                        	<p>
+                        	<c:choose>  
+							    <c:when test="${fn:length(course.description) > 40}">  
+							        <c:out value="${fn:substring(course.description, 0, 40)}......" />  
+							    </c:when>  
+							   <c:otherwise>  
+							      <c:out value=" ${course.description }" />  
+							    </c:otherwise>  
+							</c:choose>  
+                           </p>
+                            <p style="color:red">${course.price }元</p>
+                             <span>主讲: ${course.teacherName }</span> <span style="margin-left:30px;"><input type="button" style="color:red" value="购买"/>
                         </div>
                     </a>
                 </li>
