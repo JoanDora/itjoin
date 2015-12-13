@@ -68,7 +68,7 @@ function skip(id){
             	<li><span>课程标题：</span><input type="text"  name="name"  id="name"/></li>
                  <li><span>讲师名字：</span><input type="text"  name="teacherName"  id="teacherName"/></li>
                 <li><span>简介：</span><textarea  name="description"  id="description"></textarea></li>
-                 <li><span>价格：</span><textarea  name="price"  id="price"></textarea></li>
+                 <li><span>价格：</span><input  name="price"  id="price" /></li>
                 <li><span>连载状态：</span>
                 	 <div>
                    	<span><input type="radio" name="statusSelect" checked="checked"  onclick="getStatus();" value="0" />更新中</span>
