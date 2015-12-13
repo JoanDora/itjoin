@@ -55,7 +55,7 @@
                 </c:forEach>
             </ul>
         </div>
-		<div class="C_link C_layout">
+		<!-- <div class="C_link C_layout">
         	<span>友情链接: </span>
             <div>
             	<a href="http://www.xuetuwuyou.com/course/15">学途无忧</a>
@@ -72,7 +72,7 @@
                 <a href="http://www.xuetuwuyou.com/course/15">学途无忧</a>
                 <a href="http://www.xuetuwuyou.com/course/15">学途无忧</a>
             </div>
-        </div>
+        </div> -->
     </div>
      <%@ include file="footer.jsp" %> 
     <script type="text/javascript" src="<%=path%>/resources/js/jquery.jslides.js"></script>
