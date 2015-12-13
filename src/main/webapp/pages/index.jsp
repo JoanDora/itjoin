@@ -58,7 +58,8 @@
 							</c:choose>  
                            </p>
                             <p style="color:red">${course.price }元</p>
-                             <span>主讲: ${course.teacherName }</span> <span style="margin-left:30px;"><input type="button" style="color:red" value="购买"/>
+                             <span>主讲: ${course.teacherName }</span> <span style="margin-left:30px;">
+                             <input type="button" style="background:#FFAA28;padding:0px 25px;line-height:30px;color:#FFF;font-family:'微软雅黑',Helvetica, Arial, Sans-Serif;font-size:16px;border:0" value="购买"/>
                         </div>
                     </a>
                 </li>
