@@ -48,7 +48,7 @@
                         <div>
                         	<b>${course.name }</b></br>
                             <p>${course.description }</p>
-                            <p>${cource.price }元</p>
+                            <p>${course.price }元</p>
                              <span>主讲: ${course.teacherName }</span>
                         </div>
                     </a>
