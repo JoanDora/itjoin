@@ -8,7 +8,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>it分享联盟主页</title>
+<title>大象在线分享主页</title>
 <link rel="stylesheet" href="<%=path%>/resources/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="<%=path%>/resources/css/style.css" type="text/css" >
 <style>
