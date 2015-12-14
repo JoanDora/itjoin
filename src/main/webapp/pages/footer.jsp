@@ -8,7 +8,7 @@
 </head>
 <body>
     <footer >
-    	Copyright © 2015 - 2016  深圳市大象在线分享科技有限公司 粤ICP备15101368号
+    	Copyright © 2015 - 2016  深圳市大象在线分享科技有限公司 <a href="http://www.miibeian.gov.cn/">粤ICP备15101368号</a>
     </footer>
 </body>
 </html>
