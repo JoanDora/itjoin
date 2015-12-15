@@ -8,6 +8,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta property="qc:admins" content="660026576761427166727" />
 <title>大象在线分享主页</title>
 <link rel="stylesheet" href="<%=path%>/resources/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="<%=path%>/resources/css/style.css" type="text/css" >
@@ -15,8 +16,7 @@
 .C_content_a li a img{ width:283px; height:185px;}
 </style>
 </head>
-<script type="text/javascript"
- src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" charset="utf-8" data-callback="true"></script>
+<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" charset="utf-8" data-callback="true" ></script>
 <body>
 <%-- <jsp:include page="header.jsp" /> --%>
 <%@ include file="header.jsp" %> 
