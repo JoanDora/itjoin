@@ -28,10 +28,11 @@ import com.itjoin.upload.listener.FileUploadProgressListener;
  *
  */
 public class CustomMultipartResolver extends CommonsMultipartResolver {
-	private final Logger logger = LoggerFactory.getLogger(getClass());
+	private static final Logger logger = LoggerFactory.getLogger(CustomMultipartResolver.class);
 	private HttpServletRequest request;
 	
     protected FileUpload newFileUpload(FileItemFactory fileItemFactory) {  
+    	logger.warn("newFileUpload");
         ServletFileUpload upload = new ServletFileUpload(fileItemFactory);  
         upload.setSizeMax(-1);  
         if (request != null) {  
@@ -50,6 +51,7 @@ public class CustomMultipartResolver extends CommonsMultipartResolver {
 	
 	@Override
 	public MultipartParsingResult parseRequest(HttpServletRequest request) throws MultipartException {
+	 	logger.warn("parseRequest");
 		HttpSession session = request.getSession(); 
 		String encoding = determineEncoding(request);
 		FileUpload fileUpload = prepareFileUpload(encoding);
@@ -59,6 +61,7 @@ public class CustomMultipartResolver extends CommonsMultipartResolver {
 			List<FileItem> fileItems = ((ServletFileUpload) fileUpload).parseRequest(request);
 			return parseFileItems(fileItems, encoding);
 		} catch (FileUploadBase.SizeLimitExceededException ex) {
+			logger.error("SizeLimitExceededException上传失败{}",ex);
 			throw new MaxUploadSizeExceededException(fileUpload.getSizeMax(), ex);
 		} catch (FileUploadException ex) {
 			logger.error("上传失败{}",ex);

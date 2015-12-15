@@ -145,13 +145,14 @@ public class FileController {
 	private void processRequest(@RequestParam("fileName") String fileName,
 			final HttpServletRequest request,
 			final HttpServletResponse response, HttpSession session) {
-		logger.warn("读取文件，文件名为{}", fileName);
+		logger.warn("读取文件，原始文件名为{}", fileName);
 		try {
 			if (session.getAttribute(CommonConstant.ENCRYPT_KEY) == null) {
 				return;
 			}
 			String key = (String) session.getAttribute(CommonConstant.ENCRYPT_KEY);
 			fileName = XXTeaUtil.Decrypt(fileName, key).trim();
+			logger.warn("读取文件，真实文件名为{}", fileName);
 			Path video = Paths.get(fileName);
 			int length = (int) Files.size(video);
 			int start = 0;
