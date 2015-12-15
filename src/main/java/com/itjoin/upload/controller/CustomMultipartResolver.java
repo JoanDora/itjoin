@@ -11,6 +11,8 @@ import org.apache.commons.fileupload.FileUpload;
 import org.apache.commons.fileupload.FileUploadBase;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -26,7 +28,7 @@ import com.itjoin.upload.listener.FileUploadProgressListener;
  *
  */
 public class CustomMultipartResolver extends CommonsMultipartResolver {
-	
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private HttpServletRequest request;
 	
     protected FileUpload newFileUpload(FileItemFactory fileItemFactory) {  
@@ -59,6 +61,7 @@ public class CustomMultipartResolver extends CommonsMultipartResolver {
 		} catch (FileUploadBase.SizeLimitExceededException ex) {
 			throw new MaxUploadSizeExceededException(fileUpload.getSizeMax(), ex);
 		} catch (FileUploadException ex) {
+			logger.error("上传失败{}",ex);
 			throw new MultipartException("Could not parse multipart servlet request", ex);
 		}
 	}
