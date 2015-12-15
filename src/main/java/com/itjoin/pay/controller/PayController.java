@@ -48,9 +48,13 @@ public class PayController {
     
     @Resource
     private OrderRepository orderRepository;
+    
 	/**
-	 * forward to ali pay pages
-	 * 
+	 * 进入支付页面
+	 * @param id
+	 * @param model
+	 * @param session
+	 * @return
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/goPayPage/{id}", method = RequestMethod.GET)
