@@ -5,11 +5,16 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.itjoin.course.model.Course;
+import com.itjoin.course.repositories.CourseRepository;
 import com.itjoin.pay.config.AlipayConfig;
 import com.itjoin.pay.entity.PayEntity;
 import com.itjoin.pay.util.AlipaySubmit;
@@ -20,20 +25,24 @@ import com.itjoin.pay.util.AlipaySubmit;
  * @author JOANDORA CHUNG
  */
 @Controller
-@RequestMapping("/alipay")
+@RequestMapping("/pay")
 public class PayController {
+    @Resource
+    private CourseRepository courseRepository;
 	/**
 	 * forward to ali pay pages
 	 * 
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "/goPayPage", method = RequestMethod.GET)
-	public ModelAndView goPayPage(PayEntity payEntity, ModelAndView model)
+	@RequestMapping(value = "/goPayPage/{id}", method = RequestMethod.GET)
+	public String  goPayPage(@PathVariable String id, ModelMap model)
 			throws IOException {
-
+                
+	     Course course =  courseRepository.findOne(id);
+	        PayEntity payEntity = new PayEntity();
 		payEntity.setWiDoutTradeNo(String.valueOf(new Date().getTime()));
-		payEntity.setWiDsubject("Zookeeper从入门到进阶");
-		payEntity.setWiDprice("168");
+		payEntity.setWiDsubject(course.getName());
+		payEntity.setWiDprice(""+course.getPrice());
 
 		// 支付类型
 		String payment_type = "1";
@@ -84,8 +93,7 @@ public class PayController {
 
 		// 建立请求
 		String sHtmlText = AlipaySubmit.buildRequest(sParaTemp, "post", "确认");
-		model.addObject("sHtmlText", sHtmlText);
-		model.setViewName("pages/pay/alipayapi");
-		return model;
+		model.put("sHtmlText", sHtmlText);
+		return "pages/pay/alipayapi";
 	}
 }
