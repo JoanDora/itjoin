@@ -264,7 +264,20 @@ public class PayController {
 	
 	
 	
-	//同步通知接口
+	/**
+	 * 
+	 * <p>
+	 * 支付成功后，支付宝同步调用接口
+	 *
+	 *
+	 * </p>
+	 * @param request
+	 * @param response
+	 *  
+	 * @author	hz1412998 
+	 * @date	2015年12月15日 下午2:33:41
+	 * @version
+	 */
 	@RequestMapping("/return")
 	public void synchronousReturn(HttpServletRequest request,HttpServletResponse response){
 	    PrintWriter out = null;
