@@ -1,4 +1,4 @@
-package com.itjoin.pay.entity;
+package com.itjoin.pay.model;
 
 /**
  * alipay entity
