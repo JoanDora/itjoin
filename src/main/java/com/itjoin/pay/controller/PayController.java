@@ -11,12 +11,15 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.alibaba.fastjson.JSONObject;
 import com.itjoin.course.model.Course;
 import com.itjoin.course.repositories.CourseRepository;
 import com.itjoin.pay.config.AlipayConfig;
@@ -35,6 +38,8 @@ import com.itjoin.pay.util.AlipaySubmit;
 @Controller
 @RequestMapping("/pay")
 public class PayController {
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
     @Resource
     private CourseRepository courseRepository;
     
@@ -108,6 +113,8 @@ public class PayController {
 		order.setCourseId(id);
 		order.setOutTradeNo(outTradeNo);
 		orderRepository.save(order);
+		
+		logger.warn("用户准备支付，订单信息为:"+JSONObject.toJSONString(order));
 		return "pages/pay/alipayapi";
 	}
 	
@@ -154,6 +161,7 @@ public class PayController {
 		//交易状态
 		String trade_status = new String(request.getParameter("trade_status").getBytes("ISO-8859-1"),"UTF-8");
 		//获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表(以上仅供参考)//
+		logger.warn("支付宝回调信息:{}",JSONObject.toJSONString(params));
 		if(AlipayNotify.verify(params)){//验证成功
 			//请在这里加上商户的业务逻辑程序代码
 			//——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
@@ -164,7 +172,7 @@ public class PayController {
 						//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
 			    			//请务必判断请求时的price、quantity、seller_id与通知时获取的price、quantity、seller_id为一致的
 						//如果有做过处理，不执行商户的业务程序
-            			    Order order = orderRepository.findByOutTradeNo(outTradeNo);
+            			  Order order = orderRepository.findByOutTradeNo(outTradeNo);
             			 if(order !=null){
             			    order.setTradeStatus(PayConstant.WAIT_BUYER_PAY);
             			    order.setTradeNo(tradeNo);
@@ -178,14 +186,11 @@ public class PayController {
 			    			//请务必判断请求时的price、quantity、seller_id与通知时获取的price、quantity、seller_id为一致的
 						//如果有做过处理，不执行商户的业务程序
 					
-				    //开启额外线程去处理确认到货接口
-				    
 				    Order order = orderRepository.findByOutTradeNo(outTradeNo);
-				    if(order !=null){
+				    if(order !=null && order.getTradeStatus()==PayConstant.WAIT_BUYER_PAY){
 					 order.setTradeStatus(PayConstant.WAIT_SELLER_SEND_GOODS);
 					 order.setTradeNo(tradeNo);
 	            			  orderRepository.save(order);
-
 	            			//物流公司名称
 	            			String logistics_name = PayConstant.LOGISTICS_NAME;
 	            			//必填
@@ -194,8 +199,6 @@ public class PayController {
 	            			  String invoice_no = "Invoice"+String.valueOf(new Date().getTime());
 	            			//物流运输类型
 	            			String transport_type = new String("EMS");
-	            			
-	            			//////////////////////////////////////////////////////////////////////////////////
 	            			
 	            			//把请求参数打包成数组
 	            			Map<String, String> sParaTemp = new HashMap<String, String>();
@@ -208,16 +211,18 @@ public class PayController {
 	            			sParaTemp.put("transport_type", transport_type);
 	            			//建立请求
 	            			String sHtmlText = AlipaySubmit.buildRequest("", "", sParaTemp);
-	            			out.println(sHtmlText);
-				    }
+	            			
+	            			logger.warn("用户付款，支付宝通知，确认发货信息为:{}",JSONObject.toJSONString(sParaTemp));
+//	            			out.println(sHtmlText);
 				    //发货处理
-				    
 				   out.println("success");	//请不要修改或删除
+				 
+				    }
 				} else if(trade_status.equals("WAIT_BUYER_CONFIRM_GOODS")){
 				//该判断表示卖家已经发了货，但买家还没有做确认收货的操作
 					
 				    Order order = orderRepository.findByOutTradeNo(outTradeNo);
-				    if(order !=null){
+				    if(order !=null && order.getTradeStatus()==PayConstant.WAIT_SELLER_SEND_GOODS){
 					 order.setTradeStatus(PayConstant.WAIT_BUYER_CONFIRM_GOODS);
 					 order.setTradeNo(tradeNo);
 	            			  orderRepository.save(order);
@@ -229,11 +234,13 @@ public class PayController {
 					out.println("success");	//请不要修改或删除
 				} else if(trade_status.equals("TRADE_FINISHED")){
 				//该判断表示买家已经确认收货，这笔交易完成
+				    logger.warn("买家已经确认收货，这笔交易完成");
 				    Order order = orderRepository.findByOutTradeNo(outTradeNo);
 				    if(order !=null && order.getTradeStatus()==PayConstant.WAIT_BUYER_CONFIRM_GOODS){
 					 order.setTradeStatus(PayConstant.TRADE_FINISHED);
 					 order.setTradeNo(tradeNo);
 	            			  orderRepository.save(order);
+	            			    logger.warn("交易完成修改订单号，开通课程{}",JSONObject.toJSONString(order));
 				      }
 					//判断该笔订单是否在商户网站中已经做过处理
 						//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
@@ -245,16 +252,12 @@ public class PayController {
 				else {
 					out.println("success");	//请不要修改或删除
 				}
-
-			//——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
-
-			//////////////////////////////////////////////////////////////////////////////////////////
 		}else{//验证失败
 			out.println("fail");
 		}
     	  } catch (Exception e) {
-  		e.printStackTrace();
-  		return ;
+    	          
+            	  out.println("fail");
   	    }
 	    
 	}
