@@ -29,7 +29,9 @@ public class Course {
     private String name;
 
     private String description;
-
+    
+    private String userId;//上传用户
+    
     private String teacherId;
 
     private String categoryId;//课程种类:1 Java 2 linux
@@ -52,6 +54,15 @@ public class Course {
     
     
     
+    
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
 	public Integer getBrowseCount() {
 		return browseCount;
 	}

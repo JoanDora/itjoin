@@ -102,8 +102,7 @@ public class FileController {
 			new File(realFilePath).mkdirs();
 		}
 		String bigRealFilePath = realFilePath
-				+ FilenameUtils.getBaseName(orgFileName).concat(".")
-				+ fileName.concat(".").concat(
+				+ FilenameUtils.getBaseName(orgFileName).concat(".").concat(
 						FilenameUtils.getExtension(orgFileName).toLowerCase());
 		if (file.getSize() > 0) {
 			File targetFile = new File(bigRealFilePath);

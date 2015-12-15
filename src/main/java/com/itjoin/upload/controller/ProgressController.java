@@ -24,8 +24,16 @@ public class ProgressController{
 	
 	@RequestMapping(value = "/upload/progress", method = RequestMethod.GET )
 	public @ResponseBody Object initCreateInfo(HttpServletRequest request) {
-		logger.warn("获取文件上传进度");
-		Progress status = (Progress) request.getSession().getAttribute("upload_ps");
+		Progress status =new Progress();
+		try {
+			logger.warn("获取文件上传进度");
+			Object result = request.getSession().getAttribute("upload_ps");
+			if(result!=null){
+				 status = (Progress) result;
+			}
+		} catch (Exception e) {
+			logger.error("获取进度异常",e);
+		}
 		return status;
 	}
 }
