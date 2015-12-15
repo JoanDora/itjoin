@@ -35,7 +35,7 @@ xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
 	<bean  class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 	      <property name="exceptionMappings">
 	            <props>
-	                  <prop key="com.itjoin.exception.CommonException">error</prop>
+	                  <prop key="com.itjoin.exception.CommonException">pages/error</prop>
 	            </props>
 	      </property>
 	</bean>

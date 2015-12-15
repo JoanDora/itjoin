@@ -21,6 +21,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -55,7 +57,7 @@ import com.itjoin.video.repositories.VideoRepository;
 @Controller
 @RequestMapping("/video")
 public class VideoController {
-    
+	private final Logger logger = LoggerFactory.getLogger(getClass());
     private static final String PAGE = "pages/";
 	@Resource
     private VideoRepos videoRepos;
@@ -68,16 +70,12 @@ public class VideoController {
     @Resource
     private CommentRepos commentRepos;
     
-    @SuppressWarnings("null")
     @RequestMapping(value="/save",method=RequestMethod.POST)
     public String save(Video video,HttpSession session) throws CommonException{
     	String url =null;
     	if(StringUtils.isBlank(video.getUrl())){
     		url = (String) session.getAttribute("videoPath");
     	}
-     if(StringUtils.isBlank(url)){
-    	 throw new CommonException("视频文件未上传");
-     }
      if(StringUtils.isBlank(video.getCourseId())){
     	 throw new CommonException("上传失败，未绑定课程");
      }
@@ -85,13 +83,23 @@ public class VideoController {
     	 throw new CommonException("上传失败，课程名称不能为空");
      }
      
-     video.setUrl(url);
+     
+    
      Video oldVideo = null;
      if(StringUtils.isBlank(video.getId())){
     	 video.setId(null);
     	video.setCreateTime(new Date());
+      if(StringUtils.isBlank(url)){
+   	      throw new CommonException("视频文件未上传");
+        }
+      video.setUrl(url);
      }else{
-	 oldVideo = videoRepos.findById(video.getId());
+	    oldVideo = videoRepos.findById(video.getId());
+		 if(StringUtils.isNotBlank(url)){
+			 video.setUrl(url);
+		 }else{
+			 video.setUrl(oldVideo.getUrl()); 
+		 }
      }
      String fileName = (String) session.getAttribute("fileName");
      video.setFileName(fileName);
@@ -199,7 +207,7 @@ public class VideoController {
   		courseRepository.save(course);
   		
   	} catch (Exception e) {
-  		e.printStackTrace();
+  		logger.warn("获取视频文件异常",e);
   	}
   	return request.getContextPath()+PAGE+"show";
     }
