@@ -13,7 +13,7 @@
     ">
 
   <!--  Mongo config -->
-  <mongo:mongo host="120.24.231.207" port="28888">
+  <mongo:mongo host="${mongo.host}" port="${mongo.port}">
      <mongo:options connections-per-host="80"
                    threads-allowed-to-block-for-connection-multiplier="40"
                    connect-timeout="20000"
