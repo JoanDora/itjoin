@@ -121,7 +121,6 @@ public class PayController {
 		User user = (User)obj;
 		order.setUserId(user.getId());
 		orderRepository.save(order);
-		
 		logger.warn("用户准备支付，订单信息为:"+JSONObject.toJSONString(order));
 		return "pages/pay/alipayapi";
 	}
