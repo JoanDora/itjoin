@@ -187,7 +187,7 @@ public class PayController {
 						//如果有做过处理，不执行商户的业务程序
 					
 				    Order order = orderRepository.findByOutTradeNo(outTradeNo);
-				    if(order !=null && order.getTradeStatus()==PayConstant.WAIT_BUYER_PAY){
+				    if(order !=null){
 					 order.setTradeStatus(PayConstant.WAIT_SELLER_SEND_GOODS);
 					 order.setTradeNo(tradeNo);
 	            			  orderRepository.save(order);
@@ -260,6 +260,71 @@ public class PayController {
             	  out.println("fail");
   	    }
 	    
+	}
+	
+	
+	
+	//同步通知接口
+	@RequestMapping("/return")
+	public void synchronousReturn(HttpServletRequest request,HttpServletResponse response){
+	    PrintWriter out = null;
+    	    try {
+    		out = response.getWriter();
+	          //获取支付宝GET过来反馈信息
+		Map<String,String> params = new HashMap<String,String>();
+		Map requestParams = request.getParameterMap();
+		for (Iterator iter = requestParams.keySet().iterator(); iter.hasNext();) {
+			String name = (String) iter.next();
+			String[] values = (String[]) requestParams.get(name);
+			String valueStr = "";
+			for (int i = 0; i < values.length; i++) {
+				valueStr = (i == values.length - 1) ? valueStr + values[i]
+						: valueStr + values[i] + ",";
+			}
+			//乱码解决，这段代码在出现乱码时使用。如果mysign和sign不相等也可以使用这段代码转化
+			valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
+			params.put(name, valueStr);
+		}
+		String outTradeNo = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
+		String tradeNo = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
+		String tradeStatus = new String(request.getParameter("trade_status").getBytes("ISO-8859-1"),"UTF-8");
+		boolean verify_result = AlipayNotify.verify(params);
+		if(verify_result){//验证成功
+			//请在这里加上商户的业务逻辑程序代码
+			if(tradeStatus.equals("WAIT_SELLER_SEND_GOODS")){
+			    Order order = orderRepository.findByOutTradeNo(outTradeNo);
+			    if(order !=null){
+				order.setTradeStatus(PayConstant.WAIT_SELLER_SEND_GOODS);
+				 order.setTradeNo(tradeNo);
+            			  orderRepository.save(order);
+            			//物流公司名称
+            			String logistics_name = PayConstant.LOGISTICS_NAME;
+            			//物流发货单号
+            			  String invoice_no = "Invoice"+String.valueOf(new Date().getTime());
+            			//物流运输类型
+            			String transport_type = new String("EMS");
+            			//把请求参数打包成数组
+            			Map<String, String> sParaTemp = new HashMap<String, String>();
+            			sParaTemp.put("service", "send_goods_confirm_by_platform");
+            	                sParaTemp.put("partner", AlipayConfig.partner);
+            	                sParaTemp.put("_input_charset", AlipayConfig.input_charset);
+            			sParaTemp.put("trade_no", tradeNo);
+            			sParaTemp.put("logistics_name", logistics_name);
+            			sParaTemp.put("invoice_no", invoice_no);
+            			sParaTemp.put("transport_type", transport_type);
+            			//建立请求
+            			String sHtmlText = AlipaySubmit.buildRequest("", "", sParaTemp);
+            			logger.warn("用户付款，支付宝通知，确认发货信息为:{}",JSONObject.toJSONString(sParaTemp));
+			}
+			 //该页面可做页面美工编辑
+			  out.println("验证成功<br />");
+			}
+		}else{
+			out.println("验证失败");
+		}
+    	    }catch(Exception e) {
+          	  out.println("fail");
+	    }
 	}
 	
 }
