@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,8 @@ import com.itjoin.pay.model.PayEntity;
 import com.itjoin.pay.repositories.OrderRepository;
 import com.itjoin.pay.util.AlipayNotify;
 import com.itjoin.pay.util.AlipaySubmit;
+import com.itjoin.user.UserConstant;
+import com.itjoin.user.model.User;
 
 /**
  * pay through alipay
@@ -51,9 +54,12 @@ public class PayController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/goPayPage/{id}", method = RequestMethod.GET)
-	public String  goPayPage(@PathVariable String id, ModelMap model)
+	public String  goPayPage(@PathVariable String id, ModelMap model,HttpSession session)
 			throws IOException {
-                
+	     Object obj =  session.getAttribute(UserConstant.LOGIN_USER);
+	     if(obj ==null){
+		return "pages/login";
+	      }
 	        Course course =  courseRepository.findOne(id);
 	        PayEntity payEntity = new PayEntity();
 	        String outTradeNo = "dxzxfx"+String.valueOf(new Date().getTime());
@@ -112,6 +118,8 @@ public class PayController {
 		Order order = new Order();
 		order.setCourseId(id);
 		order.setOutTradeNo(outTradeNo);
+		User user = (User)obj;
+		order.setUserId(user.getId());
 		orderRepository.save(order);
 		
 		logger.warn("用户准备支付，订单信息为:"+JSONObject.toJSONString(order));

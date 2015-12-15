@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itjoin.admin.model.Admin;
+import com.itjoin.user.UserConstant;
 import com.itjoin.user.model.User;
 import com.itjoin.user.repositories.UserCurd;
 import com.itjoin.user.repositories.UserRepository;
@@ -54,7 +55,7 @@ public class UserController {
 			user.setLastLoginTime(new Date());
 			userRepository.save(user);
 			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
+			session.setAttribute(UserConstant.LOGIN_USER, user);
 			session.setMaxInactiveInterval(-1);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,7 +99,7 @@ public class UserController {
 			request.getSession().removeAttribute("failLoginNums");
 		}
 		HttpSession session = request.getSession();
-		session.setAttribute("user", user);
+		session.setAttribute(UserConstant.LOGIN_USER, user);
 		session.setMaxInactiveInterval(-1);
 
 		// return "service/selfService";
@@ -147,7 +148,7 @@ public class UserController {
 			User user = null;
 			try {
 				HttpSession session = request.getSession();
-				user =  (User) session.getAttribute("user");
+				user =  (User) session.getAttribute(UserConstant.LOGIN_USER);
 			} catch (Exception e) {
 				e.printStackTrace();
 				return null;
@@ -159,7 +160,7 @@ public class UserController {
 		protected @ResponseBody Object loginOut(HttpServletRequest request) throws Exception {
 			try {
 				HttpSession session = request.getSession();
-				session.removeAttribute("user");
+				session.removeAttribute(UserConstant.LOGIN_USER);
 			} catch (Exception e) {
 				e.printStackTrace();
 				return 0;

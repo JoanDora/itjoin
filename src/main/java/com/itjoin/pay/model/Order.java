@@ -29,10 +29,24 @@ public class Order {
     private Integer tradeStatus;//订单状态 0表示未支付，1表示已支付，2表示发货，3表示确认到货，开通课程
     
     private String courseId;//课程id
+    private String userId;//用户id
     
     
     
     
+    public String getUserId() {
+        return userId;
+    }
+
+
+
+    
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+
+
     public String getCourseId() {
         return courseId;
     }
