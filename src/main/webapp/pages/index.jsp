@@ -15,7 +15,8 @@
 .C_content_a li a img{ width:283px; height:185px;}
 </style>
 </head>
-
+<script type="text/javascript"
+ src="<%=path %>/resources/js/qq/qc_loader.js" charset="utf-8" data-callback="true"></script>
 <body>
 <%-- <jsp:include page="header.jsp" /> --%>
 <%@ include file="header.jsp" %> 

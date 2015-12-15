@@ -31,6 +31,8 @@
 margin: 0 auto;
 }
 </style>
+<script type="text/javascript"
+ src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="1104947923" data-redirecturi="http://www.itjoin.org/" charset="utf-8"></script> 
 </head>
 <body>
 <%@ include file="header.jsp" %> 
@@ -40,8 +42,8 @@ margin: 0 auto;
     <div class="grid-c1" >
        <div class="login-form">
         <div class="head">
-          登录it分享联盟
-          <span>还没有一起it分享联盟账号？<a href="/register" class="register-page-erynt" style="color:#fff; text-decoration:underline;">30秒注册</a></span> </div>
+          登录大象分享
+          <span>还没有大象分享账号？<a href="/register" class="register-page-erynt" style="color:#fff; text-decoration:underline;">30秒注册</a></span> </div>
         <form id="login_form"  method="post" onSubmit="return false" style="padding:0 50px;">
           <div class="tip error"></div>
           <div class="input-text left user"> 
@@ -56,11 +58,8 @@ margin: 0 auto;
               记住账号 </label>
             <span> <a href="/user/skip/register" class="register-page-entry">免费注册</a> <a href="javascript:forgotPwd();">忘记密码？</a> </span> </div>
           <div class="btn-bar">
-            <button type="button"  onclick="javascript:onSubmit();">登 录</button>
+            <button type="button"  onclick="javascript:onSubmit();">登 录</button>  <span style="margin-left:30px;" id="qqLoginBtn"></span>
           </div>
-          <!-- <div class="other-entry">
-            <p>您可以使用以下账号登录</p>
-            <a href="#" class="qq-user-entry"><i></i>QQ</a> <a href="#" class="weibo-user-entry"><i></i>新浪微博</a> </div> -->
         </form>
       </div>
     </div>
@@ -82,6 +81,36 @@ margin: 0 auto;
 <script type="text/javascript" src="<%=path%>/resources/js/md5.js"></script>
 <script type='text/javascript' src=' <%=path%>/resources/js/easydialog/easydialog.min.js'></script>
 <script type="text/javascript">
+//调用QC.Login方法，指定btnId参数将按钮绑定在容器节点中
+QC.Login({
+    //btnId：插入按钮的节点id，必选
+    btnId:"qqLoginBtn",	
+    //用户需要确认的scope授权项，可选，默认all
+    scope:"all",
+    //按钮尺寸，可用值[A_XL| A_L| A_M| A_S|  B_M| B_S| C_S]，可选，默认B_S
+    size: "A_M"
+}, function(reqData, opts){//登录成功
+    //根据返回数据，更换按钮显示状态方法
+    var dom = document.getElementById(opts['btnId']),
+    _logoutTemplate=[
+         //头像
+         '<span><img src="{figureurl}" class="{size_key}"/></span>',
+         //昵称
+         '<span>{nickname}</span>',
+         //退出
+         '<span><a href="javascript:QC.Login.signOut();">退出</a></span>'	
+                  ].join("");
+    dom && (dom.innerHTML = QC.String.format(_logoutTemplate, {
+        nickname : QC.String.escHTML(reqData.nickname),
+        figureurl : reqData.figureurl
+           }));
+}, function(opts){//注销成功
+alert('QQ登录 注销成功'); 
+}
+);
+
+
+
 
 function openDialog(){
 	easyDialog.open({
