@@ -16,7 +16,7 @@
 </style>
 </head>
 <script type="text/javascript"
- src="<%=path %>/resources/js/qq/qc_loader.js" charset="utf-8" data-callback="true"></script>
+ src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" charset="utf-8" data-callback="true"></script>
 <body>
 <%-- <jsp:include page="header.jsp" /> --%>
 <%@ include file="header.jsp" %> 

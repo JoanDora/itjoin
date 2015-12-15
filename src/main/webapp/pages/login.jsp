@@ -32,7 +32,7 @@ margin: 0 auto;
 }
 </style>
 <script type="text/javascript"
- src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="1104947923" data-redirecturi="http://www.itjoin.org/" charset="utf-8"></script> 
+ src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="1104947923" data-redirecturi="http://www.itjoin.org" charset="utf-8"></script> 
 </head>
 <body>
 <%@ include file="header.jsp" %> 
@@ -91,6 +91,8 @@ QC.Login({
     size: "A_M"
 }, function(reqData, opts){//登录成功
     //根据返回数据，更换按钮显示状态方法
+    console.log(opts);
+    console.log(reqData);
     var dom = document.getElementById(opts['btnId']),
     _logoutTemplate=[
          //头像
