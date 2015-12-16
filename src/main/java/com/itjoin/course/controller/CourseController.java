@@ -483,4 +483,16 @@ public class CourseController {
 		course.setImageUrl(fileName);
 		return fileName;
 	}
+    /**
+     * 课程详情
+     * @param id
+     * @param model
+     * @author JOANDORA
+     */
+    @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
+    public String detail(@PathVariable String id, ModelMap model){
+    	Course course = courseRepository.findOne(id);
+		model.put("course", course);
+		return "pages/course/detail";
+    }
 }
