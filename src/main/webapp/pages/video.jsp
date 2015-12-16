@@ -70,24 +70,11 @@
                 </li> -->
                 <li ><span>视频：</span>
                   <div id="container">
-		                <a id="pickfiles" href="javascript:;">选择文件</a> 
-		               <a id="uploadfiles" href="javascript:;">上传</a>
+		                <button id="pickfiles"  onclick="selectFile();">选择文件</button> 
+		               <button id="uploadfiles">上传</button>
                   </div>
                    <div id="filelist">您的浏览器没有 Flash, Silverlight 并且不支持HTML5 </div>
-                   <!-- <input type="file"   name="file"  id="fileToUpload"   style=" width:70%; margin-left:120px; border:none;  " onchange="fSubmit();" />
-                   <span id="orgFileName"></span> -->
                 </li>
-             <!--  <div class="br"  style="display:none;" id="progress_all"  style="height:100px">
-            	<h1><a href="javascript:closeCont();" class="fr" id="cancel"  >取消</a></h1>
-                	<div class="process clearfix" id="process">
-						<span class="progress-box">
-							<span class="progress-bar" style="width: 0%;" id="progress_bar"></span>
-						</span>
-                        <span id="progress_percent">0%</span>
-                    </div>
-                    <div class="info" id="info"><span>已上传：</span><span id="has_upload">0</span><span>MB  速度：</span><span id="upload_speed">0</span>KB/s</div>
-                    <div class="info" id="success_info" style="display: none;"></div>
-           </div> -->
            <!--       <li ><span>视频时长：</span>
                    <input type="text"/> 分<input type="text"/> 秒 
                     <p>时长为整数</p>
@@ -139,10 +126,6 @@
 	}
 	
 			$(function(){
-			/*   $(".C_qc").click(function(){
-			  	$(this).parents("li").hide();
-			  
-			  }); */
 			  $(".C_kslist li").hover(function(){
 			  	$(".C_kslist li .C_div2").hide();
 				$(this).children(".C_div2").show();
@@ -158,16 +141,6 @@
 			   }); 
 			});	
 		
-		/* 	function addVideo(){
-				 $(".C_bj").click(function(){
-					    $(".C_box2").show();
-						 var height=$(".C_box").outerHeight(true);
-					    var height_pm=$(window).height();
-						$(".C_box").animate({top:(height_pm-height)/2+"px"},0);	
-					    
-					   }); 
-			} */
-			
 			function cancel(){
 				$(".C_box2").hide();
 			}
@@ -281,16 +254,21 @@
 					},
 
 					UploadProgress: function(up, file) {
+						console.log(file.id)
 						document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
 					},
 
 					Error: function(up, err) {
-						document.getElementById('console').appendChild(document.createTextNode("\nError #" + err.code + ": " + err.message));
+						document.getElementById('filelist').appendChild(document.createTextNode("\nError #" + err.code + ": " + err.message));
 					}
 				}
 			});
 
 			uploader.init();
+			
+			function selectFile(){
+				document.getElementById('filelist').innerHTML = '';
+			}
     </script>
 </body>
 </html>

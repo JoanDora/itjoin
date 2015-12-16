@@ -1,0 +1,672 @@
+﻿@charset "utf-8";
+
+/*-- 布局
+---------------------------------*/
+
+.w-auto {
+    width: 100%;
+    min-width: 1190px;
+}
+
+.head,
+.wrap,
+.content,
+.area {
+    width: 1190px;
+    margin: 0 auto;
+}
+
+.area {
+    overflow: hidden;
+}
+
+/*一列*/
+.content {
+    min-height: 480px;
+}
+
+/*左右两列*/
+.side {
+    padding: 0 20px;
+    width: 210px;
+    min-height: 500px;
+    background-color: #f5f5f5;
+}
+
+.main {
+    width: 900px;
+    min-height: 500px;
+    /*background-color: #ccc;*/
+
+}
+
+/*左中右三列*/
+.l-con {
+}
+
+.center {
+}
+
+.r-con {
+}
+
+/*通用散点集合地*/
+.hr-line {
+    height: 0;
+    font-size: 0;
+    border-bottom: 1px solid #e6e6e6;
+    overflow: hidden;
+}
+
+.opacity:hover {
+    opacity: .8;
+    filter: alpha(opacity=80);
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+
+/*两种  通用title   带更多 多嵌套一层 加上ck-title-con  不带更多 直接调用ck-title*/
+.ck-title-con {
+    margin: 25px 0 16px;
+    overflow: hidden;
+}
+
+.ck-title {
+    margin: 25px 0 16px;
+    font-size: 16px;
+    color: #333;
+    overflow: hidden;
+    font-family: 'microsoft yahei';
+}
+
+.ck-title-con .ck-title {
+    margin: 0;
+}
+
+.ck-title-con .more {
+    margin-top: 3px;
+}
+
+/*更多*/
+.more {
+    color: #666;
+    font-family: simsun;
+}
+
+.more:hover {
+    color: #1eb37b;
+}
+
+/*面包屑*/
+.breadcrumbs {
+    padding-bottom: 15px;
+    color: #666;
+}
+
+.breadcrumbs a {
+    color: #666;
+}
+
+.breadcrumbs a:hover {
+    color: #1eb37b;
+}
+
+.breadcrumbs em {
+    padding: 0 10px;
+    font-family: simsun;
+}
+
+/*-- textarea ,input
+------------------------------*/
+.com-area {
+    width: 800px;
+    height: 170px;
+    padding: 5px;
+    font-size: 14px;
+    line-height: 18px;
+    border: 1px solid #e1e1e1;
+    overflow-y: auto;
+    font-family: arial;
+    word-wrap: break-word;
+    background-color: #fff;
+    vertical-align: top;
+    -moz-transition: border-color .2s ease, background-color .2s ease;
+    -webkit-transition: border-color .2s ease, background-color .2s ease;
+    transition: border-color .2s ease, background-color .2s ease
+}
+
+.com-area:focus,
+.com-area-focus {
+    background-color: #fdfbef;
+    color: #333;
+}
+
+.input-text {
+    width: 360px;
+    height: 18px;
+    line-height: 18px;
+    padding: 5px;
+    border: 1px solid #e6e6e6;
+    color: #999;
+    background-color: #fff;
+    vertical-align: middle;
+    border-radius: 2px;
+    -moz-transition: background-color .2s ease;
+    -webkit-transition: background-color .2s ease;
+    transition: background-color .2s ease;
+
+}
+
+.input-text:focus,
+.input-text_focus {
+    color: #333;
+    background-color: #fdfbf0;
+}
+
+.err-input {
+    -webkit-animation: error .2s 3;
+    -moz-animation: error .2s 3;
+    animation: error .2s 3;
+    background: #fcc
+}
+
+/*关闭按钮*/
+.dialog .close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 15px;
+    height: 15px;
+    text-indent: -999em;
+    overflow: hidden;
+    background: url(http://res.ckimg.com/sites/www/v2/images/public/dialog/fe_dialog_close.png) no-repeat 0 0;
+}
+
+.dialog .close:hover {
+    background-position: 0 -15px;
+}
+
+/*好 中 差评 ，信誉*/
+.ico-grade-star {
+    display: inline-block;
+    width: 14px;
+    height: 18px;
+    vertical-align: top;
+    background: url(../images/ico/ico-credit.png) no-repeat;
+}
+
+.ico-grade-star.s1 {
+    background-position: 0 0;
+}
+
+.ico-grade-star.s2 {
+    background-position: 0 -23px;
+}
+
+.ico-grade-star.s3 {
+    background-position: 0 -46px;
+}
+
+.school-credit {
+    width: 95px;
+    display: block;
+    overflow: hidden;
+}
+
+.ico-credit {
+    height: 16px;
+    display: block;
+    background: url(../images/ico/ico-credit.png) repeat-x;
+}
+
+.ico-credit.rating1 {
+    background-position: 0 -69px;
+}
+
+.ico-credit.rating2 {
+    background-position: 0 -88px;
+}
+
+.ico-credit.rating3 {
+    background-position: 0 -107px;
+}
+
+.ico-credit.rating4 {
+    background-position: 0 -126px;
+}
+
+/*在线客服*/
+.ico-online-service {
+    width: 88px;
+    height: 24px;
+    line-height: 200px;
+    overflow: hidden;
+    display: inline-block;
+    text-indent: 0;
+    vertical-align: middle;
+    background: url(../images/ico/ico-online-service.png) no-repeat 0 0;
+}
+
+.ico-online-service:hover {
+    background-position: 0 -27px;
+}
+
+/*评价标签*/
+.comment-tag li {
+    float: left;
+    display: block;
+    margin: 0 8px 8px 0;
+    padding: 0 12px;
+    height: 28px;
+    line-height: 28px;
+    color: #999;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    border: 1px solid #ffd6ad;
+    background-color: #fffbf6;
+}
+
+.comment-tag li:hover,
+.comment-tag .select {
+    border: 1px solid #fda142;
+    background-color: #ffecda;
+}
+
+/*功能提示框 4个方向箭头*/
+.arrow-t,
+.arrow-r,
+.arrow-b,
+.arrow-l {
+    position: absolute;
+    padding: 6px 10px;
+    border: 1px solid #f63;
+    white-space: nowrap;
+    background-color: #fff;
+}
+
+.arrow-t .top,
+.arrow-t .bot,
+.arrow-b .top,
+.arrow-b .bot,
+.arrow-l .top,
+.arrow-l .bot,
+.arrow-r .top,
+.arrow-r .bot {
+    position: absolute;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    overflow: hidden;
+    border-width: 6px;
+    border-style: solid;
+}
+
+.arrow-t .top {
+    left: 30px;
+    top: -12px;
+    z-index: 1;
+    border-color: transparent transparent #fff transparent;
+}
+
+.arrow-t .bot {
+    left: 30px;
+    top: -13px;
+    border-color: transparent transparent #f63 transparent;
+}
+
+.arrow-b .top {
+    left: 30px;
+    bottom: -12px;
+    z-index: 1;
+    border-color: #fff transparent transparent transparent;
+}
+
+.arrow-b .bot {
+    left: 30px;
+    bottom: -13px;
+    border-color: #f63 transparent transparent transparent;
+}
+
+.arrow-l .top {
+    left: -12px;
+    top: 8px;
+    z-index: 1;
+    border-color: transparent #fff transparent transparent;
+}
+
+.arrow-l .bot {
+    left: -13px;
+    top: 8px;
+    border-color: transparent #f63 transparent transparent;
+}
+
+.arrow-r .top {
+    right: -12px;
+    top: 10px;
+    z-index: 1;
+    border-color: transparent #fff transparent transparent;
+}
+
+.arrow-r .bot {
+    right: -13px;
+    top: 10px;
+    border-color: transparent #f63 transparent transparent;
+}
+
+/*单选框，复选框*/
+.radio,
+.radio-v,
+.checkbox,
+.checkbox2,
+.checkbox-v {
+    font-size: 14px;
+    line-height: 20px;
+    color: #666;
+    cursor: pointer;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.radio input,
+.radio-v input,
+.checkbox input,
+.checkbox2 input,
+.checkbox-v input,
+.check-gray input {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.radio .text,
+.radio-v .text,
+.checkbox .text,
+.checkbox2 .text,
+.checkbox-v .text,
+.check-gray .text {
+    margin-left: 20px;
+    display: block;
+}
+
+.radio img,
+.radio-v img {
+    margin-right: 5px;
+}
+
+.ico-radio,
+.ico-radio-v,
+.ico-checkbox,
+.ico-checkbox2,
+.ico-checkbox-v,
+.ico-check-gray {
+    float: left;
+    margin-top: 3px;
+    width: 18px;
+    height: 16px;
+    display: block;
+    background: url(../images/ico/ico-simulate.png) no-repeat center center;
+}
+
+.ico-radio {
+    background-position: 0 0;
+}
+
+.radio:hover .ico-radio {
+    background-position: -18px 0;
+}
+
+.radio.checked .ico-radio,
+.radio.checked:hover .ico-radio {
+    background-position: -36px 0;
+}
+
+.ico-radio-v {
+    background-position: 0 -18px;
+}
+
+.radio-v:hover .ico-radio-v {
+    background-position: -18px -18px;
+}
+
+.radio-v.checked .ico-radio-v {
+    background-position: -36px -18px;
+}
+
+.ico-checkbox {
+    background-position: 0 -35px
+}
+
+.checkbox:hover .ico-checkbox {
+    background-position: -17px -35px;
+}
+
+.checkbox.checked .ico-checkbox,
+.checkbox.checked:hover .ico-checkbox {
+    background-position: -36px -35px;
+}
+
+.ico-checkbox2 {
+    background-position: 0 -53px;
+}
+
+.checkbox2:hover .ico-checkbox2 {
+    background-position: -18px -53px;
+}
+
+.checkbox2.checked .ico-checkbox2,
+.checkbox2.checked:hover .ico-checkbox2 {
+    background-position: -36px -53px;
+}
+
+.ico-checkbox-v {
+    background-position: 0 -71px;
+}
+
+.checkbox-v:hover .ico-checkbox-v {
+    background-position: -18px -71px;
+}
+
+.checkbox-v.checked .ico-checkbox-v,
+.checkbox-v.checked:hover .ico-checkbox-v {
+    background-position: -36px -71px;
+}
+
+.check-gray,
+.check-gray input {
+    cursor: default;
+}
+
+.check-gray .ico-checkbox,
+.check-gray:hover .ico-checkbox {
+    background-position: 0 -88px;
+}
+
+/*-- 按钮组件    所有按钮集合,目前预估9种大小  (样式一样，大小和颜色不同)
+------------------------------------------------------------------------------------------------------*/
+.ck-btn {
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    display: inline-block;
+}
+
+.ck-btn:hover {
+    color: #fff;
+}
+
+.ck-btn[disabled],
+.ck-btn[disabled]:hover,
+.ck-btn[disabled]:active {
+    cursor: default;
+    background-color: #ecebeb;
+    color: #c6c6c6;
+}
+
+/* 橘色按钮 宽150 高30*/
+.ck-btn1,
+.ck-btn2,
+.ck-btn-gray {
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    font-family: 'microsoft yahei';
+}
+
+.ck-btn1,
+.ck-btn7 {
+    background-color: #f63;
+}
+
+.ck-btn1:hover,
+.ck-btn7:hover {
+    background-color: #ff4b33;
+}
+
+.ck-btn-gray,
+.ck-btn-gray:hover {
+    cursor: default;
+    background-color: #e6e6e6;
+}
+
+/* 绿色按钮 宽150 高30 */
+.ck-btn2 {
+    background-color: #33c288;
+}
+
+/* 绿色按钮 宽98 高40 */
+.ck-btn3,
+.ck-btn4,
+.ck-btn5 {
+    font-size: 14px;
+    background-color: #33c288;
+}
+
+.ck-btn3 {
+    width: 98px;
+    height: 40px;
+    line-height: 40px;
+}
+
+/* 绿色按钮 宽86 高30 */
+.ck-btn4 {
+    width: 86px;
+    height: 30px;
+    line-height: 30px;
+}
+
+/* 绿色按钮 宽86 高30 */
+.ck-btn5 {
+    width: 70px;
+    height: 32px;
+    line-height: 32px;
+}
+
+.ck-btn2:hover,
+.ck-btn3:hover,
+.ck-btn4:hover,
+.ck-btn5:hover {
+    background-color: #396;
+}
+
+/* 灰色按钮 宽72 高32 */
+.ck-btn6 {
+    width: 68px;
+    height: 30px;
+    line-height: 30px;
+    color: #666;
+    border: 1px solid #cfcfcf;
+    background-color: #eee;
+}
+
+.ck-btn6:hover {
+    color: #666;
+    background-color: #e6e6e6;
+}
+
+/* 橘色按钮 宽100 高36 */
+.ck-btn7 {
+    width: 100px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+}
+
+/*-- ico20 图标集合
+------------------------------------*/
+.ico20 {
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    background: url(../images/ico/ico20.png) no-repeat center center;
+}
+
+.ico-arrow-r {
+    background-position: 0 -40px;
+}
+
+.btn-arrow-down {
+    background-position: 0 0;
+}
+
+.btn-arrow-up {
+    background-position: 0 -20px;
+}
+
+.aside-tips {
+    position: fixed;
+    top: 20%;
+    right: 0;
+    height: 170px;
+    overflow: hidden;
+}
+.zb-tips-box {
+    position: relative;
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+    right: -150px;
+    width: 148px;
+    border: 1px solid #1BB177;
+    background: #fff;
+    font: 12px/14px simsun;
+    color: #666;
+    box-shadow: 0 2px 3px 1px rgba(0,0,0,.3);
+
+}
+.zb-tips-box .btn-close {
+    display: inline-block;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    background: url(http://res.ckimg.com/sites/www/v2/images/user/ico_mychuanke.png) no-repeat 0 -894px;
+}
+.zb-tips-box .con {
+    width: 130px;
+    padding-top: 2px;
+    margin: 15px auto 0;
+    font: 12px/16px simsun;
+}
+.zb-tips-box .btn-close:hover {
+    background-position: 0 -912px;
+}
+.zb-tips-box .link-into {
+    color: #1BB177;
+}
+.zb-tips-box .link-into:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+

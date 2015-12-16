@@ -1,0 +1,583 @@
+@charset "utf-8";
+
+/*-- 组件 课程列表 样式1
+---------------------------------*/
+
+.ck-product-list {
+    width: 900px;
+    /*overflow: hidden;*/
+}
+
+.ck-product-list ul {
+    width: 920px;
+}
+
+.ck-product-list li {
+    float: left;
+    margin: 0 20px 20px 0;
+}
+
+.ck-product-list .item-panel {
+    width: 208px;
+    height: 290px;
+}
+
+.ck-product-list .price {
+    max-width: 180px;
+    /*margin-bottom: 6px;*/
+}
+
+.ck-recommend {
+    margin: 40px auto 0;
+    clear: both;
+    width: 1190px;
+    height: 309px;
+    background-color: #f2f1f1;
+}
+
+.ck-recommend-caption {
+    height: 50px;
+    padding: 0 30px;
+}
+
+.ck-recommend-caption h2 {
+    float: left;
+    margin-top: 20px;
+    font: normal 16px/1em 'microsoft yahei', 'simhei', sans-serif;
+    color: #333333;
+}
+
+.ck-recommend-caption .help {
+    float: right;
+    margin-top: 15px;
+}
+
+.ck-recommend-caption .help a {
+    font-size: 14px;
+    line-height: 20px;
+    font-family: 'microsoft yahei', serif;
+    color: #999999;
+    text-decoration: none;
+    font-style: normal;
+}
+
+.ck-recommend-content {
+    position: relative;
+    width: 1150px;
+    height: 239px;
+    padding: 0 20px 20px;
+}
+
+.ck-recommend-content .list {
+    width: 1150px;
+    height: 242px;
+}
+
+.ck-recommend-content .list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ck-recommend-content .list li {
+    float: left;
+    list-style: none;
+    margin: 0 10px;
+    padding: 0;
+}
+
+.ck-recommend-content .btn span {
+    display: block;
+    width: 26px;
+    height: 120px;
+    overflow: hidden;
+    cursor: pointer;
+    text-indent: -999em;
+    background: url(../../images/search/recommend-btn.png) no-repeat 0 0;
+    position: absolute;
+    z-index: 2;
+    top: 45px;
+    opacity: .7;
+}
+
+.ck-recommend-content .btn .prev {
+    left: 2px;
+    background-position: 0 0;
+}
+
+.ck-recommend-content .btn .prev:hover {
+    background-position: -26px 0;
+}
+
+.ck-recommend-content .btn .next {
+    right: 2px;
+    background-position: -52px 0;
+}
+
+.ck-recommend-content .btn .next:hover {
+    background-position: -78px 0;
+}
+
+.ck-recommend-content .tips {
+    width: 100px;
+    height: 14px;
+    overflow: hidden;
+    margin-left: -50px;
+    position: absolute;
+    top: -28px;
+    left: 50%;
+}
+
+.ck-recommend-content .tips span {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    overflow: hidden;
+    text-indent: -999em;
+    cursor: pointer;
+    background: url(../../images/search/recommend-tips.png) no-repeat -10px -10px;
+}
+
+.ck-recommend-content .tips span.current {
+    background-position: -30px -10px;
+}
+
+.item-panel {
+    width: 208px;
+    height: 240px;
+    border: 1px solid #e6e6e6;
+    background-color: #ffffff;
+    font-size: 12px;
+    position: relative;
+}
+
+.item-panel:hover {
+    z-index: 10;
+}
+
+.item-panel .ico-item-done {
+    position: absolute;
+    bottom: -2px;
+    right: -15px;
+    z-index: 99;
+}
+
+.item-panel:hover {
+    box-shadow: 0 0 3px rgba(50, 195, 136, .3);
+    border: 1px solid #32c388;
+}
+
+.item-pic {
+    width: 208px;
+    height: 156px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.item-pic .ico-item-dj,
+.item-pic .ico-item-yj,
+.item-pic .ico-item-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.item-pic .ico-item-st {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.item-pic img {
+    transition: transform .25s ease 0s;
+}
+
+.item-pic img:hover {
+    transform: scale(1.05);
+}
+
+.item-pic .item-pic-txt {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 26px;
+    line-height: 26px;
+    color: #ffffff;
+}
+
+.item-pic-txt .tit {
+    float: left;
+    width: 58px;
+    height: 26px;
+    background-color: #fc6238;
+    background-color: rgba(252, 98, 56, .9);
+    text-align: center;
+}
+
+.item-pic-txt .con {
+    float: left;
+    width: 150px;
+    height: 26px;
+    background-color: #000000;
+    background-color: rgba(0, 0, 0, .6);
+    text-align: center;
+}
+
+.item-pic-txt .con em {
+    color: #fc6238;
+}
+
+.item-title {
+    display: block;
+    margin: 10px 15px 8px;
+    height: 38px;
+    line-height: 20px;
+    color: #666;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.item-title a:hover {
+    color: #32c388;
+}
+
+.item-info {
+    margin: -2px 15px 13px;
+    height: 34px;
+    color: #999;
+    overflow: hidden;
+}
+
+.item-addition {
+    padding: 3px 15px 0;
+}
+
+.item-addition:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.item-addition .price {
+    float: left;
+    max-width: 100px;
+    overflow: hidden;
+    font-family: Helvetica, verdana, arial, serif;
+    height: 22px;
+    line-height: 16px;
+    color: #bbb;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: baseline;
+}
+
+.item-addition .price em {
+    margin-right: 3px;
+    font-size: 16px;
+}
+
+.item-addition .price .hot-price,
+.item-addition .price .off-price {
+    font-size: 18px;
+    color: #f60;
+    font-family: arial;
+}
+
+.item-addition .price .off-price {
+    color: #ccc;
+    text-decoration: line-through;
+}
+
+.item-addition .price .ico-xm {
+    float: left;
+    margin-right: 3px;
+    display: inline-block;
+    padding: 0 4px;
+    background-color: #fd383f;
+    color: #fff;
+    font-size: 12px;
+    line-height: 17px;
+    display: none;
+}
+
+.item-addition .number {
+    float: right;
+    width: 84px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: right;
+    line-height: 16px;
+    color: #bbb;
+}
+
+.item-addition .number em {
+    color: #999;
+    font-family: arial, serif;
+}
+
+.item-panel .satisfaction {
+    float: left;
+    width: 90px;
+    line-height: 16px;
+    color: #bbb;
+}
+
+.item-panel .school {
+    position: relative;
+    margin: 6px 15px 0;
+    height: 30px;
+    border-top: 1px dotted #d9d9d9;
+    clear: both;
+}
+
+.item-panel .school a.url {
+    display: inline-block;
+    max-width: 130px;
+    line-height: 30px;
+    color: #bbb;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.item-panel .school a.url:hover {
+    color: #32c388;
+}
+
+.item-panel .school .ico-hxx {
+    float: right;
+    margin:6px 0 0 3px;
+    display: inline-block;
+    padding: 0 4px;
+    background-color: #2B99FF;
+    color: #ffffff;
+    font: 12px/18px 'microsoft yahei', 'simhei', 'simsun', sans-serif;
+}
+
+.ico-item {
+    display: inline-block;
+    overflow: hidden;
+    text-indent: -999em;
+    background: url(../../images/search/recommend-ico.png) no-repeat 0 0;
+}
+
+.ico-item-dj {
+    width: 55px;
+    height: 55px;
+    background-position: 0 0;
+}
+
+.ico-item-yj {
+    width: 55px;
+    height: 55px;
+    background-position: -55px 0;
+}
+
+.ico-item-st {
+    width: 52px;
+    height: 22px;
+    background-position: -120px 0;
+}
+
+.ico-item-done {
+    width: 70px;
+    height: 60px;
+    background-position: -254px 0;
+}
+
+.ico-item-top {
+    width: 55px;
+    height: 55px;
+    background-position: -330px 0;
+}
+
+/*鼠标hover出弹出层  */
+
+.item-panel .school-name {
+    float: left;
+    max-width: 130px;
+    height: 30px;
+}
+.item-panel .school:hover .pop-school,
+.item-panel .school-name:hover .pop-school {
+    display: block;
+    left: -16px;
+    top: 30px;
+    -webkit-animation-duration: .5s;
+    -webkit-animation-delay: .2s;
+    -webkit-animation-timing-function: ease;
+    -webkit-animation-fill-mode: both;
+    -webkit-animation-name: pop-school;
+    -moz-animation-duration: .5s;
+    -moz-animation-delay: .2s;
+    -moz-animation-timing-function: ease;
+    -moz-animation-fill-mode: both;
+    -moz-animation-name: pop-school;
+}
+
+@-webkit-keyframes pop-school {
+    0% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+@-moz-keyframes pop-school {
+    0% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+/*运行部门 卡片状态*/
+
+.ck-operations-card {
+
+}
+
+.ck-operations-card li {
+    margin-bottom: 20px;
+}
+
+.ck-operations-card .item-panel,
+.side-card .item-panel {
+    height: auto;
+}
+
+.ck-operations-card .item-title,
+.side-card .item-title {
+    height: auto;
+    min-height: 20px;
+}
+
+.side-card .item-addition {
+    padding: 3px 15px 7px;
+}
+
+/* pop-school */
+.pop-school {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1060;
+    display: none;
+    width: 226px;
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+}
+
+.pop-school.top {
+    margin-top: -10px;
+}
+
+.pop-school.right {
+    margin-left: 10px;
+}
+
+.pop-school.bottom {
+    margin-top: 10px;
+}
+
+.pop-school.left {
+    margin-left: -10px;
+}
+
+.pop-school-title {
+    padding: 10px 20px;
+    background-color: #ffffff;
+}
+
+.pop-school-title .name {
+    font-size: 12px;
+    color: #999999;
+    line-height: 1.5em;
+}
+
+.pop-school-content {
+    border-top: 1px dotted #d9d9d9;
+    margin: 0 10px 10px;
+    padding-top: 10px;
+}
+
+.pop-school-content dl {
+    clear: both;
+    width: 100%;
+    height: 25px;
+}
+
+.pop-school-content dt {
+    float: left;
+    width: 50px;
+    height: 25px;
+    line-height: 25px;
+    color: #bbbbbb;
+    text-align: center;
+}
+
+.pop-school-content dd {
+    line-height: 25px;
+    text-align: left;
+}
+
+.pop-school-content dd a {
+    color: #bbbbbb;
+}
+
+.pop-school-content .ico-online-service {
+    vertical-align: top;
+}
+
+.pop-school > .arrow {
+    width: 17px;
+    height: 8px;
+    overflow: hidden;
+    position: absolute;
+    top: -8px;
+    left: 20px;
+}
+
+.pop-school > .arrow em {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    display: block;
+    border-width: 9px;
+    border-color: transparent;
+    border-style: solid;
+    border-top-width: 0;
+    border-bottom-color: #ddd;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.pop-school > .arrow i {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    display: block;
+    border-width: 9px;
+    border-color: transparent;
+    border-style: solid;
+    border-top-width: 0;
+    border-bottom-color: #fff;
+    position: absolute;
+    top: 1px;
+    left: 0;
+}
+
+
+
+
+
