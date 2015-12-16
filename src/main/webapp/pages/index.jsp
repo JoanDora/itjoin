@@ -45,7 +45,7 @@
         	  <c:forEach var="course" items="${courses}" varStatus="status"> 
             	<li style="width:300px;height:323px;">
                   <a href="javascript:void(0)">
-                    	<img onclick="javascript:showCourse('${course.id}')" src="<%=path%>/image/show?fileName=${course.imageUrl}"  onerror="this.src='<%=path %>/resources/images/default_video.jpg'"/>
+                    	<img onclick="javascript:detailCourse('${course.id}')" src="<%=path%>/image/show?fileName=${course.imageUrl}"  onerror="this.src='<%=path %>/resources/images/default_video.jpg'"/>
                         <div>
                         	<b>${course.name }</b></br>
                         	<p>
@@ -60,7 +60,7 @@
                            </p>
                             <p style="color:red">${course.price }元</p>
                              <span>主讲: ${course.teacherName }</span> <span style="margin-left:30px;">
-                             <input type="button"  onclick="buy('${course.id}');" style="background:#FFAA28;padding:0px 25px;line-height:30px;color:#FFF;font-family:'微软雅黑',Helvetica, Arial, Sans-Serif;font-size:16px;border:0" value="购买"/>
+                             <input type="button"  onclick="detailCourse('${course.id}');" style="background:#FFAA28;padding:0px 25px;line-height:30px;color:#FFF;font-family:'微软雅黑',Helvetica, Arial, Sans-Serif;font-size:16px;border:0" value="购买"/>
                         </div>
                     </a>
                 </li>
@@ -93,8 +93,8 @@
     	   location.href=spath+"/video/find/"+id;
        }
        
-       function buy(id){
-    	   location.href=spath+"/pay/goPayPage/"+id;
+       function detailCourse(id){
+    	   location.href=spath+"/course/detail/"+id;
        }
     </script>
 </body>
