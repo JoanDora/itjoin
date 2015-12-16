@@ -39,12 +39,41 @@ public class Video implements Comparable<Video>{
 	    private Date createTime;
 
 	    private Date updateTime;
+           
+	    private Integer price;//价格（以分为单位）
+            
+	    private Integer discount = 100;//折扣
+	    
+	    
+	    
+    
+    
+    
+    
+               
+	    
+	    public Integer getDiscount() {
+	        return discount;
+	    }
 
-    
-    
-    
-    
-    
+
+
+	    
+	    public void setDiscount(Integer discount) {
+	        this.discount = discount;
+	    }
+
+
+
+	    
+	    public void setPrice(Integer price) {
+	        this.price = price;
+	    }
+
+
+
+
+
     public String getFileName() {
 			return fileName;
 		}

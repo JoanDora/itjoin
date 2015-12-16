@@ -61,7 +61,8 @@
             <ul>
             	<li ><span>课时标题：</span><input type="text"  name="name" id="name"/></li>
                 <li ><span>简介：</span><textarea id="description"  name="description"></textarea></li>
-             <!--    <li><span>是否免费试看：</span>
+                 <li ><span>价格：</span><input id="price"  name="price"/></li>
+           <!--      <li><span>是否免费试看：</span>
                 	 <div>
                    	<span><input type="radio" name="radio" checked="checked" />是</span>
                     <span><input type="radio"  name="radio"/>否</span>
@@ -187,6 +188,7 @@
 						$("#courseId").val(data.courseId);
 						$("#description").text(data.description);
 						$("#orgFileName").html(data.fileName);
+						$("#price").html(data.price);
 					}
 				});
 				
@@ -215,7 +217,110 @@
 			
 			
 			
+<<<<<<< HEAD
 		
+=======
+			var fileName = "";
+			var oTimer = null;
+
+			$(document).ready(function(){ 
+				window.document.getElementById("fileToUpload").disabled = false;
+			});
+
+			function getProgress() {
+				var now = new Date();
+				$.ajax({
+					type : "GET",
+					dataType : "json",
+					url : spath + "/fileStatus/upload/progress?new="+ Math.random(),
+					success : function(data) {
+			        	$("#progress_percent").text(data.percent);
+			            $("#progress_bar").width(data.percent);
+			            $("#has_upload").text(data.mbRead);
+			            $("#upload_speed").text(data.speed);
+			            if(data.percent=="100%"){
+			            	clearInterval(oTimer)
+			            }
+					},
+					error : function(err) {
+						$("#progress_percent").text("Error");
+						clearInterval(oTimer)
+					}
+				});
+			    
+			}
+
+			/**
+			 * 提交上传文件
+			 */
+			function fSubmit() {
+				$("#process").show();
+				$("#cancel").show();
+				$("#info").show();
+				$("#success_info").hide();
+
+			    //文件名
+			   	fileName = $("#fileToUpload").val().split('/').pop().split('\\').pop();
+			    //进度和百分比
+			    $("#progress_percent").text("0%");
+			    $("#progress_bar").width("0%");
+			    $("#progress_all").show();
+			    oTimer = setInterval("getProgress()", 1000);
+			    ajaxFileUpload();
+			    //document.getElementById("upload_form").submit();
+			    window.document.getElementById("fileToUpload").disabled = true;
+			}
+
+			/**
+			 * 上传文件
+			 */
+			 //window.document.domain="www.itjoin.org";
+			function ajaxFileUpload() {
+			    $.ajaxFileUpload({
+			        url: spath + '/file/upload',
+			        fileElementId: 'fileToUpload',
+			       // secureuri:false, 
+			        dataType: 'jsonp',
+			        jsonp: 'callback',
+			        success: function(data, status) {
+			        	 data = data.replace( /<pre.*">/, '');
+			             data = data.replace("<PRE>", ''); //ajaxFileUpload会对服务器响应回来的text内容加上<pre>text</pre>前后缀
+			             data = data.replace("</PRE>", '');
+			             data = data.replace("<pre>", '');
+			             data = data.replace("</pre>", '');
+			             var result = eval("(" +data+ ")");
+			            if (typeof(result.status) != 'undefined') {
+			            	window.clearInterval(oTimer);
+			                if (result.status== '1') {
+			                	$("#info").hide();
+			                	$("#success_info").show();
+			                	$("#success_info").text(fileName + "\t" +result.msg);
+			                	$("#process").hide();
+			                	$("#cancel").hide();
+			                	$("#fileToUpload").val("");
+			                	window.document.getElementById("fileToUpload").disabled = false;
+			                	//上传进度和上传速度清0
+			                	$("#has_upload").text("0");
+			                    $("#upload_speed").text("0");
+			                    $("#progress_percent").text("0%");
+			                    $("#progress_bar").width("0%");
+			                } else{
+			                	$("#progress_all").hide();
+			                	$("#fileToUpload").val("");
+			                	if (typeof(result.msg) != 'undefined') {
+			                		alert(result.msg);
+			               	   }
+			                	alert("上传错误！");
+			                }
+			            }
+			        },
+			        error: function(data, status, e) {
+			            alert(e);
+			        }
+			    })
+			    return false;
+			}
+>>>>>>> branch 'master' of git@github.com:liuyaolin/itjoin.git
 			
 
 		
