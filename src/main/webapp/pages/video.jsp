@@ -61,7 +61,8 @@
             <ul>
             	<li ><span>课时标题：</span><input type="text"  name="name" id="name"/></li>
                 <li ><span>简介：</span><textarea id="description"  name="description"></textarea></li>
-             <!--    <li><span>是否免费试看：</span>
+                 <li ><span>价格：</span><input id="price"  name="price"/></li>
+           <!--      <li><span>是否免费试看：</span>
                 	 <div>
                    	<span><input type="radio" name="radio" checked="checked" />是</span>
                     <span><input type="radio"  name="radio"/>否</span>
@@ -181,6 +182,7 @@
 						$("#courseId").val(data.courseId);
 						$("#description").text(data.description);
 						$("#orgFileName").html(data.fileName);
+						$("#price").html(data.price);
 					}
 				});
 				
@@ -263,13 +265,16 @@
 			/**
 			 * 上传文件
 			 */
+			 //window.document.domain="www.itjoin.org";
 			function ajaxFileUpload() {
 			    $.ajaxFileUpload({
 			        url: spath + '/file/upload',
 			        fileElementId: 'fileToUpload',
-			        dataType: 'text',
+			       // secureuri:false, 
+			        dataType: 'jsonp',
+			        jsonp: 'callback',
 			        success: function(data, status) {
-			        	 data = data.replace(/<pre.*">/, '');
+			        	 data = data.replace( /<pre.*">/, '');
 			             data = data.replace("<PRE>", ''); //ajaxFileUpload会对服务器响应回来的text内容加上<pre>text</pre>前后缀
 			             data = data.replace("</PRE>", '');
 			             data = data.replace("<pre>", '');

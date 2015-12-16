@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.itjoin.constant.CommonConstant;
 import com.itjoin.util.DateTimeUtil;
 import com.itjoin.util.XXTeaUtil;
@@ -61,7 +62,7 @@ public class FileController {
 	/**
 	 * 上传文件
 	 */
-	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	@RequestMapping(value = "/upload")
 	public @ResponseBody Object upload(MultipartHttpServletRequest request,
 			HttpServletResponse response) {
 		logger.warn("开始上传=======");
