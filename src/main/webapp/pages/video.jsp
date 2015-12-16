@@ -68,10 +68,15 @@
                     </div>
                 </li> -->
                 <li ><span>视频：</span>
-                   <input type="file"   name="file"  id="fileToUpload"   style=" width:70%; margin-left:120px; border:none;  " onchange="fSubmit();" />
-                   <span id="orgFileName"></span>
+                  <div id="container">
+		                <a id="pickfiles" href="javascript:;">选择文件</a> 
+		               <a id="uploadfiles" href="javascript:;">上传</a>
+                  </div>
+                   <div id="filelist">您的浏览器没有 Flash, Silverlight 并且不支持HTML5 </div>
+                   <!-- <input type="file"   name="file"  id="fileToUpload"   style=" width:70%; margin-left:120px; border:none;  " onchange="fSubmit();" />
+                   <span id="orgFileName"></span> -->
                 </li>
-              <div class="br"  style="display:none;" id="progress_all"  style="height:100px">
+             <!--  <div class="br"  style="display:none;" id="progress_all"  style="height:100px">
             	<h1><a href="javascript:closeCont();" class="fr" id="cancel"  >取消</a></h1>
                 	<div class="process clearfix" id="process">
 						<span class="progress-box">
@@ -81,11 +86,12 @@
                     </div>
                     <div class="info" id="info"><span>已上传：</span><span id="has_upload">0</span><span>MB  速度：</span><span id="upload_speed">0</span>KB/s</div>
                     <div class="info" id="success_info" style="display: none;"></div>
-           </div>
+           </div> -->
            <!--       <li ><span>视频时长：</span>
                    <input type="text"/> 分<input type="text"/> 秒 
                     <p>时长为整数</p>
                 </li> -->
+              
                    <input type="hidden" name="id" id="id"/>
                     <input type="hidden" name="courseId" id="courseId" value="${courseId }" />
              <li> <input type="button" onclick="cancel();" class="btn-sm"  style="width: 15%;margin-right:30px" value="取消"> 
@@ -96,7 +102,7 @@
      </div> 
        <%@ include file="footer.jsp" %> 
    <script type="text/javascript" src="<%=path%>/resources/js/jquery.jslides.js"></script>
-<script src="<%=path%>/resources/js/ajaxfileupload.js" type="text/javascript"></script>
+<script type="text/javascript" src="/resources/plupload/plupload.full.min.js"></script>
 	<script >
 	var totalPage = '${totalPage}';
 	var courseId = '${courseId}';
@@ -173,7 +179,7 @@
 				jQuery.ajax({
 					type : 'GET',
 					contentType : 'application/json',
-					url : '/video/get/'+id,
+					url : spath+'/video/get/'+id,
 					dataType : 'json',
 					success : function(data) {
 						$("#name").val(data.name);
@@ -191,7 +197,7 @@
 			jQuery.ajax({
 				type : 'GET',
 				contentType : 'application/json',
-				url : '/video/delete/'+id,
+				url :spath+ '/video/delete/'+id,
 				dataType : 'json',
 				success : function(data) {
 					if(data=='1'){
@@ -209,105 +215,10 @@
 			
 			
 			
-			var fileName = "";
-			var oTimer = null;
-
-			$(document).ready(function(){ 
-				window.document.getElementById("fileToUpload").disabled = false;
-			});
-
-			function getProgress() {
-				var now = new Date();
-				$.ajax({
-					type : "GET",
-					dataType : "json",
-					url : spath + "/fileStatus/upload/progress?new="+ Math.random(),
-					success : function(data) {
-			        	$("#progress_percent").text(data.percent);
-			            $("#progress_bar").width(data.percent);
-			            $("#has_upload").text(data.mbRead);
-			            $("#upload_speed").text(data.speed);
-			            if(data.percent=="100%"){
-			            	clearInterval(oTimer)
-			            }
-					},
-					error : function(err) {
-						$("#progress_percent").text("Error");
-						clearInterval(oTimer)
-					}
-				});
-			    
-			}
-
-			/**
-			 * 提交上传文件
-			 */
-			function fSubmit() {
-				$("#process").show();
-				$("#cancel").show();
-				$("#info").show();
-				$("#success_info").hide();
-
-			    //文件名
-			   	fileName = $("#fileToUpload").val().split('/').pop().split('\\').pop();
-			    //进度和百分比
-			    $("#progress_percent").text("0%");
-			    $("#progress_bar").width("0%");
-			    $("#progress_all").show();
-			    oTimer = setInterval("getProgress()", 1000);
-			    ajaxFileUpload();
-			    //document.getElementById("upload_form").submit();
-			    window.document.getElementById("fileToUpload").disabled = true;
-			}
-
-			/**
-			 * 上传文件
-			 */
-			function ajaxFileUpload() {
-			    $.ajaxFileUpload({
-			        url: spath + '/file/upload',
-			        fileElementId: 'fileToUpload',
-			        dataType: 'text',
-			        success: function(data, status) {
-			        	 data = data.replace(/<pre.*">/, '');
-			             data = data.replace("<PRE>", ''); //ajaxFileUpload会对服务器响应回来的text内容加上<pre>text</pre>前后缀
-			             data = data.replace("</PRE>", '');
-			             data = data.replace("<pre>", '');
-			             data = data.replace("</pre>", '');
-			             var result = eval("(" +data+ ")");
-			            if (typeof(result.status) != 'undefined') {
-			            	window.clearInterval(oTimer);
-			                if (result.status== '1') {
-			                	$("#info").hide();
-			                	$("#success_info").show();
-			                	$("#success_info").text(fileName + "\t" +result.msg);
-			                	$("#process").hide();
-			                	$("#cancel").hide();
-			                	$("#fileToUpload").val("");
-			                	window.document.getElementById("fileToUpload").disabled = false;
-			                	//上传进度和上传速度清0
-			                	$("#has_upload").text("0");
-			                    $("#upload_speed").text("0");
-			                    $("#progress_percent").text("0%");
-			                    $("#progress_bar").width("0%");
-			                } else{
-			                	$("#progress_all").hide();
-			                	$("#fileToUpload").val("");
-			                	if (typeof(result.msg) != 'undefined') {
-			                		alert(result.msg);
-			               	   }
-			                	alert("上传错误！");
-			                }
-			            }
-			        },
-			        error: function(data, status, e) {
-			            alert(e);
-			        }
-			    })
-			    return false;
-			}
+		
 			
-			
+
+		
 			
 			//显示弹框 
 			function showCont(){
@@ -340,6 +251,49 @@
 
 			resetNavHeight();
 			$(window).resize(resetNavHeight);
+			
+			var uploader = new plupload.Uploader({
+				runtimes : 'html5,flash,silverlight,html4',
+				browse_button : 'pickfiles', // you can pass an id...
+				container: document.getElementById('container'), // ... or DOM Element itself
+				url :spath+ '/file/upload',
+				flash_swf_url : '/resources/plupload/Moxie.swf',
+				silverlight_xap_url : '/resources/plupload/Moxie.xap',
+				
+				filters : {
+					max_file_size : '1100mb',
+					mime_types: [
+						{title : "video", extensions : "mp4"}
+					]
+				},
+
+				init: {
+					PostInit: function() {
+						document.getElementById('filelist').innerHTML = '';
+
+						document.getElementById('uploadfiles').onclick = function() {
+							uploader.start();
+							return false;
+						};
+					},
+
+					FilesAdded: function(up, files) {
+						plupload.each(files, function(file) {
+							document.getElementById('filelist').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
+						});
+					},
+
+					UploadProgress: function(up, file) {
+						document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+					},
+
+					Error: function(up, err) {
+						document.getElementById('console').appendChild(document.createTextNode("\nError #" + err.code + ": " + err.message));
+					}
+				}
+			});
+
+			uploader.init();
     </script>
 </body>
 </html>

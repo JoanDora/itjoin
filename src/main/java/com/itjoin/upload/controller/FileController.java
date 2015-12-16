@@ -61,7 +61,7 @@ public class FileController {
 	/**
 	 * 上传文件
 	 */
-	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	@RequestMapping(value = "/upload")
 	public @ResponseBody Object upload(MultipartHttpServletRequest request,
 			HttpServletResponse response) {
 		logger.warn("开始上传=======");
