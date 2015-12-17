@@ -229,7 +229,7 @@
 				url :spath+ '/file/upload',
 				flash_swf_url : '/resources/plupload/Moxie.swf',
 				silverlight_xap_url : '/resources/plupload/Moxie.xap',
-				
+				multi_selection:false,
 				filters : {
 					max_file_size : '1100mb',
 					mime_types: [
@@ -240,7 +240,6 @@
 				init: {
 					PostInit: function() {
 						document.getElementById('filelist').innerHTML = '';
-
 						document.getElementById('uploadfiles').onclick = function() {
 							uploader.start();
 							return false;
@@ -249,6 +248,21 @@
 
 					FilesAdded: function(up, files) {
 						plupload.each(files, function(file) {
+							
+							if( up.files.length>1){
+								for(var i=0; i<files.length;i++){
+									//up.removeFile( up.getFile(files[i].id))
+									for(var j=0;j<up.files.length;j++){
+										if(up.files[j].id != files[i].id){
+											up.removeFile(up.files[j].id);
+										}
+									}
+									
+							    }
+							}
+							
+							console.log(up)
+							
 							document.getElementById('filelist').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
 						});
 					},
