@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="<%=path%>/resources/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="<%=path%>/resources/css/style.css" type="text/css" >
 <link rel="stylesheet"  href="<%=path %>/resources/flowplayer/skin/functional.css">
-
+<link rel="stylesheet" href="<%=path %>/resources/css/easydialog/easydialog.css" />
 
   <!-- If you'd like to support IE8 -->
 <%--   <script src="<%=path%>/resources/js/video/videojs-ie8.min.js"></script>
@@ -114,6 +114,27 @@
             </div>
         </div>
     </div>
+    
+    <div id="loginDiv" style="display:none">
+    <div class="head">
+          登录大象分享
+          <span>还没有大象分享账号？<a href="/register" class="register-page-erynt" style="color:#fff; text-decoration:underline;">30秒注册</a></span> </div>
+        <form id="login_form"  method="post" onSubmit="return false" style="padding:0 50px;">
+          <div class="tip error"></div>
+          <div class="input-text left user"> 
+            <input type="text" name="phone"   test="must" label="登录账号" placeholder="请输入您的注册手机">
+          </div></br>
+          <div class="input-text left pwd"> 
+            <input type="password" name="loginPwd"  id="loginPwd"  test="must" label="登录密码" maxlength="20" placeholder="请输入您的登录密码">
+          </div>
+          <div class="tools clearfix">
+            <span> <a href="/register" class="register-page-entry">免费注册</a> <a href="javascript:forgotPwd();">忘记密码？</a> </span> </div>
+          <div class="btn-bar">
+            <button type="button"  onclick="javascript:onSubmit();">登 录</button>  <span style="margin-left:30px;" id="qqLoginBtn"></span>
+          </div>
+        </form>
+      </div>
+     </div>
      <%@ include file="footer.jsp" %> 
 	<div id="imgBox" style="display: none">
 	     <img src="<%=path%>/resources/images/loading.gif" alt="" />
@@ -146,12 +167,11 @@
     	
     	function openDialog() {
 			easyDialog.open({
-				container : 'imgBox',
+				container : 'loginDiv',
 				fixed : false
 			});
 		}
-    	
-    	
+    	openDialog();
     	
     	function submitComment(id){
     		var content = $("#comment").val();
