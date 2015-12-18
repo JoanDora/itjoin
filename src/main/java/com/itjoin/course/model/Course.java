@@ -26,12 +26,10 @@ public class Course {
 
     private String id;
 
-    private String name;
+    private String name; 
 
     private String description;
-    
-    private String userId;//上传用户
-    
+
     private String teacherId;
 
     private String categoryId;//课程种类:1 Java 2 linux
@@ -47,22 +45,32 @@ public class Course {
     private Float price=0f;
     
     private Integer browseCount=0;//浏览次数
+    
+    private Integer buyCount=0;//购买次数
 
-    private Date createTime;
+    private Integer period=0;//课时
+    public Integer getPeriod() {
+		return period;
+	}
+
+	public void setPeriod(Integer period) {
+		this.period = period;
+	}
+
+	public Integer getBuyCount() {
+		return buyCount;
+	}
+
+	public void setBuyCount(Integer buyCount) {
+		this.buyCount = buyCount;
+	}
+
+	private Date createTime;
 
     private Date updateTime;
     
     
     
-    
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
 	public Integer getBrowseCount() {
 		return browseCount;
 	}
